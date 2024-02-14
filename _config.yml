@@ -1,0 +1,11 @@
+url: "https://docs.radicle.xyz"
+baseurl: "/"
+title: "docs.radicle.xyz"
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+collections:
+  guides:
+    output: true
+    permalink: /guides/:path/

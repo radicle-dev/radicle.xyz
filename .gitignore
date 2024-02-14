@@ -1,0 +1,8 @@
+_site/
+.jekyll-cache/
+_cache/
+.DS_Store
+node_modules/
+vendor/
+notes/
+.vercel
