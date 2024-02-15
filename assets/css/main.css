@@ -106,7 +106,7 @@ h2 {
   font-weight: var(--font-weight-semibold);
   margin: 3.75rem 0 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--color-fg-dim-4);
 }
 
 h3 {
@@ -135,6 +135,7 @@ pre {
   background-color: var(--color-bg-light);
   overflow-x: scroll;
   font-size: 0.875rem;
+  border-radius: 4px;
   padding: 1rem;
   margin: 0;
 }
@@ -150,7 +151,9 @@ pre.center {
 
 p code, ul code, ol code, table code {
   font-size: 1rem;
-  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 2px;
+  background-color: var(--color-bg-light);
 }
 
 p:last-child {
@@ -312,7 +315,7 @@ span.highlight-secondary {
   flex-direction: column;
   flex-wrap: wrap;
   gap: 1rem;
-  font-size: 0.75rem;
+  font-size: 0.75rem !important;
   margin: 2rem 0;
   padding: 0;
   height: 16rem;
@@ -323,6 +326,10 @@ span.highlight-secondary {
 }
 .toc a:hover {
   border-bottom-style: solid;
+}
+
+.toc code {
+  font-size: 0.75rem;
 }
 
 .toc li, .toc ul {
