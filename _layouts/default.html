@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <title>
+      {% if page.title %}
+        {{ page.title }}
+      {% else %}
+        {{ site.title }}
+      {% endif %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="twitter:site" content="@radicle" />
+    <meta name="twitter:creator" content="@radicle" />
+    <link rel="shortcut icon" href="/assets/images/radicle.svg"/>
+    <link rel="stylesheet" href="{{ "/assets/css/fonts.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/monokai.css" | relative_url }}">
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <a href="{{ "/" | relative_url }}">
+          <img src="{{ "/assets/images/radicle.svg" | relative_url }}" alt="" />
+        </a>
+      </div>
+      <nav>
+      </nav>
+    </header>
+    <main>
+      <h1>{{ page.title }}</h1>
+      <p class="subtitle">{{ page.subtitle }}</p>
+      {{ content }}
+    </main>
+    <footer>
+      &copy; The Radicle Team
+    </footer>
+  </body>
+</html>

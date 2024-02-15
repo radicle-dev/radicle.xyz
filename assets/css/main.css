@@ -275,10 +275,12 @@ figcaption, aside {
 a {
   color: unset;
   text-decoration: unset;
-  border-bottom: 1px solid var(--color-fg-dim-2);
 }
 
-a:hover {
+p a {
+  border-bottom: 1px solid var(--color-fg-dim-2);
+}
+p a:hover {
   border-bottom-color: var(--color-fg-dim-1);
 }
 
@@ -310,6 +312,18 @@ span.highlight-secondary {
   color: var(--color-fg-highlight-secondary);
 }
 
+.button {
+  color: var(--color-fg-highlight);
+  font-weight: var(--font-weight-semibold);
+  padding: 1rem 2rem;
+  border: 2px solid var(--color-fg-highlight);
+  border-radius: 4px;
+}
+.button:hover {
+  color: white;
+  background-color: var(--color-fg-highlight);
+}
+
 .toc {
   display: flex;
   flex-direction: column;
@@ -322,6 +336,7 @@ span.highlight-secondary {
 }
 
 .toc a {
+  border-bottom-width: 1px;
   border-bottom-style: none;
 }
 .toc a:hover {
