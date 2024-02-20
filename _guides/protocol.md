@@ -71,14 +71,14 @@ network for code collaboration and more.
 Radicle is a [peer-to-peer][] system, which means that there is no traditional
 client-server model. Peers on the Radicle network are referred to as *nodes*,
 and are indistinguishable from users at the protocol level. Nodes, identified
-by their [Node ID](#node-identifier-nid) (NID)---an [Ed25519][] public key---are
-responsible for seeding Git repositories, each identified by a unique
+by their [Node ID](#node-identifier-nid) (NID) -- an [Ed25519][] public
+key -- are responsible for seeding Git repositories, each identified by a unique
 [Repository ID](#repository-identifier-rid) (RID). The seeding process involves
 both hosting the repository data and synchronizing changes with other nodes.
-Every Radicle user, irrespective of their role or activity, operates a node by
-installing a [Radicle Node](#Radicle-Node) on their device. No specialized
-equipment is necessary for operating a node as a typical end-user; nodes can
-run on a personal computer without requiring an always-on server.
+Every Radicle user, irrespective of their role or activity, runs a node on
+their device. No specialized equipment is necessary for operating a node as a
+typical end-user; nodes can run on a personal computer without requiring a
+server.
 
 <aside> In the peer-to-peer model, nodes act as <em>both clients and
 servers</em>. </aside>
@@ -87,10 +87,11 @@ servers</em>. </aside>
 
 ### Seeding Repositories
 
-Users configure nodes with a *seeding policy* which specifies the list of
-repositories they are interested in seeding, in addition to retention rules.
-This means that nodes aren't just seeding random repositories, users have an
-active role in deciding which repositories should be stored on their device.
+Whenever a user clones, initializes, or opts to seed a repository, their node's
+seeding policy is changed to reflect their choices. This policy establishes the
+repositories they are interested in and sets the rules for data retention, and
+synchronization, allowing users to have direct control over which repositories
+are kept on their device and offered to the network.
 
 The typical end-user may choose to only seed the repositories they are actively
 collaborating on. However, more dedicated users may opt to run an always-on
@@ -141,11 +142,10 @@ Key" all refer to the same thing and can be used interchangeably. </aside>
 
 ### Running a Node
 
-To run a node and connect to the network, users install a Radicle *client*.
-Client software is lightweight and suitable for use on both end-user devices
-and seed nodes. The reference implementation can be found in the Radicle
-[heartwood][] repository, and is actively maintained by a small team of
-engineers.
+To run a node and connect to the network, users install Radicle client software
+that is lightweight and suitable for use on both end-user devices and seed
+nodes. The reference implementation can be found in the Radicle [Heartwood][]
+repository, and is actively maintained by a small team of engineers.
 
 <aside> Radicle's reference implementation is written in <a
 href="https://www.rust-lang.org/">Rust</a>, a high-performance, memory-safe
@@ -195,7 +195,7 @@ of failure, allowing the network to persist as long as users operate nodes.
 ### Gossip Protocol
 
 The Radicle networking layer is designed as a gossip protocol, where messages
-are sent relayed between peers to build routing tables that aid in repository
+are relayed between peers to build routing tables that aid in repository
 discovery and replication. The core functionality is achieved with three
 message types, each fulfulling a distinct role:
 
@@ -463,7 +463,7 @@ permitted to make changes to their respective forks.
 Storage is accessed directly by the node to report its inventory to other
 nodes, and by the end user through either specialized tooling or the `git`
 command line tool. Users are typically interacting with two repository copies:
-the *working copy*, and a remote "stored" copy that is interacted with via `git
+the *working copy*, and a remote *stored copy* that is interacted with via `git
 push` and `git fetch`, using Radicle's [git-remote-helper][grh].
 
 This workflow is akin to what most developers are used to, when synchronizing
@@ -655,7 +655,7 @@ discussions, which are not inherently supported by Git. Typically, these
 artifacts are only found on centralized platforms like GitHub or GitLab, or
 their self-hosted counterparts.
 
-In Radicle, COBs allow for social artifacts to be stored directly inside
+In Radicle, COBs allow for social artifacts to be stored directly inside a
 repository, and replicated between peers. This means that social artifacts
 inherit the same properties as source code: they are local-first, user-owned,
 and cryptographically signed.
@@ -698,8 +698,12 @@ This representation gives Radicle a few things for free:
 
 It may be useful to think of Radicle's usage of Git commit histories as a
 form of [conflict-free replicated data type][crdt] (CRDT). When the histories
-of two peers are synchronized, the commit graphs are simplied *unioned* with
+of two peers are synchronized, the commit graphs are simply *unioned* with
 each other in a non-destructive, idempotent way.
+
+<aside> <strong>Idempotence</strong> is the property of certain operations in
+mathematics and computer science whereby they can be applied multiple times
+without changing the result. </aside>
 
 <figure class="diagram tall">
   <object type="image/svg+xml" data="/assets/images/cob-dag.svg"></object>
