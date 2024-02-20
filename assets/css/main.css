@@ -2,18 +2,19 @@
 
 :root {
   --color-bg-dark: #0a0d10;
-  --color-bg-light: #f4f4f4;
+  --color-bg-light: #fff6fdaa;
   --color-fg-dim-0: #444;
   --color-fg-dim-1: #666;
   --color-fg-dim-2: #999;
   --color-fg-dim-3: #ccc;
   --color-fg-dim-4: #eee;
+  --color-fg-subtle-pink: #4c3159;
   --color-fg: #1a1a1a;
   --color-yellow: #ffff88;
   --color-fg-highlight: #5555bb;
   --color-fg-highlight-secondary: #229944;
   --color-border-highlight: #aaaaee;
-  --color-bg-highlight: #eeeeff;
+  --color-bg-highlight: #efefff;
 }
 
 ::selection {
@@ -36,15 +37,16 @@ body {
 
 header, main, footer {
   display: grid;
-  align-items: start;
   grid-column-gap: 2rem;
+  grid-auto-flow: row;
   grid-template-columns:
     [screen-start] 1fr
     [page-start kicker-start left-start] 6rem 6rem
-    [text-start kicker-end] 3rem 5rem 3rem 3rem
-    [left-end right-start] 3rem 5rem 3rem 3rem
+    [text-start kicker-end] 2rem 3rem 6rem 3rem
+    [left-end right-start text-middle] 3rem 3rem 6rem 2rem
     [text-end gutter-start] 6rem 6rem
     [page-end gutter-end right-end] 1fr [screen-end];
+  grid-template-rows: auto [last-row];
 }
 
 main {
@@ -128,6 +130,7 @@ h5 {
 }
 
 pre, code {
+  color: var(--color-fg-subtle-pink);
   font-family: var(--font-family-code);
 }
 
@@ -149,11 +152,19 @@ pre.center {
   text-align: center;
 }
 
-p code, ul code, ol code, table code {
-  font-size: 1rem;
+p code, ul code, ol code, table code, aside code {
   padding: 1px 4px;
   border-radius: 2px;
+  word-spacing: -2px;
   background-color: var(--color-bg-light);
+}
+
+p code {
+  font-weight: 500;
+}
+
+aside code {
+  font-weight: normal;
 }
 
 p:last-child {
@@ -161,7 +172,7 @@ p:last-child {
 }
 
 p + blockquote {
-  margin-top: 0;
+  margin-top: 1rem;
 }
 
 blockquote {
@@ -256,6 +267,23 @@ figcaption {
 
 aside {
   grid-column: gutter;
+}
+
+aside.span-2 {
+  grid-row: span 2;
+}
+aside.span-3 {
+  grid-row: span 3;
+}
+aside.span-4 {
+  grid-row: span 4;
+}
+aside.span-5 {
+  grid-row: span 5;
+}
+
+aside p {
+  margin-bottom: 1em;
 }
 
 aside.kicker {
@@ -364,4 +392,13 @@ span.highlight-secondary {
 }
 .toc-h3 > a, .toc-h4 > a, .tok-h5 > a {
   color: var(--color-fg-dim-1);
+}
+
+.poem {
+  font-style: italic;
+  font-size: 0.75rem;
+  grid-column-start: text-start;
+  grid-column-end: text-middle;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
 }
