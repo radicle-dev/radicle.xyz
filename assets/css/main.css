@@ -372,9 +372,9 @@ span.highlight-secondary {
 
 .button {
   color: var(--color-fg-highlight);
-  font-weight: var(--font-weight-semibold);
+  font-weight: normal;
   padding: 1rem 2rem;
-  border: 2px solid var(--color-fg-highlight);
+  border: 1px solid var(--color-fg-highlight);
   border-radius: 4px;
 }
 .button:hover {
@@ -390,7 +390,7 @@ span.highlight-secondary {
   font-size: 0.75rem !important;
   margin: 2rem 0;
   padding: 0;
-  height: 16rem;
+  max-height: 16rem;
 }
 
 .toc a {
