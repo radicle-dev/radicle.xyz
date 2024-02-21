@@ -9,6 +9,7 @@ layout: default
 </style>
 
 <div class="menu">
+  <a class="button" href="/guides/user">User Guide &rarr;</a>
   <a class="button" href="/guides/protocol">Protocol Guide &rarr;</a>
   <a class="button" href="/guides/seeder">Seeder's Guide &rarr;</a>
 </div>

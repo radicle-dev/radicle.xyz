@@ -8,6 +8,8 @@
   --color-fg-dim-2: #999;
   --color-fg-dim-3: #ccc;
   --color-fg-dim-4: #eee;
+  --color-bg-dim-0: #f1f1f1;
+  --color-bg-dim-1: #fafafa;
   --color-fg-subtle-pink: #4c3159;
   --color-fg: #1a1a1a;
   --color-yellow: #ffff88;
@@ -43,7 +45,7 @@ header, main, footer {
     [screen-start] 1fr
     [page-start kicker-start left-start] 6rem 6rem
     [text-start kicker-end] 2rem 3rem 6rem 3rem
-    [left-end right-start text-middle] 3rem 3rem 6rem 2rem
+    [left-end right-start] 3rem [text-middle] 3rem 6rem 2rem
     [text-end gutter-start] 6rem 6rem
     [page-end gutter-end right-end] 1fr [screen-end];
   grid-template-rows: auto [last-row];
@@ -152,11 +154,15 @@ pre.center {
   text-align: center;
 }
 
-p code, ul code, ol code, table code, aside code {
+p code, ul code, ol code, aside code {
   padding: 1px 4px;
   border-radius: 2px;
   word-spacing: -2px;
   background-color: var(--color-bg-light);
+}
+
+strong code {
+  font-weight: 600 !important;
 }
 
 p code {
@@ -167,11 +173,35 @@ aside code {
   font-weight: normal;
 }
 
+table {
+  font-size: 0.875rem;
+  border-collapse: collapse;
+  background-color: var(--color-bg-dim-1);
+}
+
+table td:first-child {
+  white-space: nowrap;
+  padding-right: 1rem;
+}
+
+table td {
+  vertical-align: top;
+  border-bottom: 1px solid white;
+  padding: 0.5rem;
+}
+
+table code {
+  font-weight: normal;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
 
 p + blockquote {
+  margin-top: 1rem;
+}
+blockquote + p {
   margin-top: 1rem;
 }
 
