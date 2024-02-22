@@ -4,7 +4,7 @@ subtitle: How Radicle works under the hood
 layout: guide
 ---
 
-Heartwood, the latest release of the [Radicle][] protocol establishes a
+Heartwood, the latest generation of the [Radicle][] protocol establishes a
 sovereign data network for code collaboration and publishing, built on top of
 [Git][]. In Radicle, users maintain local copies of their interested
 repositories and related social artifacts such as issues and patches. Instead
