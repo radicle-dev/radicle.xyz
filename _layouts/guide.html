@@ -26,6 +26,7 @@
       </div>
       <nav>
       </nav>
+      <button class="toggle" id="toggle-theme"><!-- Set by script --></button>
     </header>
     <main>
       <h1>{{ page.title }}</h1>
@@ -36,7 +37,8 @@
       {{ content }}
     </main>
     <footer>
-      &copy; The Radicle Team
+      <p>&copy; The Radicle Team</p>
     </footer>
+    <script src="{{ "/assets/js/toggle-theme.js" | relative_url }}"></script>
   </body>
 </html>

@@ -1,2 +1,5 @@
-.highlight .nl { color: #555 }
-.highlight .s2 { color: #555 }
+:root[data-theme="dark"] .highlight .nl { color: var(--color-yellow) }
+:root[data-theme="dark"] .highlight .s2 { color: var(--color-fg-highlight-secondary) }
+
+.highlight .nl { color: var(--color-fg-contrast) }
+.highlight .s2 { color: var(--color-fg-highlight-secondary) }
