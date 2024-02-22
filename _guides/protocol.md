@@ -59,12 +59,12 @@ of projects that choose traditional self-hosted solutions.
 The Radicle protocol, in contrast, extends Git's capabilities with a
 decentralized identity system, novel gossip protocol, and integrated social
 artifacts, forming a *self-hosted network for code collaboration*. Radicle
-locates, serves, and replicates Git repositories across a [peer-to-peer][]
-network while maintaining data authenticity via cryptographic signatures, so
-peers can directly exchange data without the need for a trusted third party.
-This enables communities to both self-host and share their repositories across
-a distributed protocol, contributing to the emergence of a new sovereign
-network for code collaboration and more.
+locates, serves, and replicates Git repositories -- including artifacts --
+across a [peer-to-peer][] network while maintaining data authenticity via
+cryptographic signatures, so peers can directly exchange data without the need
+for a trusted third party. This enables communities to both self-host and share
+their repositories across a distributed protocol, contributing to the emergence
+of a new sovereign network for code collaboration and more.
 
 ## Nodes
 

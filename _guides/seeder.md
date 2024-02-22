@@ -352,9 +352,9 @@ For example,
     rad seed rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 
 This will override the default `block` rule for this one specific repository.
-To remove this override, `--delete` can be passed:
+To remove this override, `unseed` can be used:
 
-    rad seed --delete rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+    rad unseed rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 
 Without a seeding policy for this repository, the default policy will apply.
 
