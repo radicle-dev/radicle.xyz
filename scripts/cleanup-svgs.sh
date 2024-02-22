@@ -24,7 +24,7 @@ process() {
     # Remove all instances of `font-family="..."` and `font-size="..."`
     sed -i -e 's/font-family="[^"]*"//g' -e 's/font-size="16px"//g' "$FILE"
     # Remove comments.
-    sed -i -e 's/<!--.*-->\n//' "$FILE"
+    sed -i -e '/<!--.*-->/d' "$FILE"
     # Replace the contents of <style> tags
     sed -i '/<defs>/,/<\/defs>/c\
   <defs>\

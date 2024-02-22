@@ -190,6 +190,14 @@ table td {
   padding: 0.5rem;
 }
 
+table th {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-regular);
+  background-color: var(--color-bg-dim-0);
+  padding: 0.5rem;
+  text-align: left;
+}
+
 table code {
   font-weight: normal;
 }

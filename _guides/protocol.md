@@ -83,8 +83,6 @@ server.
 <aside> In the peer-to-peer model, nodes act as <em>both clients and
 servers</em>. </aside>
 
-<img src="#" class="placeholder" />
-
 ### Seeding Repositories
 
 Whenever a user clones, initializes, or opts to seed a repository, their node's
@@ -199,42 +197,83 @@ are relayed between peers to build routing tables that aid in repository
 discovery and replication. The core functionality is achieved with three
 message types, each fulfulling a distinct role:
 
-1. **Node Announcements** are used for broadcasting Node IDs and physical
+**Node Announcements** are used for broadcasting Node IDs and physical
    addresses on which a node is publicly reachable, to facilitate peer
    discovery.
-2. **Inventory Announcements** are used for broadcasting repository inventories
+
+| Node Announcement
+| -----------------
+| **`features`**  | `u64`            | Advertized node capabilities
+| **`timestamp`** | `u64`            | Message timestamp (unix time)
+| **`alias`**     | `u8[]`           | Non-unique alias (UTF-8)
+| **`addresses`** | `Address[]`      | External addresses
+| **`nonce`**     | `u64`            | Nonce used for DoS protection
+
+**Inventory Announcements** are used for broadcasting repository inventories
    and constructing the routing table which maps out what repositories are
    hosted where.
-3. **Reference Announcements** are used for broadcasting updates to
+
+| Inventory Announcement
+| ----------------------
+| **`inventory`** | `RepoID[]` | Repository inventory
+| **`timestamp`** | `u64`      | Message timestamp (unix time)
+
+**Reference Announcements** are used for broadcasting updates to
    repositories, relayed only to nodes interested in the relevant repository.
+
+| Refs Announcement
+| -----------------
+| **`rid`**        | `RepoID`          | Repository that was updated
+| **`refs`**       | `{NodeID, OID}[]` | Updated signed refs (`rad/sigrefs`)
+| **`timestamp`**  | `u64`             | Message timestamp (unix time)
+
+<aside> <code>OID</code> stands for <em>Object ID</em> and represents the SHA-1
+hashes used by Git to identify objects.</aside>
 
 To prevent endless propagation, nodes drop any message already encountered.
 However, for the sake of broadcasting messages to new nodes, gossip messages
 may be temporarily stored and replayed to nodes joining the network for the
 first time, or after a long period of being offline.
 
-> **Tip**: Refer to [RIP-1][rip-1] to learn more details about Radicle's
-> networking protocol.
-
 Each announcement includes the originating *Node ID* along with a
 *cryptographic signature* and *timestamp*, allowing network participants to
 verify the authenticity of messages before relaying them to peers.
 
 <figure>
-  <img src="#" class="placeholder" />
-  <figcaption>The three gossip message types.</figcaption>
+  <object type="image/svg+xml" data="/assets/images/announcement-msg.svg"></object>
+  <figcaption>Announcement message structure.</figcaption>
 </figure>
+
+> **Tip**: Refer to [RIP-1][rip-1] to learn more details about Radicle's
+> networking protocol.
 
 ### Transport Encryption & Privacy
 
-Connections between peers in the Radicle network are encrypted using the Noise
-protocol. This begins with two peers performing a [Diffie-Hellman][ecdh] key
+Connections between peers in the Radicle network are encrypted using a [Noise][noise]
+protocol handshake. This begins with two peers performing a [Diffie-Hellman][ecdh] key
 exchange to agree on a shared session key that is used for the duration
 of the connection.
 
-<figure>
-  <img src="#" class="placeholder" />
-  <figcaption>Noise XK handshake example.</figcaption>
+Radicle uses the [XK][noise-xk] handshake pattern, which requires the
+connection responder's *static key* to be known in advance by the initiator.
+This *pre-sharing* takes place over the gossip network via the
+`NodeAnnouncement` message, since the static key is simply the Node ID.
+
+<aside> The Noise framework calls the node that is receiving an inbound
+connection the <em>responder</em>, and the node that is initiating the
+connection the <em>initiator</em>. </aside>
+
+<figure class="diagram">
+  <object type="image/svg+xml" data="/assets/images/noisexk-1.svg"></object>
+</figure>
+
+Once the static key is known, a connection to the node can be initiated
+securely, by generating an ephemral key from the static key, using
+Diffie-Hellman. The last step involves the initiating node sending its own
+static key over the secure channel.
+
+<figure class="diagram">
+  <object type="image/svg+xml" data="/assets/images/noisexk-2.svg"></object>
 </figure>
 
 After the handshake phase is completed, all data exchanged between peers is
@@ -290,11 +329,6 @@ peers.
 In the bootstrapping process, nodes connect to an initial set of bootrap nodes
 and once they establish a connection, use the regular peer discovery mechanism
 to find more peers.
-
-<figure>
-  <img src="#" class="placeholder" />
-  <figcaption>Bootstrapping process.</figcaption>
-</figure>
 
 [bootstrap]: https://en.wikipedia.org/wiki/Bootstrapping_node
 
