@@ -154,7 +154,7 @@ There are a couple of things we need to configure to setup a seed node.
 First, we must set the node's default *seeding policy*.
 
 The seeding policy tells the node which repositories and forks to fetch
-and offer to the network. For public seed nodes, an open seeding policy
+and offer to the network. For public seed nodes, a permissive seeding policy
 is often set, such that all data on the network is stored and replicated.
 
 Second, we must set an external address for the node to be reached on the
@@ -162,8 +162,8 @@ network. This address will be advertized to peers, allowing them to connect to
 your seed node. Generally, this will be a DNS name with port `8776`, for
 example `seed.mentharos.net:8776`.
 
-Here's an example configuration file with an open seeding policy and external
-address set:
+Here's an example configuration file with a permissive seeding policy and
+external address set:
 
 ```json
 {
@@ -194,15 +194,6 @@ connections.
 > server, using something like `iptables`, though this is out of scope for this
 > guide.
 
-### Securing the `seed` user
-
-Now that your node is configured, you can secure the `seed` user by disabling
-shell access. This is optional, though recommended.
-
-    sudo chsh -s /usr/sbin/nologin seed
-
-This will prevent anyone from logging in as the `seed` user.
-
 ### Running your node for the first time
 
 Before setting up your node as a system service, it's a good idea to run it
@@ -217,6 +208,29 @@ errors in the output.
 
 If the node started without problem, stop it with `Ctrl-C`, and proceed to the
 next step.
+
+### Securing the `seed` user
+
+Now that your node is configured and working, you can secure the `seed` user by
+disabling shell access. This is optional, though recommended.
+
+    sudo chsh -s /usr/sbin/nologin seed
+
+This will prevent anyone from logging in as the `seed` user. Exit the `seed`
+session by entering:
+
+    exit
+
+This should throw you back into the original session you opened via SSH. Note
+that from this point onwards, if you chose to disable the `seed` user's shell,
+you'll have to run all commands via `sudo`, eg. `sudo -u seed -- rad self`.
+
+> **Tip**: To facilitate running commands as the `seed` user, add this alias to
+> your admin shell's init scripts:
+>
+>     alias rad='sudo -u seed -- rad'
+>
+> You can then run commands as the `seed` user by simply using `rad` as usual.
 
 ### Configuring your node as a system service
 
@@ -289,10 +303,11 @@ default policy is applied, hence the importance of this setting.
 
 Broadly, there are two options for the default policy.
 
-### An *open* seeding policy
+### A *permissive* seeding policy
 
-An open policy seed is said to be *fully-replicating*, meaning your seed will
-try to have a fully copy of all repository data available on the network.
+A permissive or "open" policy is said to be *fully-replicating*, meaning your
+seed will try to have a fully copy of all repository data available on the
+network.
 
 An example of a node with this policy is `seed.radicle.garden`, a node operated
 by the Radicle team, for the Radicle community.
@@ -419,8 +434,14 @@ install. If you are using Debian or Ubuntu, you can run:
 
     sudo apt-get install caddy
 
-Run `caddy version` to check the installation. Then, download the `caddy` unit
-file from Caddy's GitHub repository:
+If you're having trouble installing Caddy, check the [installation
+guide][caddy-install]. Once installed, run `caddy version` to ensure that
+everything was installed correctly.
+
+    caddy version
+    v2.6.4 h1:2hwYqiRwk1tf3VruhMpLcYTg+11fCdr8S3jhNAdnPy8=
+
+Then, download the `caddy` unit file from Caddy's GitHub repository:
 
     sudo curl https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service -o /etc/systemd/system/caddy.service
 
@@ -465,4 +486,4 @@ and running!
 [radicle-node]: https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/49584f4e732fb0039d2089f3c39fd56fc34a2ee3/systemd/radicle-node.service
 [caddy]: https://caddyserver.com/
 [caddy-guide]: https://caddyserver.com/docs/running#linux-service
-
+[caddy-install]: https://caddyserver.com/docs/install
