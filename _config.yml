@@ -1,6 +1,6 @@
-url: "https://docs.radicle.xyz"
+url: "https://radicle.xyz"
 baseurl: "/"
-title: "docs.radicle.xyz"
+title: "Radicle: the sovereign forge"
 highlighter: rouge
 markdown: kramdown
 kramdown:
@@ -9,3 +9,6 @@ collections:
   guides:
     output: true
     permalink: /guides/:path/
+  pages:
+    output: true
+    permalink: /:path/

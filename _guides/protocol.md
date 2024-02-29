@@ -1,6 +1,7 @@
 ---
 title: Radicle Protocol Guide
 subtitle: How Radicle works under the hood
+banner: 23.medium.png
 layout: guide
 ---
 

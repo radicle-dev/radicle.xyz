@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head>
+  {% include meta.html %}
+</head>
+<body>
+  {% include header.html %}
+  <main>
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script src="{{ "/assets/js/toggle-theme.js" | relative_url }}"></script>
+</body>
+</html>

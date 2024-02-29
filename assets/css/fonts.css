@@ -57,9 +57,45 @@
   src: url("/assets/fonts/JetBrainsMono-Bold.woff2");
 }
 
+@font-face {
+  font-family: "Anonymous Pro";
+  font-weight: normal;
+  font-display: swap;
+  src: url("/assets/fonts/AnonymousPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Anonymous Pro";
+  font-weight: bold;
+  font-display: swap;
+  src: url("/assets/fonts/AnonymousPro-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Anonymous Pro";
+  font-style: italic;
+  font-display: swap;
+  src: url("/assets/fonts/AnonymousPro-Italic.ttf");
+}
+
+@font-face {
+  font-family: "Anonymous Pro";
+  font-style: italic;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/assets/fonts/AnonymousPro-BoldItalic.ttf");
+}
+
+@font-face {
+  font-family: "Box Drawing";
+  src: url("/assets/fonts/JetBrainsMono-Regular.woff2");
+  unicode-range: U+2500-257F;
+}
+
 :root {
   --font-family-default: "Inter", sans-serif;
   --font-family-code: "JetBrains Mono", monospace;
+  --font-family-code-alt: "Anonymous Pro", monospace;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -88,4 +124,34 @@ html {
   html {
     font-size: 14px;
   }
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-family-default);
+}
+
+h1 {
+  font-size: var(--font-size-xx-large);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: var(--font-size-x-large);
+  font-weight: var(--font-weight-semibold);
+}
+
+h3 {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-semibold);
+}
+
+h4 {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-semibold);
+}
+
+h5 {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
 }

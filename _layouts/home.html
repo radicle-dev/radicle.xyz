@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  {% include meta.html %}
+</head>
+<body>
+  <img width="160" height="160" id="ribbon" src="/assets/images/ribbon.svg" usemap="#ribbon-map"/>
+  <map name="ribbon-map">
+    <area shape="poly" coords="10,0,55,0,160,95,160,160,10,0" href="https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" target="_blank">
+  </map>
+  {% include header.html %}
+  <main>
+    <p>
+      <strong class="highlight">Radicle</strong> is a sovereign
+      <span id="definition">{code forge}</span> built on Git.
+    </p>
+    <nav>
+      <span class="cta">
+        <a class="button filled" href="#get-started">Get started ↓</a>
+        <a class="button filled secondary" href="/guides/seeder">Run a seed &rarr;</a>
+      </span>
+      <span class="links">
+        <a href="/guides">Guides</a>
+        <a href="/faq">FAQ</a>
+        <a href="https://radicle.zulipchat.com" target="_blank">Community</a>
+        <a href="https://twitter.com/radicle" target="_blank">Tweets</a>
+      </span>
+    </nav>
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script src="{{ "/assets/js/toggle-theme.js" | relative_url }}"></script>
+  <script>
+    const copyButton = document.getElementById("install");
+    const copyResult = document.getElementById("install-copy");
+    const textToCopy = document.getElementById("install-command").innerText;
+
+    copyButton.addEventListener("click", async function () {
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        copyResult.innerText = "copied";
+      } catch (err) {
+        console.error("Failed to copy text: ", err);
+      }
+    });
+  </script>
+</body>
+</html>

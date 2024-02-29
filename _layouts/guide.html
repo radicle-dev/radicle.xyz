@@ -20,8 +20,9 @@
   <body>
     <header>
       <div class="title">
-        <a href="{{ "/" | relative_url }}">
+        <a href="/guides">
           <img src="{{ "/assets/images/radicle.svg" | relative_url }}" alt="" />
+          <span>Guides</span>
         </a>
       </div>
       <nav>
@@ -31,7 +32,7 @@
     <main>
       <h1>{{ page.title }}</h1>
       <p class="subtitle">{{ page.subtitle }}</p>
-      <hr />
+      <img class="banner" src="/assets/images/banners/{{ page.banner }}" />
       {% include toc.html html=content class="toc" item_class="toc-h%level%" %}
       <hr />
       {{ content }}

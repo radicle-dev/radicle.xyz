@@ -6,15 +6,17 @@ const defaultTheme = window.matchMedia
 
 setTheme(storedTheme || defaultTheme);
 
-themeToggleBtn.addEventListener("click", () => {
-  const currentTheme = rootElement.dataset.theme;
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener("click", () => {
+    const currentTheme = rootElement.dataset.theme;
 
-  if (currentTheme === "dark") {
-    setTheme("light");
-  } else {
-    setTheme("dark");
-  }
-});
+    if (currentTheme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  });
+}
 
 function setTheme(theme) {
   rootElement.dataset.theme = theme;

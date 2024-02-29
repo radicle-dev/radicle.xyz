@@ -1,6 +1,7 @@
 ---
 title: Radicle User Guide
-subtitle: A fantastic journey through the Radiverse
+subtitle: A fantastic journey through the Radicle universe
+banner: 16.medium.png
 layout: guide
 ---
 
@@ -351,12 +352,13 @@ To publish it to the Radicle network, run the `rad init` command.
 
 Don't be afraid to do this on one of your existing public repositories! Because
 even if you aren't ready to use Radicle for code collaboration, it works great
-for distribution where you can establish a more decentralized "mirror" of your
-code, so to speak. A mirror that is *censorship resistant, sovereign,
-tamperproof, ungovernable -- except by you, and oh so magical*. What `rad init`
-does is gather the essential details from you which are needed to initialize
-the repository into Radicle: the repository name, description, default branch
-(typically `main` or `master`), and whether it is public or private.
+for distribution. Radicle's network of seed nodes help propagate and host code,
+forming a decentralized, censorship resistant, and ungovernable distribution system.
+
+What `rad init` does is gather the essential details from you which are needed
+to initialize the repository into Radicle: the repository name, description,
+default branch (typically `main` or `master`), and whether it is public or
+private.
 
 Similar to how `git init` is used to initialize a Git repository, we use
 nomenclature you're familiar with so you don't go crazy. That'd be so cruel if

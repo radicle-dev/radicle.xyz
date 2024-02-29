@@ -1,59 +1,6 @@
 @charset "utf-8";
-
-:root {
-  --color-yellow: #ffff88;
-  --color-fg-highlight-secondary: #229944;
-  --color-bg-highlight: #efefff;
-  --color-bg-default: #f5f5ff;
-  --color-fg-contrast: #232563;
-  --color-fg-low-contrast: #434583; /* TODO: tweak this */
-  --color-fg-dim: #6a6a81;
-  --color-fg-emphasized: #7070FF;
-  --color-fg-match-background: #f5f5ff;
-  --color-fill-secondary: #7070FF;
-  --color-fill-separator: #dbdbff;
-  --color-fill-ghost: #EBEBFF;
-  --color-border-hint: #DBDBFF;
-  --color-border-focus: #8585FF;
-  --color-selection: var(--color-fg-contrast);
-}
-
-:root[data-theme="dark"] {
-  --color-yellow: #ffff88;
-  --color-bg-highlight: #14151a;
-  --color-bg-default: #0a0d10;
-  --color-fg-contrast: #f9f9fb;
-  --color-fg-low-contrast: #d9d9db; /* TODO: tweak this */
-  --color-fg-dim: #9b9bb1;
-  --color-fg-emphasized: #7070FF;
-  --color-fg-match-background: #0a0d10;
-  --color-fill-secondary: #7070FF;
-  --color-fill-separator: #24252d;
-  --color-fill-ghost: #24252D;
-  --color-border-hint: #24252D;
-  --color-border-focus: #8585FF;
-  --color-selection: var(--color-bg-default);
-}
-
-::selection {
-  color: var(--color-selection);
-  background-color: var(--color-yellow);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: var(--font-family-default), sans-serif;
-  color: var(--color-fg-contrast);
-}
-
-body {
-  margin: 0;
-  height: 100vh;
-  background-color: var(--color-bg-default);
-}
+@import "/assets/css/common.css";
+@import "/assets/css/fonts.css";
 
 main, footer {
   display: grid;
@@ -268,8 +215,17 @@ blockquote pre {
   height: 1.75rem;
 }
 
+.title span {
+  color: var(--color-fg-low-contrast);
+  margin-left: 0.5rem;
+}
+
+.title:hover span {
+  text-decoration: underline;
+}
+
 .toc + hr {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .first {
@@ -279,7 +235,7 @@ blockquote pre {
 .subtitle {
   font-size: 1.125rem;
   color: var(--color-fg-dim);
-  margin: 0 0 4rem;
+  margin: 0 0 3rem;
 }
 
 main figure, main img {
@@ -412,6 +368,11 @@ span.highlight-secondary {
   color: var(--color-fg-highlight-secondary);
 }
 
+.banner {
+  border-radius: 4px;
+  width: 100%;
+}
+
 .button {
   color: var(--color-fill-secondary);
   font-weight: normal;
@@ -424,33 +385,13 @@ span.highlight-secondary {
   background-color: var(--color-fill-secondary);
 }
 
-#toggle-theme {
-  border: none;
-  color: var(--color-fg-contrast);
-  padding: 0;
-  width: fit-content;
-  height: fit-content;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  background-color: transparent;
-  background-size: contain;
-  width: 1.75rem;
-  height: 1.75rem;
-}
-:root[data-theme=light] #toggle-theme {
-  background-image: url(/assets/images/sun.svg);
-}
-:root[data-theme=dark] #toggle-theme {
-  background-image: url(/assets/images/moon.svg);
-}
-
 .toc {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 1rem;
   font-size: 0.75rem !important;
-  margin: 2rem 0;
+  margin: 2rem 0 3rem 0;
   padding: 0;
   max-height: 16rem;
 }
@@ -497,7 +438,7 @@ span.highlight-secondary {
 
 @media (max-width: 1280px) {
   main, footer {
-    grid-column-gap: 1rem;
+    grid-column-gap: 1.25rem;
   }
 }
 
