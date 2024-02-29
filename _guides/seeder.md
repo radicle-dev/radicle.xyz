@@ -7,7 +7,7 @@ layout: guide
 To seed is to give back. By seeding repositories on the Radicle network, you
 offer bandwidth, storage, and data availability to Radicle users.
 
-In this guide, we'll go through the various steps required to setup a Radicle
+In this guide, we'll go through the various steps required to set up a Radicle
 *seed node* on a Linux system. Seeding only requires an internet
 connection, a public, static IP address, and modest hardware.
 
@@ -21,9 +21,10 @@ The term *seed node* originally comes from [BitTorrent][bittorrent]. In the
 BitTorrent protocol, nodes that possess the data for a given torrent file
 and begin uploading it to peers are called *seeders*.
 
-In Radicle, a seed node is typically a server that is accessible through
-the internet and hosts content for peers. Seed nodes need to remain online
-and accessible to provide their service to the network.
+In Radicle, while all users contribute to the network by seeding data, the term
+*seed node* specifically refers to a server that is accessible through the
+internet and hosts content for peers. Seed nodes need to remain online and
+accessible to provide their service to the network.
 
 ### The Need for Seed Nodes
 
@@ -52,16 +53,16 @@ To run a Radicle seed node, you will need a server with:
 * `curl`
 * `git`
 * `systemctl` version `232` or newer
-* `sudo` priviledges
+* `sudo` privileges
 * A DNS name pointing to your server
 
 ### Server
 
 If you already have a VPS (Virtual Private Server) or home server running a
-Linux distribution, you should be all set. If not, any VPS will do. Between 1
-and 2GB of RAM with a shared CPU and 10GB of disk space should be enough to get
-started. Once you've logged into your server, proceed with user setup and
-installation. For this setup, you'll need `sudo` capabilities.
+Linux distribution, you should be all set. If not, any VPS will do. Between 1-2GB
+of RAM with a shared CPU and 10GB of disk space should be enough to get started.
+Once you've logged into your server, proceed with user setup and installation.
+For this setup process, you'll need `sudo` capabilities.
 
 > **Tip**: If you have trouble choosing a VPS, we recommend getting a small
 > instance on [Hetzner][hetzner] or [Digital Ocean][do]. These are priced
@@ -114,7 +115,7 @@ Radicle home is with the `rad path` command.
 
 To offer web browsing and HTTP access to your seed node, you will additionally
 need to run `radicle-httpd`, the HTTP daemon. We'll cover this after we've
-setup our basic node.
+set up our basic node.
 
 ### Creating a profile
 
@@ -128,7 +129,7 @@ The above command will create a profile with the given node *alias* in
 `~/.radicle`, or `$RAD_HOME` if set. We recommend setting your alias to the
 domain name that points to your node's host.
 
-For seed nodes, it's not generally necessary to setup a passphrase for your
+For seed nodes, it's not generally necessary to set up a passphrase for your
 key, so you can simply skip that prompt by pressing *enter*.
 
 <aside>
@@ -149,7 +150,7 @@ You can view information about your Radicle profile by running `rad self`. The
 
 Configuring your node
 ---------------------
-There are a couple of things we need to configure to setup a seed node.
+There are a couple of things we need to configure to set up a seed node.
 
 First, we must set the node's default *seeding policy*.
 
@@ -158,7 +159,7 @@ and offer to the network. For public seed nodes, a permissive seeding policy
 is often set, such that all data on the network is stored and replicated.
 
 Second, we must set an external address for the node to be reached on the
-network. This address will be advertized to peers, allowing them to connect to
+network. This address will be advertised to peers, allowing them to connect to
 your seed node. Generally, this will be a DNS name with port `8776`, for
 example `seed.mentharos.net:8776`.
 
@@ -235,7 +236,7 @@ you'll have to run all commands via `sudo`, eg. `sudo -u seed -- rad self`.
 ### Configuring your node as a system service
 
 Though it's possible to simply run the Radicle node as a background process,
-it's recommended to setup a service to ensure the node is started on boot.
+it's recommended to set up a service to ensure the node is started on boot.
 
 In this guide, we will only cover setup using `systemd`, but the process is
 fairly similar for other service managers.
@@ -386,7 +387,7 @@ simply enter `rad seed` with no options. This will list all configured policies.
 
 Configuring the HTTP backend
 ----------------------------
-In the sections above, we setup `radicle-node`, a background process that
+In the sections above, we set up `radicle-node`, a background process that
 actively and continuously discovers and replicates repositories on the network,
 based on your seeding policy. This node allows users to collaborate, host,
 share and publish repositories on the network via the Radicle CLI or any
@@ -448,7 +449,7 @@ Then, download the `caddy` unit file from Caddy's GitHub repository:
 Edit the file and change the `User` and `Group` attributes to `seed`, as we
 have for the other services. Also ensure that `ExecStart` and `ExecReload`
 are set to the correct path. You can find the path under which `caddy` is
-installed by entering `which caddy`.
+installed by running the `which caddy` command.
 
 Finally, edit or create the `Caddyfile` at `/etc/caddy/Caddyfile`, and replace
 its contents with the following configuration, using the correct domain name
@@ -478,7 +479,7 @@ well. For example, <https://app.radicle.xyz/nodes/seed.mentharos.net>.
 
 ### You're all set
 
-If you got this far, congratulations, you have a Radicle seed node all setup
+If you got this far, congratulations, you now have a Radicle seed node up
 and running!
 
 🎊👾

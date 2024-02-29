@@ -6,8 +6,8 @@ layout: guide
 
 Heartwood, the latest generation of the [Radicle][] protocol establishes a
 sovereign data network for code collaboration and publishing, built on top of
-[Git][]. In Radicle, users maintain local copies of their interested
-repositories and related social artifacts such as issues and patches. Instead
+[Git][]. In Radicle, users maintain local copies of their repositories of
+interest and related social artifacts such as issues and patches. Instead
 of depending on a centralized service like GitHub, each participant in Radicle
 operates a node that is capable of running on a personal computer, and is
 connected via a peer-to-peer network.
@@ -40,7 +40,7 @@ project coordination, and data set collaboration.
 Git, the most widely-used distributed version control system, enables users to
 maintain and modify personal copies of data repositories, commonly for source
 code control. Its structure for direct user-to-user collaboration, while
-feasible, is often cumbersome due to Git's primary focus on version control
+feasible, is often cumbersome since Git primarily focuses on version control
 rather than collaboration. As a result, users frequently opt for centralized
 [forges][] like GitHub or GitLab, which offer enhanced interfaces and
 collaborative tools on top of Git, such as project management and code review.
@@ -48,7 +48,7 @@ This dependency, however, can result in vendor lock-in since it places a
 project's social artifacts (e.g. issues, comments, pull requests) out of user
 control, potentially compromising data sovereignty and other user freedoms.
 
-Traditional self-hosted options like [Gitea][] or [Forgejo][] provide more
+Traditional self-hosted forges like [Gitea][] or [Forgejo][] provide more
 sovereignty but often lead to fragmented collaboration environments, as users
 must create separate profiles for each hosted instance. This simultaneously
 limits a project's exposure to the wider open source community, a key advantage
@@ -195,7 +195,7 @@ of failure, allowing the network to persist as long as users operate nodes.
 The Radicle networking layer is designed as a gossip protocol, where messages
 are relayed between peers to build routing tables that aid in repository
 discovery and replication. The core functionality is achieved with three
-message types, each fulfulling a distinct role:
+message types, each fulfilling a distinct role:
 
 **Node Announcements** are used for broadcasting Node IDs and physical
    addresses on which a node is publicly reachable, to facilitate peer
@@ -203,7 +203,7 @@ message types, each fulfulling a distinct role:
 
 | Node Announcement
 | -----------------
-| **`features`**  | `u64`            | Advertized node capabilities
+| **`features`**  | `u64`            | Advertised node capabilities
 | **`timestamp`** | `u64`            | Message timestamp (unix time)
 | **`alias`**     | `u8[]`           | Non-unique alias (UTF-8)
 | **`addresses`** | `Address[]`      | External addresses
@@ -268,7 +268,7 @@ connection the <em>initiator</em>. </aside>
 </figure>
 
 Once the static key is known, a connection to the node can be initiated
-securely, by generating an ephemral key from the static key, using
+securely, by generating an ephemeral key from the static key, using
 Diffie-Hellman. The last step involves the initiating node sending its own
 static key over the secure channel.
 
@@ -317,8 +317,8 @@ href="https://en.wikipedia.org/wiki/Multiplexing">multiplexing</a>. </aside>
 
 A node joining the network for the first time will not know any peers. Hence,
 it's useful to pre-configure network clients with addresses of well-known nodes
-that can be used to bootstrap the peer discovery process and build an address
-book.
+that can be used to initiate or *bootstrap* the peer discovery process and build
+an address book.
 
 Radicle's reference implementation is pre-configured with two [bootstrap
 nodes][bootstrap] that are connected to if the address book is empty:
@@ -326,7 +326,7 @@ nodes][bootstrap] that are connected to if the address book is empty:
 Radicle team and have large address books that are shared with connecting
 peers.
 
-In the bootstrapping process, nodes connect to an initial set of bootrap nodes
+In the bootstrapping process, nodes connect to an initial set of bootstrap nodes
 and once they establish a connection, use the regular peer discovery mechanism
 to find more peers.
 
@@ -466,7 +466,7 @@ document. This is then encoded using [multibase][mb] encoding with the
   <figcaption>Example Repository ID for the heartwood project.</figcaption>
 </figure>
 
-Since the RID is derived from the *initial* verison of the repository's identity
+Since the RID is derived from the *initial* version of the repository's identity
 document, the document is able to change while the RID remains the same.
 
 [urn]: https://datatracker.ietf.org/doc/html/rfc8141
@@ -658,7 +658,7 @@ all Git references published to the network.
 #### Signed Refs
 
 To enable the verification of Git references beyond commits to the source code,
-Radicle automatically signs the entirety of a node's references everytime they
+Radicle automatically signs the entirety of a node's references every time they
 change. This signature is then placed in a Git blob under a special branch
 referenced under `refs/rad/sigrefs`, along with the references that were signed.
 
@@ -782,14 +782,15 @@ Radicle's predefined COB types are stored under the `refs/cobs` hierarchy.
 These are associated with unique namespaces, such as `xyz.radicle.issue` and
 `xyz.radicle.patch`, to prevent naming collisions.
 
-For example, if a user or organization were to define a new COB type under
-their domain, it might look something like `com.acme.task`, for some
-hypothetical "task" COB under the `acme.com` domain.
+This hierarchical arrangement under `refs/cobs` not only houses Radicle's
+predefined COBs but also accommodates user-defined ones. For example, if a user
+or organization were to define a new COB type under their domain, it might look
+something like `com.acme.task`, for some hypothetical "task" COB under the
+`acme.com` domain.
 
-COBs are stored under the `refs/cobs` hierarchy, where Radicle's built-in COBs
-co-exist with user-defined COBs. This extensibility allows for an unlimited set
-of new collaboration primitives to be defined by users, without requiring
-coordination with the broader network or user-base.
+This extensibility allows for an unlimited set of new collaboration primitives
+to be defined by users, without requiring coordination with the broader network
+or user-base.
 
 ## Conclusion
 
