@@ -47,16 +47,18 @@ deeper dives into specific use cases, but they are still in progress.
 
 > 👾
 >
-> Greetings! If you ever get stuck and want additional guidance, join us in our
+> Greetings, I'm your guide! Whenever you see 👾, it's because I've got
+> some spicy tips on how to use Radicle. You'll also see 🥷 for privacy
+> tips, 👻 for things you should be wary of, and 🧠 for opportunities to learn
+> more.
+>
+> If you ever get stuck and want additional guidance, join us in our
 > [chatroom][zulip] on Zulip and ask your questions in the `#support` channel.
 >
 > Also, this guide teaches you how to use Radicle in a narrative fashion. If
 > you're looking for more straightforward usage docs, check out the Radicle
 > manual or the [Protocol Guide][proto] for more information on Radicle's
 > fundamental building blocks and motivations.
->
-> Oh! And allow me to introduce myself. My name is `paxel` and every once in a
-> while you may see me in this guide, interjecting with hot tips like this.
 
 <aside> The Radicle manual can be accessed by entering <code>man
 rad</code> from your command line, after installing Radicle. </aside>
@@ -96,7 +98,7 @@ used for source code and collaborative programming. </aside>
 
 > 👾
 >
-> You can check your git and ssh installations by running `git
+> You can check your Git and SSH installations by running `git
 > --version` or `ssh -V` in your terminal.
 >
 > If you haven't used Git before, you're going to be in a world of pain and
@@ -140,7 +142,7 @@ running:
     $ rad --version
     rad 1.0.0
 
-### Come Into Being From the Elliptic Aether
+### Come into being from the *elliptic aether*
 
 When using Radicle for the first time, you have to create a new Radicle
 identity, which is simply a cryptographic key pair, using the `rad-auth`
@@ -149,10 +151,8 @@ while the private key is used to authenticate your node, as well as sign code
 and other artifacts you publish on the network.
 
 <aside class="span-5">
-  <p><strong>🧠 Learn more</strong></p>
-
-  <p> A cryptographic key pair is a set of two keys used in cryptography,
-  typically for securing digital communication and data.</p>
+  <p> A <strong>cryptographic key pair</strong> is a set of two keys used in
+  cryptography, typically for securing digital communication and data.</p>
 
   <p> The pair consists of a public key and a private (or secret) key. The
   public key can be shared with others and is used to encrypt data or verify
@@ -205,8 +205,6 @@ running, your private key will also be added to it for future use.
 [ssi]: https://en.wikipedia.org/wiki/Self-sovereign_identity
 
 <aside class="span-4 kicker">
-  <p><strong>🧠 Learn more</strong></p>
-
   <p> <code>ssh-agent</code> is a helper program that manages your SSH keys
   and passphrases, encrypting the keys with your passphrase for secure
   storage.</p>
@@ -260,7 +258,7 @@ locations of important files or directories.
 >
 > If you're ever feeling lost, `rad self --help` will lay out all your options.
 
-### Operate Nodes, Smoothly
+### Operate nodes, smoothly
 
 Now that your node has an identity (or 'public key'), you have what it takes to
 connect to the Radicle Network. That's right -- we don't need your email
@@ -305,7 +303,7 @@ improve reliability and enhance access speed. </aside>
 > If you're curious about how Radicle works under the hood, read our
 > [Protocol Guide][proto].
 
-### Git Going With Repositories
+### Git going with repositories
 
 Now, time to return to your terminal. The next thing we'll do is publish a
 repository to the Radicle network. Once we've done this, anyone with a node
@@ -364,6 +362,8 @@ Similar to how `git init` is used to initialize a Git repository, we use
 nomenclature you're familiar with so you don't go crazy. That'd be so cruel if
 you had to do `rad new`, instead, wouldn't it?
 
+> 👻
+>
 > It's important to only publish repositories you own or are a maintainer of,
 > and to communicate with the other maintainers so that they don't initialize
 > redundant repository identities.
@@ -376,13 +376,12 @@ working copy named `rad` and publishes the repository to the network (assuming
 it's public). We'll talk more about private repositories in another chapter.
 
 <aside class="span-2">
-  <p><strong>🧠 Learn more</strong></p>
-
-  <p>A Uniform Resource Name (URN) is a type of Uniform Resource Identifier (URI)
-  that is used to uniquely identify resources without specifying the location
-  or means to access them. Unlike URLs, which provide information on where a
-  resource can be found on the Internet (their location), URNs serve as
-  persistent, location-independent resource identifiers.</p>
+  <p>A <strong>Uniform Resource Name</strong> (URN) is a type of Uniform
+  Resource Identifier (URI) that is used to uniquely identify resources without
+  specifying the location or means to access them. Unlike URLs, which provide
+  information on where a resource can be found on the Internet (their
+  location), URNs serve as persistent, location-independent resource
+  identifiers.</p>
 </aside>
 
 <aside class="kicker">
@@ -398,7 +397,7 @@ next chapters.
 
 > 👾
 >
-> A few hot commands you might want to know about, that can be run within a
+> A few spicy commands you might want to know about, that can be run within a
 > repository you've initialized:
 >
 > * It's difficult to memorize RIDs. Use `rad .` to display the current
@@ -407,6 +406,24 @@ next chapters.
 >   description and default branch, run `rad inspect --payload`.
 > * To make updates to the repository identity, including its visibility, check
 >   out `rad id --help` for further instructions.
+>
+> By the way since your Radicle key is a valid SSH key, it can be used to sign
+> Git commits since version Git `2.34.0`. This is an alternative to the more
+> common GPG signing method. If you'd like to setup your repository to use your
+> Radicle key for signing commits, enter these commands from its working
+> directory:
+>
+>     git config user.signingKey "$(rad self --ssh-key)"
+>     git config gpg.format ssh
+>     git config gpg.ssh.program ssh-keygen
+>     git config gpg.ssh.allowedSignersFile .gitsigners
+>     git config commit.gpgsign true
+>
+> You can also set this up globally by passing the `--global` option to `git
+> config`.
+>
+> Commit signing is a purely optional step; Radicle internally signs everything
+> you publish anyway, so don't worry if you don't set this up!
 
 Note that your new repository will only be replicated by nodes that you are
 connected to and either have an open seeding policy, or follow you. Seeding
@@ -447,7 +464,7 @@ named `git-remote-rad`. Remote helpers are particularly useful for integrating
 Git with specialized network protocols like Radicle. Git calls the custom
 `git-remote-rad` program when it encounters `rad://` remotes.
 
-> **🧠 Learn more**
+> 🧠
 >
 > Git remote helpers are custom programs that allow Git to interact with
 > repositories hosted on various types of servers or protocols that are not
@@ -500,7 +517,7 @@ work *way smoother*.
  location.
 </aside>
 
-> **🧠 Learn more**
+> 🧠
 >
 > Radicle's storage layout accommodates multiple source trees *(forks)* per
 > repository. Each repository is stored as a bare Git repository, residing under
@@ -557,7 +574,7 @@ or *authoritative* state of the repository. This means that if someone were to
 clone your repository, they would be getting the state that you just pushed,
 given your nodes are able to communicate with each other.
 
-> **🧠 Learn more**
+> 🧠
 >
 > The canonical repository state is established *dynamically* based on the
 > delegate thresholds defined for the repository. For example, if a `threshold`
@@ -576,7 +593,7 @@ protocol, which informs the node there was an update. Following this, peers
 conduct a *fetch* operation via the Git protocol to pull the pertinent Git
 objects into their local storage.
 
-### The Basics of Seeding and Cloning
+### The basics of *seeding* and *cloning*
 
 Nodes have a *seeding policy* which specifies the list of repositories they are
 interested in replicating on the network.
@@ -631,9 +648,10 @@ is Radicle's version of a ⭐ *star* or 👍 *like*, where you show a repository
 some real love and care by sharing it with others on the network.
 
 <aside>
-  Seeding a repository is a great way of supporting and giving back to a
-  project you care about or use. By offering a little bandwidth to the network,
-  you ensure the continued availability of the repository to others. ❤️
+  <strong>Seeding</strong> a repository is a great way of supporting and giving
+  back to a project you care about or use. By offering a little bandwidth to
+  the network, you ensure the continued availability of the repository to
+  others. ❤️
 </aside>
 
 This works similarly to cloning, where the RID is provided, the main difference
@@ -667,7 +685,7 @@ some way, for example by pushing a branch or commenting on an issue, simply run
 
     $ rad ls
 
-> **👾 Rad Tip**
+> 👾
 >
 > The set of peers that are followed in the context of a seeded repository
 > is called the *scope*.
@@ -683,7 +701,7 @@ some way, for example by pushing a branch or commenting on an issue, simply run
 >
 >     rad seed rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5 --scope followed
 >
-> Conversly, to reset it to the default, `--scope all` can be passed.
+> Conversely, to reset it to the default, `--scope all` can be passed.
 
 This marks the end of our initial foray into Radicle. As we move forward to
 Chapter 2, we'll dissect the collaborative mechanisms at play, exploring
