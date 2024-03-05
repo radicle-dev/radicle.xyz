@@ -516,4 +516,11 @@ span.highlight-secondary {
     grid-template-columns:
       [screen-start page-start text-start] 100% [page-end text-end screen-end];
   }
+
+  figure.diagram {
+    grid-column: screen !important;
+  }
+  figure.diagram object {
+    width: 100%;
+  }
 }
