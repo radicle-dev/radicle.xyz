@@ -83,3 +83,9 @@ html {
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
 }
+
+@media (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+}
