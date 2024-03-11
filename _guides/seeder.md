@@ -246,7 +246,7 @@ The first thing to do is to get a copy of the [`radicle-node.service`][radicle-n
 unit file. Place it in `/etc/systemd/system/radicle-node.service` for it to
 be found by `systemctl`:
 
-    sudo curl -sS https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/49584f4e732fb0039d2089f3c39fd56fc34a2ee3/systemd/radicle-node.service -o /etc/systemd/system/radicle-node.service
+    sudo curl -sS https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/570a7eb141b6ba001713c46345d79b6fead1ca15/systemd/radicle-node.service -o /etc/systemd/system/radicle-node.service
 
 Make sure it fits your needs by editing the file directly, or creating an
 override using `systemctl edit`.
@@ -408,7 +408,7 @@ HTTP JSON API. For seed nodes, the HTTP Daemon is always configured as a
 As with `radicle-node`, we can start by downloading an example `systemd` unit
 file for the daemon:
 
-    sudo curl -sS https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/49584f4e732fb0039d2089f3c39fd56fc34a2ee3/systemd/radicle-httpd.service -o /etc/systemd/system/radicle-httpd.service
+    sudo curl -sS https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/570a7eb141b6ba001713c46345d79b6fead1ca15/systemd/radicle-httpd.service -o /etc/systemd/system/radicle-httpd.service
 
 Make sure it fits your needs by editing the file directly, or creating an
 override using `systemctl edit`.
@@ -485,7 +485,7 @@ and running!
 
 🎊👾
 
-[radicle-node]: https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/49584f4e732fb0039d2089f3c39fd56fc34a2ee3/systemd/radicle-node.service
+[radicle-node]: https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/570a7eb141b6ba001713c46345d79b6fead1ca15/systemd/radicle-node.service
 [caddy]: https://caddyserver.com/
 [caddy-guide]: https://caddyserver.com/docs/running#linux-service
 [caddy-install]: https://caddyserver.com/docs/install
