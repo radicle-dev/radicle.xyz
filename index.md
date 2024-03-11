@@ -1,6 +1,6 @@
 ---
-title: "Radicle: sovereign code infrastructure"
-layout: home
+title: "Radicle: the sovereign forge"
+layout: index
 ---
 
 # Synopsis

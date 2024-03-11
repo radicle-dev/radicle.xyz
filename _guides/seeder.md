@@ -27,7 +27,7 @@ In Radicle, while all users contribute to the network by seeding data, the term
 internet and hosts content for peers. Seed nodes need to remain online and
 accessible to provide their service to the network.
 
-### The Need for Seed Nodes
+### The need for seed nodes
 
 While a peer-to-peer network without seed nodes is feasible, it is impractical.
 This is because regular "user" nodes go online and offline all the time, so

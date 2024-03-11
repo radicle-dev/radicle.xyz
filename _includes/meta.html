@@ -1,6 +1,11 @@
-<title key="title">Radicle: sovereign code infrastructure</title>
+<title>
+  {% if page.title %}
+    {{ page.title }}
+  {% else %}
+    {{ site.title }}
+  {% endif %}
+</title>
 <link rel="shortcut icon" href="/assets/images/radicle.svg"/>
-<link rel="stylesheet" type="text/css" href="/index.css"/>
 <link rel="canonical" href="https://radicle.xyz"/>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
 <meta name="description" content="Radicle is a decentralized platform for code collaboration, offering secure and sovereign infrastructure for developers.">
