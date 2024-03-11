@@ -107,6 +107,7 @@ h5 {
 }
 
 pre, code {
+  line-height: 1.5;
   color: var(--color-fg-low-contrast);
   font-family: var(--font-family-code);
 }
