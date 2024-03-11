@@ -28,12 +28,7 @@ Linux, macOS and BSD variants.
 The following command downloads and runs the installation script on your
 system:
 
-<div id="install">
-  <code id="install-command">curl -sSf https://radicle.xyz/install | sh</code>
-  <span id="install-copy">
-    <img width="16" height="16" src="/assets/images/copy.svg"/>
-  </span>
-</div>
+{% include install.html %}
 
 Alternatively, you can build from [source][heartwood] or get the [binaries][].
 
