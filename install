@@ -66,10 +66,21 @@ in_path() {
   return 1 # The path is not in $PATH
 }
 
+get_started() {
+  echo
+  success
+  printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+}
+
 main() {
   echo
   echo "👾 Welcome to Radicle"
   echo
+
+  NO_MODIFY_PATH=false
+  if [ "$#" -eq 1 ] && [ "$1" = "--no-modify-path" ]; then
+    NO_MODIFY_PATH=true
+  fi
 
   RAD_HOME=${RAD_HOME:-"$HOME/.radicle"}
   RAD_PATH=${RAD_PATH:-"$RAD_HOME/bin"}
@@ -108,7 +119,13 @@ main() {
   fi
 
   # If radicle is not in $PATH, add it here.
-  if ! in_path $RAD_PATH; then
+  if $NO_MODIFY_PATH; then
+    info "Not modifying shell path variable, as requested."
+    get_started
+  elif in_path $RAD_PATH; then
+    info "Radicle is configured in shell already, not modifying."
+    get_started
+  else
     PROFILE=""
 
     case $SHELL in
@@ -127,6 +144,7 @@ main() {
     if [ -z "$PROFILE" ]; then
       warn "Warning: unable to update your PATH variable."
       warn "Warning: please manually add $RAD_PATH to your PATH."
+      get_started
     else
       info "Configuring path variable in ~${PROFILE#$HOME}..."
       echo                                    >> "$PROFILE"
@@ -141,10 +159,6 @@ main() {
       printf "\n"
       printf "Then, create your radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
     fi
-  else
-    echo
-    success
-    printf "To get started, create your radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
   fi
 }
 
