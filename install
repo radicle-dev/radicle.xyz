@@ -18,7 +18,6 @@ warn() {
 
 success() {
   printf "\033[32m✓\033[0m Radicle was installed successfully.\n"
-  printf "\n"
 }
 
 error() {
@@ -96,7 +95,11 @@ in_path() {
 get_started() {
   echo
   success
-  printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+
+  if ! "$RAD_PATH"/rad self > /dev/null 2>&1; then
+    printf "\n"
+    printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+  fi
 }
 
 main() {
@@ -196,6 +199,7 @@ main() {
 
       success
 
+      printf "\n"
       printf "Before running Radicle for the first time,\n"
       printf "run \033[34m\`source ~${PROFILE#$HOME}\`\033[0m or open a new terminal.\n"
       printf "\n"
