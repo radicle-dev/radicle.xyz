@@ -19,7 +19,7 @@ Radicle is an open source, peer-to-peer code collaboration stack. It leverages G
 
 # Get started
 
-> **Latest release** 💾 [Radicle v0.8.0 (570a7eb)][binaries] - March 11 2024
+{% include latest-release.html %}
 
 To install Radicle on your system, simply run the [install
 script][install-script] from a POSIX shell. For now, Radicle only works on

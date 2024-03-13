@@ -1,0 +1,54 @@
+<style>
+  #release {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .loading .release-info {
+    display: none;
+  }
+  .loading .release-loader {
+    display: inline-block;
+  }
+  .release-loader {
+    display: none;
+    border: 2px solid var(--color-border-hint);
+    border-top: 2px solid var(--color-border-default);
+    border-right: 2px solid var(--color-border-default);
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+    animation: spin 1s linear infinite;
+  }
+  #release-timestamp {
+    color: var(--color-fg-low-contrast);
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<blockquote id="release" class="loading">
+  <strong>Latest release</strong> 💾
+  <span class="release-loader"></span>
+  <span>
+    <a href="https://files.radicle.xyz/latest" id="release-info"></a> &middot; <span id="release-timestamp"></span>
+  </span>
+</blockquote>
+
+<script>
+  fetch("https://files.radicle.xyz/latest/version.json")
+    .then(res => res.json())
+    .then(data => {
+      const version = data.version;
+      const commit = data.commit;
+      const release = document.getElementById("release");
+      const releaseInfo = document.getElementById("release-info");
+
+      release.classList.remove("loading");
+      releaseInfo.innerText = `Radicle v${version} (${commit})`;
+      document.getElementById("release-timestamp").innerText = new Date(data.timestamp * 1000).toUTCString();
+    });
+</script>
