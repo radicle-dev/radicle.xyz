@@ -21,9 +21,36 @@ success() {
   printf "\n"
 }
 
-fatal() {
+error() {
   printf "\033[31merror\033[0m: $*\n" >&2
+}
+
+fatal() {
+  error "$@"
   exit 1
+}
+
+usage() {
+  echo "Usage"
+  echo
+  echo "  $0 [<options>]"
+  echo
+  echo "  This script will install the Radicle binaries under '$RAD_PATH'".
+  echo "  To change the location, set \$RAD_PATH to a different directory."
+  echo
+  echo "  Your Radicle home is set to '$RAD_HOME'."
+  echo "  To change it, set \$RAD_HOME to a different directory."
+  echo
+  echo "Options"
+  echo
+  echo "  --no-modify-path    Do not modify the PATH environment variable"
+  echo "  --help, -h          Show this help message and exit"
+  echo
+  echo "Environment"
+  echo
+  echo "  RAD_HOME            Radicle home directory"
+  echo "  RAD_PATH            Radicle binaries directory"
+  echo "  RAD_MANPATH         Radicle manual pages directory"
 }
 
 target() {
@@ -73,19 +100,34 @@ get_started() {
 }
 
 main() {
-  echo
-  echo "👾 Welcome to Radicle"
-  echo
-
-  NO_MODIFY_PATH=false
-  if [ "$#" -eq 1 ] && [ "$1" = "--no-modify-path" ]; then
-    NO_MODIFY_PATH=true
-  fi
-
   RAD_HOME=${RAD_HOME:-"$HOME/.radicle"}
   RAD_PATH=${RAD_PATH:-"$RAD_HOME/bin"}
   RAD_MANPATH=${RAD_MANPATH:-"$RAD_HOME/man"}
   SHELL=${SHELL:-"/bin/sh"}
+  NO_MODIFY_PATH=false
+
+  case "$1" in
+    --no-modify-path)
+      NO_MODIFY_PATH=true ;;
+    -h|--help)
+      usage
+      exit 0 ;;
+    "")
+      # No arguments, normal operation
+      ;;
+    *)
+      error "unrecognized argument '$1'"
+      echo ; usage ; exit 1 ;;
+  esac
+
+  if [ "$#" -gt 1 ]; then
+    error "too many arguments"
+    echo ; usage ; exit 1
+  fi
+
+  echo
+  echo "👾 Welcome to Radicle"
+  echo
 
   info "Detecting operating system..."
   TARGET=$(target)
