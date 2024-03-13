@@ -231,7 +231,7 @@ body > header {
   text-overflow: hidden;
   flex-wrap: nowrap;
   width: 100%;
-  height: 1.5rem;
+  height: 1.75rem;
   min-height: 1.5rem;
   line-height: 1.5rem;
 }
@@ -243,9 +243,15 @@ body > footer {
   padding: 0 0.5rem;
   white-space: nowrap;
   width: 100%;
-  height: 1.5rem;
+  height: 2rem;
   min-height: 1.5rem;
   line-height: 1.5rem;
+}
+
+footer {
+  position: fixed;
+  background-color: var(--color-bg-default);
+  bottom: 0;
 }
 
 body > footer > * {
@@ -337,6 +343,7 @@ img.screenshot {
   display: flex;
   width: 100%;
   animation: ticker 120s linear infinite;
+  margin-top: 2px;
 }
 
 .ticker > *:nth-child(even) {

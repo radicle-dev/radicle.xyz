@@ -80,6 +80,8 @@ body, html {
   background-size: contain;
   width: 1.75rem;
   height: 1.75rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 :root[data-theme=light] #toggle-theme {
   background-image: url(/assets/images/sun.svg);
