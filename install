@@ -96,18 +96,29 @@ get_started() {
   echo
   success
 
-  if ! "$RAD_PATH"/rad self > /dev/null 2>&1; then
-    printf "\n"
-    printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+  RAD_HOME=$(rad path)
+
+  if [ $? -eq 0 ]; then
+    if [ -f "$RAD_HOME/keys/radicle.pub" ]; then
+      return 0
+    fi
   fi
+
+  printf "\n"
+  printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
 }
 
 main() {
   RAD_HOME=${RAD_HOME:-"$HOME/.radicle"}
   RAD_PATH=${RAD_PATH:-"$RAD_HOME/bin"}
   RAD_MANPATH=${RAD_MANPATH:-"$RAD_HOME/man"}
-  SHELL=${SHELL:-"/bin/sh"}
+  SHELL_PATH=${SHELL:-"/bin/sh"}
   NO_MODIFY_PATH=false
+
+  if [ "$#" -gt 1 ]; then
+    error "too many arguments"
+    echo ; usage ; exit 1
+  fi
 
   case "$1" in
     --no-modify-path)
@@ -116,17 +127,11 @@ main() {
       usage
       exit 0 ;;
     "")
-      # No arguments, normal operation
-      ;;
+      ;; # No arguments, normal operation
     *)
       error "unrecognized argument '$1'"
       echo ; usage ; exit 1 ;;
   esac
-
-  if [ "$#" -gt 1 ]; then
-    error "too many arguments"
-    echo ; usage ; exit 1
-  fi
 
   echo
   echo "👾 Welcome to Radicle"
@@ -173,7 +178,7 @@ main() {
   else
     PROFILE=""
 
-    case $SHELL in
+    case $SHELL_PATH in
       */zsh)
         PROFILE=$HOME/.zshenv ;;
       */bash)
@@ -203,7 +208,7 @@ main() {
       printf "Before running Radicle for the first time,\n"
       printf "run \033[34m\`source ~${PROFILE#$HOME}\`\033[0m or open a new terminal.\n"
       printf "\n"
-      printf "Then, create your radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+      printf "Then, create your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
     fi
   fi
 }
