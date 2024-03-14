@@ -18,6 +18,15 @@ warn() {
 
 success() {
   printf "\033[32m✓\033[0m Radicle was installed successfully.\n"
+
+  RAD_HOME=$(rad path)
+
+  if [ $? -eq 0 ]; then
+    if [ -S "$RAD_HOME/node/control.sock" ];  then
+      printf "\n"
+      printf "Please restart your node to complete the upgrade.\n"
+    fi
+  fi
 }
 
 error() {
