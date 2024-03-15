@@ -16,16 +16,30 @@ warn() {
   printf "\033[33m$*\033[0m\n"
 }
 
+rad_home() {
+  if command -v rad >/dev/null 2>&1; then
+    rad path || true
+  fi
+}
+
+is_authed() {
+  RAD_HOME=$(rad_home)
+
+  if [ -n "$RAD_HOME" ] && [ -f "$RAD_HOME/keys/radicle.pub" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 success() {
   printf "\033[32m✓\033[0m Radicle was installed successfully.\n"
 
-  RAD_HOME=$(rad path)
+  RAD_HOME=$(rad_home)
 
-  if [ $? -eq 0 ]; then
-    if [ -S "$RAD_HOME/node/control.sock" ];  then
-      printf "\n"
-      printf "Please restart your node to complete the upgrade.\n"
-    fi
+  if [ -n "$RAD_HOME" ] && [ -S "$RAD_HOME/node/control.sock" ];  then
+    printf "\n"
+    printf "Please restart your node to complete the upgrade.\n"
   fi
 }
 
@@ -102,19 +116,13 @@ in_path() {
 }
 
 get_started() {
-  echo
+  printf "\n"
   success
 
-  RAD_HOME=$(rad path)
-
-  if [ $? -eq 0 ]; then
-    if [ -f "$RAD_HOME/keys/radicle.pub" ]; then
-      return 0
-    fi
+  if ! is_authed; then
+    printf "\n"
+    printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
   fi
-
-  printf "\n"
-  printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
 }
 
 main() {
@@ -213,11 +221,21 @@ main() {
 
       success
 
+      if command -v rad >/dev/null 2>&1; then
+        EXISTING=$(command -v rad)
+        printf "\n"
+        warn "Warning: Pre-existing binaries found at $(dirname "$EXISTING")."
+        warn "Warning: installed new binaries in $RAD_PATH."
+      fi
+
       printf "\n"
       printf "Before running Radicle for the first time,\n"
       printf "run \033[34m\`source ~${PROFILE#$HOME}\`\033[0m or open a new terminal.\n"
-      printf "\n"
-      printf "Then, create your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+
+      if ! is_authed; then
+        printf "\n"
+        printf "Then, create your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+      fi
     fi
   fi
 }
