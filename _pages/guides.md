@@ -8,7 +8,7 @@ Welcome to the Radicle <strong class="highlight">Guides</strong>. Make sure to
 also check out our [FAQ](/faq) if you can't find what you're looking for.
 
 <style>
-  .menu { margin-left: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .menu { margin-left: 2rem; display: flex; gap: 0rem 1rem; flex-wrap: wrap; }
 </style>
 
 <div class="menu">

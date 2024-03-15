@@ -317,6 +317,9 @@ img.screenshot {
   nav {
     display: block;
   }
+  .desktop {
+    display: none;
+  }
   #ribbon {
     width: 128px;
     height: 128px;

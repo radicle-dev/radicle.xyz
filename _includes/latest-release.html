@@ -3,6 +3,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    width: 100%;
+    overflow: hidden;
   }
   .loading .release-info {
     display: none;
@@ -31,10 +33,12 @@
 </style>
 
 <blockquote id="release" class="loading">
-  <strong>Latest release</strong> 💾
+  <strong class="desktop">Latest release</strong> 💾
   <span class="release-loader"></span>
   <span>
-    <a href="https://files.radicle.xyz/latest" id="release-info"></a> &middot; <span id="release-timestamp"></span>
+    <a href="https://files.radicle.xyz/latest" id="release-info"></a>
+    <span class="desktop">&middot;</span>
+    <span id="release-timestamp" class="desktop"></span>
   </span>
 </blockquote>
 

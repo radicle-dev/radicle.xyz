@@ -5,7 +5,9 @@ layout: index
 
 # Synopsis
 
-Radicle is an open source, peer-to-peer code collaboration stack. It leverages Git's architecture combined with cryptography and a gossip protocol to enable a fully sovereign developer stack.
+Radicle is an open source, peer-to-peer code collaboration stack. It leverages
+Git's architecture combined with cryptography and a gossip protocol to enable a
+fully sovereign developer network.
 
 <a class="screenshot" href="https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" target="_blank" title="Heartwood is the latest generation of the Radicle protocol">
   <img class="screenshot" src="/assets/images/web-app-screenshot.png"/>
