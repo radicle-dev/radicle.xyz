@@ -265,10 +265,10 @@ For others to be able to connect to your node directly, they need your *Node
 Address*. This is a combination of your Node ID and your node's external
 address.
 
-If you've configured an external address, simply entering `rad self --address`
-will output your node address.
+If you've configured one or more external addresses, simply entering the
+following command will output your node addresses:
 
-    rad self --address
+    rad node config --addresses
 
 Share this with others, and they will be able to connect to your node using
 `rad node connect <address>`, or by adding your address to their configuration,
