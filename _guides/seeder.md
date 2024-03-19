@@ -80,39 +80,39 @@ called `seed`. Radicle data and configuration will be stored under this user's
 home folder. This ensures that if your Radicle services were to be compromised,
 the attacker would have very limited access to your system.
 
-Here's an example user setup with `seed` as the user and group name, and
-`admin` as the hypothetical system administrator:
+Here's an example user setup with `seed` as the user and group name:
 
     sudo groupadd --system seed
     sudo useradd --system --gid seed --create-home seed
-    sudo usermod -a -G seed admin
 
-Finally, login as the `seed` user and proceed with installation:
+If you're administering your server via a non-root account, you'll want to
+add it to the `seed` group as well:
 
-    sudo su seed
+    sudo usermod -a -G seed $(whoami)
 
 ### Installation
 
 For a seed node, you will need to install at minimum the Radicle CLI (`rad`),
 and network daemon (`radicle-node`).
 
-To install these, follow the instructions at <https://radicle.xyz/#try>,
-or simply run the following command from within your server's shell:
+To install these, run the following command from within your server's shell:
 
-    curl -sSf https://radicle.xyz/install | sh
+    curl -sSf https://radicle.xyz/install | sh -s -- --no-modify-path
 
 This will install binaries in `~/.radicle/bin` by default, or in `RAD_PATH`
 if you have that set.
 
-Once the binaries are installed, move them to a location in your `PATH`.
+Once the binaries are installed, move them to a location accessible by the
+`seed` user, for example `/usr/local/bin`.
 
     sudo mv ~/.radicle/bin/* /usr/local/bin
 
+Finally, login as the `seed` user and proceed with installation:
+
+    sudo su seed
+
 To check your installation, run the `rad` command, and confirm where your
 Radicle home is with the `rad path` command.
-
-> **Tip**: If you prefer to adjust your `PATH` instead, make sure that the
-> correct path to the executables is used when running the services.
 
 To offer web browsing and HTTP access to your seed node, you will additionally
 need to run `radicle-httpd`, the HTTP daemon. We'll cover this after we've
@@ -461,7 +461,8 @@ for your seed:
     }
 
 This will proxy all HTTPS requests from port `443` to your HTTP daemon running
-on port `8080`.
+on port `8080`. Make sure your firewall has port `443` open for incomning TCP
+connections.
 
 Finally, enable and start the Caddy service:
 
