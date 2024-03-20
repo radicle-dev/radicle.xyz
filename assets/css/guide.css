@@ -9,10 +9,10 @@ main, footer {
   grid-auto-flow: row;
   grid-template-columns:
     [screen-start] 1fr
-    [page-start kicker-start left-start] 6rem 6rem
+    [page-start kicker-start left-start] 6rem [wide-start] 6rem
     [text-start kicker-end] 2rem 3rem 6rem 3rem
     [left-end right-start] 3rem [text-middle] 3rem 6rem 2rem
-    [text-end gutter-start] 6rem 6rem
+    [text-end gutter-start] 6rem [wide-end] 6rem
     [page-end gutter-end right-end] 1fr [screen-end];
   grid-template-rows: auto [last-row];
 }
@@ -128,6 +128,12 @@ pre code {
 pre.center {
   text-align: center;
 }
+pre.wide {
+  margin: 1.5rem auto 2.5rem auto;
+  padding: 1.5rem;
+  grid-column-start: wide-start;
+  grid-column-end: wide-end;
+}
 
 p code, ul code, ol code, aside code {
   padding: 1px 4px;
@@ -146,6 +152,7 @@ p code {
 
 aside code {
   font-weight: normal;
+  color: var(--color-fg-dim);
 }
 
 table {
@@ -196,7 +203,7 @@ blockquote + p {
 }
 
 blockquote {
-  color: var(--color-fg-contrast);
+  color: var(--color-fg-low-contrast);
   background: var(--color-bg-highlight);
   padding: 1rem;
   margin: 1rem 0;
@@ -314,6 +321,11 @@ aside.span-5 {
 
 aside p {
   margin-bottom: 1em;
+}
+
+aside a {
+  text-decoration: none !important;
+  border-bottom: 1px dotted var(--color-fg-dim);
 }
 
 aside.kicker {
@@ -460,6 +472,11 @@ span.highlight-secondary {
       [screen-start page-start text-start] 100% [page-end text-end screen-end];
   }
 
+  pre.wide {
+    grid-column: text !important;
+    margin-right: 0;
+    margin-left: 0;
+  }
   figure.diagram {
     grid-column: screen !important;
   }

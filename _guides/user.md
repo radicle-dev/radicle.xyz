@@ -126,9 +126,9 @@ This command runs an installer script that automates the setup process, by:
 
 > 👾
 >
-> If you want the above to be installed in a different
-> location than `~/.radicle`, you can set the `RAD_PATH` environment variable
-> before running the installation script.
+> If you want the above to be installed in a different location than
+> `~/.radicle`, you can set the `RAD_PATH` environment variable before running
+> the installation script.
 >
 > Note that if you don't want to use the installer script, you can also always
 > compile from the [source code][heartwood] or get the [binaries][] if you
@@ -321,7 +321,7 @@ Pick a repository you maintain and navigate to a local copy. It can be any Git
 repository, but it should have at least one commit.
 
     $ pwd
-    /home/paxel/src/dark-star-data
+    /home/paxel/src/dark-star
 
     $ git status
     On branch master
@@ -334,11 +334,11 @@ To publish it to the Radicle network, run the `rad init` command.
 
     Initializing radicle 👾 project in .
 
-    ✓ Name: dark-star-data
+    ✓ Name: dark-star
     ✓ Description: Decoding data from the dark star to establish a model of the universe
     ✓ Default branch: main
     ✓ Visibility: public
-    ✓ Project dark-star-data created.
+    ✓ Project dark-star created.
 
     Your project's Repository ID (RID) is rad:z31hE1wco9132nedN3mm5qJjyotna.
     You can show it any time by running `rad .` from this directory.
@@ -693,7 +693,7 @@ some way, for example by pushing a branch or commenting on an issue, simply run
 > is called the *scope*.
 >
 > By default, when cloning or seeding a repository, your node will subscribe to
-> content from _all_ peers. This behavior is part of the seeding policy and can
+> content from *all* peers. This behavior is part of the seeding policy and can
 > be changed by passing `--scope followed` to the `seed` and `clone` commands,
 > to only subscribe to content from the repository *delegates* plus any node
 > that is explicitly followed via `rad follow`.
@@ -711,6 +711,780 @@ issues and patches from the unique perspectives of both contributors and
 delegates. It's here that the true kernel of *code collaboration* begins to
 unfold.
 
+## 2. Collaborating the Radicle Way
+
+Now is the time to delve into Radicle's approach to working with social
+artifacts like issues and patches. In the context of version control systems,
+social artifacts refer to collaborative features that facilitate discussions,
+bug tracking, and code review. Patches, in particular, represent proposed
+changes to the codebase, often in response to issues or feature requests.
+Unlike traditional centralized forges, Radicle leverages Git's distributed
+version control system to allow you to maintain local copies of your
+repository's associated issues and patches, alongside the repository source
+tree.
+
+<aside class="kicker"> Note that social artifacts are not stored in your
+<em>working</em> copy. They are stored in the associate <em>bare</em>
+repository as part of Radicle's local storage. Read more about Radicle storage
+in the <a href="/guides/protocol#local-first-storage">Protocol Guide</a>.
+</aside>
+
+If you're familiar with Git, you know that when you `commit` code changes, a
+unique hash called a commit hash is generated to identify that snapshot in
+history. In Radicle, issues, patches, and their associated comments work
+similarly to code commits. They are stored as Git objects within the repository
+itself, each with its own unique Git Object ID (OID). This means that all
+collaborative interactions, such as creating issues, submitting patches, and
+commenting, are self-contained within the Git repository.
+
+Furthermore, these objects are cryptographically signed by their author,
+providing an additional layer of security and trust. This allows all
+participants to independently verify the authenticity of the collaborative
+interactions, ensuring the integrity of the project's history. By storing social
+artifacts within Git and leveraging cryptographic signatures, Radicle
+enables projects to operate independently of centralized platforms, giving users
+full control over their collaborative data, and the ability to work offline.
+
+<aside> The <strong>Git OID</strong> is a SHA-1 hash, which is a 160-bit number
+typically represented as a 40-character hexadecimal string that uniquely
+identifies objects within a Git repository. This identification is part of
+Git's content-addressable storage system, ensuring the integrity of every piece
+of data. </aside>
+
+In Radicle, these collaborative social interactions are implemented using a
+novel system of [Collaborative Objects][cobs] or simply "COBs" 🌽, that are
+implemented using Git primitives.
+
+<!-- TODO: Feels out of place?
+
+You know what this all means? One day, creating an AI agent that codes and thinks
+like you will be much easier than if you were to download the deepest parts of
+your brain onto a platform owned by a megacorporation. There, it is an unknown
+abyss, where your issues and thoughts are not hashed nor associated with public
+keys. The platform has an iron grip on your data, feeding it to their mysterious
+AI models without even giving you a peek behind the curtain.
+
+That's the old system. The beauty of local-first systems like Radicle is that
+everything is hashed and all your data is readily accessible from your local
+machine. There is no need for complex API calls or special bots to extract
+data for the projects you're working on, as you'll get it anytime you fetch.
+
+> 🧠
+>
+>
+> While we don't have a plugin for creating sovereign AI agents just yet, the
+potential is there. If you're interested in exploring this idea further,
+[let us know][zulip]!
+
+-->
+
+### Working with *issues*
+
+<div class="poem"> The more we git together<br>
+Together, together<br>
+The more we git together<br>
+The happier we'll be</div>
+
+<aside class="kicker span-2">
+  <p> A <strong>Conflict-Free Replicated Data Type (CRDT)</strong> is a data
+  structure that allows distributed systems to update data independentlyand
+  resolve inconsistencies without central coordination. </p>
+  <p> CRDTs ensure that all copies of some piece of data converge to the same
+  state, making them ideal for environments with intermittent connectivity or
+  where immediate consistency is not required. </p>
+</aside>
+
+Before we get into *issue management*, you should first get to know our trusted
+friend, the COB 🌽. Discussing issues and patches is not natively supported by
+Git, so we had to extend it. We named this data type a [Collaborative
+Object][cobs] or "COB" for short. They use Conflict-Free Replicated Data Types
+(CRDTs) under the hood for data consistency and are one of the fundamental
+building blocks of the Radicle protocol.
+
+<aside class="span-4">
+  <p> Git has a built-in command called <code>git format-patch</code> that
+  generates a patch file from commits. This patch file contains the changes made
+  in the commits, along with metadata such as the commit message, author, and
+  date. The patch file can then be easily shared with others via email or other
+  means for review and discussion. </p>
+  <p>This patch-based workflow is particularly popular in the Linux development
+  community, where patches are often sent to mailing lists for review before
+  being applied to the main repository. </p>
+  <p>Radicle takes some ideas from this email based workflow but tries to
+  offer a much more modern, secure and user-friendly experience than that
+  of email. </p>
+</aside>
+
+Now, to see how COBs are leveraged through the process of collaboration, we'll
+open an issue under our "paxel" user alias, in a repository where we are a
+contributor, but not a delegate.
+
+We're going to `cd` into our copy of the `dark-star` repository we are
+collaborating on, and open an issue with `rad issue open`. This will open your
+text editor, prompting you to enter a title and description for the issue.
+Radicle follows the same convention as Git commits when it comes to
+inputing via an editor: the first line is a summary or *title* of the issue,
+then comes the *description*, separated by a blank line.
+
+    $ cd dark-star
+    $ rad issue open
+
+We'll enter the following title and description in our editor:
+
+    Establish data standards for IUI Dark Star Data group
+
+    As we go out and recruit the Neboriens and other intelligences to join
+    the Intergalactic Union of Intelligences (IUI), we are going to have to
+    establish standards for Dark Star data submissions.
+
+When we save and close the editor, the issue is displayed on the command line:
+
+    ╭───────────────────────────────────────────────────────────────╮
+    │ Title   Establish data standards for IUI Dark Star Data group │
+    │ Issue   e4255cc2a0a65b543c2b5badac14bf9e0d9f409f              │
+    │ Author  paxel (you)                                           │
+    │ Status  open                                                  │
+    │                                                               │
+    │ As we go out and recruit the Neboriens and other              │
+    │ intelligences to join the Intergalactic Union of              │
+    │ Intelligences (IUI), we are going to have to establish        │
+    │ standards for Dark Star data submissions.                     │
+    ╰───────────────────────────────────────────────────────────────╯
+
+Behind the scenes, `rad issue open` conjures up a brand-new COB for the issue,
+bestowing upon it a unique identifier. This COB becomes the guardian of all the
+metadata and interactions associated with the issue, ready to be replicated and
+synced across the Radicle network.
+
+> 👾
+>
+> To ensure that your preferred editor is chosen when you enter `rad issue
+> open`, make sure the `EDITOR` environment variable is set appropriately. It
+> must be set to the full path to your preferred editor, for example:
+>
+>     export EDITOR=/usr/bin/vim
+>
+> If you'd prefer to enter the issue title and description via the command-line
+> without spawning your editor, you can use the `--title` and `--description`
+> options to `rad issue open`.
+
+COBs such as issues and patches can be created even when offline, since Radicle
+is local-first. COBs you create offline will simply synchronize with the
+network once you go online.
+
+You can always see a table with all of the issues associated to a repository
+by running `rad issue` within its working directory.
+
+<pre class="wide"><code>$ rad issue
+╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ●   ID        Title                                                    Author                    │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ ●   80464b3   Categorize initial dataset                               paxel    (you)            │
+│ ●   e4255cc   Establish data standards for IUI Dark Star Data group    paxel    (you)            │
+│ ●   3e2f653   Add anomalous data from ship 897AF                       calyx    z6Mkgom…unurCap  │
+│ ●   badda04   Recruit Neboriens to join IUI and share dark star data   calyx    z6Mkgom…unurCap  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+</code></pre>
+
+Let's display an issue that looks interesting, using `rad issue show`:
+
+    $ rad issue show 3e2f65
+    ╭─────────────────────────────────────────────────────────────╮
+    │ Title   Add anomalous data from ship 897AF                  │
+    │ Issue   3e2f653383f0d2fe21ef4e859a25925c364c740a            │
+    │ Author  calyx                                               │
+    │ Status  open                                                │
+    │                                                             │
+    │ Before we onboard new IUI members like the Neborians, it is │
+    │ important we upload the data from ship 897AF. I just        │
+    │ reviewed the database and it seems this is missing.         │
+    ╰─────────────────────────────────────────────────────────────╯
+
+The issue, originally opened by Calyx, the repository's delegate, outlines a
+task that aligns perfectly with our knowledge area.
+
+> 👾
+>
+> *Full identifiers do not need to be used in most commands!*
+>
+> Notice that the full identifier is displayed under the `Issue` field. When
+> working with COBs, it's always possible to use the first few characters of a
+> COB's ID instead of the full hash, as we did above with `rad issue show`.
+>
+
+<aside> This works exactly the same way as Git commit hashes: as long as the
+given prefix is unambiguous, Radicle will resolve it to its full value.
+</aside>
+
+Let's compose a comment, with `rad issue comment`, expressing our interest in
+tackling the issue.
+
+    $ rad issue comment 3e2f65 --message "I can help."
+    ╭─────────────────────────╮
+    │ paxel (you) now 74faf0e │
+    │ I can help.             │
+    ╰─────────────────────────╯
+
+This time, we used the command-line `--message` option to provide a comment,
+but if you don't specify any option, you will be prompted to enter a message
+via your editor, just like with `rad issue open`.
+
+> 🧠
+>
+> Since Radicle's COB types are extensible by users, globally-unique *Type
+> IDs*, such as `xyz.radicle.issue` and `xyz.radicle.patch` are used to
+> identify them, preventing naming collisions. This reverse domain name
+> notation not only houses Radicle's predefined COBs but also accommodates
+> user-defined ones.
+>
+> For example, if a user or organization were to define a new COB type under
+> their domain, it might look something like `com.acme.task`, for some
+> hypothetical "task" COB under the `acme.com` domain. This extensibility
+> allows for an unlimited set of new collaboration primitives to be defined by
+> users.
+>
+> If you're interested in creating a custom COB, pop into our [chatroom][zulip]
+> and we can get you started.
+
+### Assigning issues
+
+Now, let's enter Calyx's point of view for a second. Calyx is the maintainer of
+the repository and is starting his day, gazing into a fresh terminal window,
+where he enters `rad inbox`.
+
+<pre class="wide"><code>$ rad inbox
+╭────────────────────────────────────────────────────────────────────────────────────────────╮
+│ dark-star                                                                                  │
+├────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 004   ●   3e2f653   Add anomalous data from ship 897AF   issue   open   calyx   1 hour ago │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+</code></pre>
+
+The Radicle inbox is like notifications center, displaying issues and patches
+that are newly created or have unread comments or new activity.
+
+> 👾
+>
+> If you run `rad inbox` from a Radicle repository, only notifications
+> belonging to this repository will be shown. You can override this by using
+> `--all` to show notifications from all repositories. If the command is run
+> outside a Radicle repository, all repositories will be displayed.
+
+Calyx decides to display the notification in his inbox with `rad inbox show`,
+using the notification number.
+
+    $ rad inbox show 4
+    ╭─────────────────────────────────────────────────────────────╮
+    │ Title   Add anomalous data from ship 897AF                  │
+    │ Issue   3e2f653383f0d2fe21ef4e859a25925c364c740a            │
+    │ Author  calyx                                               │
+    │ Status  open                                                │
+    │                                                             │
+    │ Before we onboard new IUI members like the Neborians, it is │
+    │ important we upload the data from ship 897AF. I just        │
+    │ reviewed the database and it seems this is missing.         │
+    ├─────────────────────────────────────────────────────────────┤
+    │ paxel z6MkvZw…7aCGq3C 1 hour ago 74faf0e                    │
+    │ I can help.                                                 │
+    ╰─────────────────────────────────────────────────────────────╯
+
+He sees that we (Paxel) left a comment and we're interested in helping with
+the issue, and decides to assign it to us with `rad issue assign`.
+
+    $ rad issue assign 3e2f653 --add did:key:z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
+
+He adds a comment to the issue as well.
+
+    $ rad issue comment 3e2f653 --message "Great, I've assigned it to you."
+
+> 👾
+>
+> The `assign` sub-command can be used to add (`--add`) or remove (`--delete`)
+> assignees.
+
+As a delegate of `dark-star`, Calyx has the rights to assign this issue. Calyx
+can then use `rad issue show`, to confirm that the issue was correctly
+assigned:
+
+    $ rad issue show 3e2f65
+    ╭─────────────────────────────────────────────────────────────╮
+    │ Title      Add anomalous data from ship 897AF               │
+    │ Issue      3e2f653383f0d2fe21ef4e859a25925c364c740a         │
+    │ Author     calyx                                            │
+    │ Assignees  paxel z6MkvZw…7aCGq3C                            │
+    │ Status     open                                             │
+    │                                                             │
+    │ Before we onboard new IUI members like the Neborians, it is │
+    │ important we upload the data from ship 897AF. I just        │
+    │ reviewed the database and it seems this is missing.         │
+    ├─────────────────────────────────────────────────────────────┤
+    │ paxel z6MkvZw…7aCGq3C 6 hours ago 39134b6                   │
+    │ I can help.                                                 │
+    ├─────────────────────────────────────────────────────────────┤
+    │ calyx 2 minutes ago 922fac7                                 │
+    │ Great, I've assigned it to you.                             │
+    ╰─────────────────────────────────────────────────────────────╯
+
+> 👾
+>
+> There's a lot more that you can do with issues, such as:
+>
+> * Editing with `rad issue edit`
+> * Labeling with `rad issue label`
+> * Closing with `rad issue state --closed`
+>
+> We don't want to overwhelm you though! Check out `rad issue --help` for more
+> details.
+
+### Working with *patches*
+
+The collaboration voyage doesn't stop at issues though! In the realm of code,
+issues typically lead to *patches*.
+
+Since Calyx has assigned the above issue to us, we'll start working on it by
+making the changes in a new branch, and once we're done, we'll open a patch.
+Let's dive into it step-by-step.
+
+First, we need to make sure we're in our working copy of the `dark-star`
+repository. We can check using the `rad .` invocation that the current
+repository's RID matches that of `dark-star`.
+
+    $ rad .
+    rad:z3cyotNHuasWowQ2h4yF9c3tFFdvc
+
+Now, let's create a new branch where we'll add the missing data from ship
+897AF, as mentioned in the issue. We happen to have this data right on our
+system!
+
+    $ git checkout -b anomalous-data-897af
+    $ cp /var/run/897af.log data/897af.log
+    $ git add data/
+
+Finally, we commit our changes to the branch.
+
+    $ git commit -m "Add anomalous data from ship 897AF"
+
+Now that our changes are committed, we're ready to open a patch. To do so, we
+simply push our branch to `refs/patches`, on `rad` remote.
+
+<aside class="span-3"> The <code>refs/patches</code> remote reference is what
+we call a <em>magic ref</em> 🪄 - it doesn't exist as a regular Git reference;
+instead, Radicle intercepts the command and opens a new patch whenever you push
+code to it using the Radicle remote helper. If you're familiar with <a
+href="https://www.gerritcodereview.com/" target="_blank">Gerrit</a>, Google's
+code review tool, it works the same way!</aside>
+
+    $ git push rad HEAD:refs/patches
+
+Radicle will then open your editor, where the patch title can be edited and a
+description can be added. Just like for issues, the first line of text is the
+patch title, while the subsequent lines make up the description.
+
+> 👾
+>
+> In the above command, `HEAD:refs/patches` is a *refspec*, where `HEAD` is a
+> reference to the last commit in the currently checked-out branch, and
+> `refs/patches` is a (magic) reference on the remote side. But you don't have
+> to use `HEAD`; any local branch will do. Even an arbitrary commit hash can be
+> used to open a patch!
+
+<aside class="apan-2">
+  A <strong>refspec</strong> in Git defines the relationship between local
+  and remote references. It's a pattern used primarily with Git commands like
+  <code>fetch</code>, <code>push</code>, and <code>pull</code> to specify which
+  branches or commits should be transferred between the local repository and
+  the remote repository. A refspec is composed of two parts, separated by a
+  colon <code>:</code>, the <em>source</em> and the <em>destination</em>
+  reference.
+</aside>
+
+Once we've entered the details describing the patch, we save and exit our
+editor. This pushes our commit to the `rad` remote, opening the patch.
+
+<pre class="wide"><code>✓ Patch e5f0a5a5adaa33c3b931235967e4930ece9bb617 opened
+✓ Synced with 8 node(s)
+
+To rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
+* [new reference]   HEAD -> refs/patches
+</code></pre>
+
+In the above Git output, we see our patch's identifier displayed:
+
+    e5f0a5a5adaa33c3b931235967e4930ece9bb617
+
+Patches are a type of COB 🌽, just like issues, and this is the SHA-1 hash that
+uniquely identifies this patch.
+
+> 🧠
+>
+> Radicle's patch workflow is implemented using the `git-remote-rad` helper
+> program developed for Radicle. This program is called by Git when it detects
+> a push to any `rad://` URL, such as the one under our `rad` remote.
+
+In addition to opening a patch, the above `push` command creates a new remote
+tracking branch and makes it the upstream of our `anomalous-data-897af` branch.
+Any subsequent push from this original branch will now update the patch,
+synchronizing our local changes with the network.
+
+> 🧠
+>
+> The name of the remote patch branch is always `rad/patches/` followed by the
+> patch identifier. For example:
+>
+>     rad/patches/e5f0a5a5adaa33c3b931235967e4930ece9bb617
+>
+
+We can take a look at remote tracking branches using `git branch --remotes` to
+understand this better.
+
+    $ git branch --remotes
+      calyx@z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap/main
+      rad/main
+      rad/patches/e5f0a5a5adaa33c3b931235967e4930ece9bb617
+
+Here we see three branches: the `main` branch of Calyx (`calyx@z6Mk..`), our
+own main branch (`rad/main`), and the branch associated with our recent patch
+(`rad/patches/e5f0a..`).
+
+We can also check the commit hashes associated with the `rad` remote references:
+
+    $ git ls-remote rad
+    e81db74197f48cc5198d9c03cceaec955af82abf  refs/heads/main
+    80b8d420658834afc444a13c03f0c3ff6875a71c  refs/heads/patches/e5f0a5a5adaa33c3b931235967e4930ece9bb617
+
+Since the `rad` remote is associated with our published copy of the repository,
+these are the branch heads that are publicly accessible on the network.
+
+### Updating patches
+
+So let's say we'd like to update the patch we just submitted. We found some
+formatting issues with the log file we included and we'd like to correct it
+and update the patch.
+
+First, let's dive into our editor and fix the formatting:
+
+    $ vi data/897af.log
+
+Then, we commit the changes and push.
+
+    $ git commit --amend
+    $ git push --force
+
+To update the patch, we simply use `git push`. Since we amended the original
+commit, we have to use the `--force` option when pushing. This is common
+practice when a patch has been reworked.
+
+As with opening a patch, this opens an editor to enter a reason for updating
+the patch. Leave it blank if you'd like to skip that.
+
+<pre class="wide"><code>✓ Patch e5f0a5a updated to revision 4d0c1156f8ac7af2297d1314cd7556185cd16ae4
+✓ Synced with 6 node(s)
+
+To rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
+ + b766431...80b8d42 anomalous-data-897af -> patches/e5f0a5a5adaa33c3b931235967e4930ece9bb617 (forced update)
+</code></pre>
+
+We see that the change that was pushed is represented by a new identifier:
+
+    4d0c1156f8ac7af2297d1314cd7556185cd16ae4
+
+This identifier represents the current version of the patch. Patch versions,
+called *revisions* in Radicle, are immutable. Therefore, each update to a patch
+creates a new revision, and patch updates are non-destructive, even when you
+force-push.
+
+<aside class="span-2"> The immutability of patch revisions makes code review a
+<em>breeze</em>. It's easy to know what you've reviewed and you can quickly
+tell what has changed since your last review by comparing patch revisions. </aside>
+
+> 👾
+>
+> If the branch upstream is not set to the patch reference, eg.
+> `rad/patches/e5f0a5a..`, you can set it with `rad patch set e5f0a5a`.
+
+As with issues, we can display the patch using the `show` sub-command:
+
+<pre class="wide"><code>$ rad patch show e5f0a5a
+╭────────────────────────────────────────────────────────────────────────────────╮
+│ Title     Add anomalous data from ship 897AF                                   │
+│ Patch     e5f0a5a5adaa33c3b931235967e4930ece9bb617                             │
+│ Author    paxel (you)                                                          │
+│ Head      80b8d420658834afc444a13c03f0c3ff6875a71c                             │
+│ Branches  anomalous-data-897af                                                 │
+│ Commits   ahead 1, behind 0                                                    │
+│ Status    open                                                                 │
+│                                                                                │
+│ Data from ship 897AF.                                                          │
+├────────────────────────────────────────────────────────────────────────────────┤
+│ 80b8d42 Add anomalous data from ship 897AF                                     │
+├────────────────────────────────────────────────────────────────────────────────┤
+│ ● opened by paxel (you) (b766431) 58 minutes ago                               │
+│ ↑ updated to 4d0c1156f8ac7af2297d1314cd7556185cd16ae4 (80b8d42) 44 minutes ago │
+╰────────────────────────────────────────────────────────────────────────────────╯
+</code></pre>
+
+Notice at the bottom that there is a timeline, with the original patch head
+(`b766431`) and the updated head (`80b8d42`) after a new revisions (`4d0c115`)
+was created via a patch update.
+
+Revisions are much more than changesets; they can carry useful metadata such as
+reviews, comments, and a top-level description that spans all the commits under
+it. That's why you see two identifiers for the revision, the first one is the
+hash of the revision, and the second is the hash of the code itself (eg. your
+branch head).
+
+> 🧠
+>
+> All patches start with an *initial* revision. This revision has the same identifier
+> as the patch itself, ie. `e5f0a5a5adaa33c3b931235967e4930ece9bb617` in the
+> example above.
+
+### Merging patches into the canonical
+
+Now that we've opened a patch, let's switch perspectives again and return to
+Calyx-land. Calyx will want to `checkout` the patch, review it, possibly make
+changes and run tests, and then `merge` it. Let's walk through this process
+together.
+
+First, within the repository, Calyx runs `rad patch` and notices there is a new patch.
+
+<pre class="wide"><code>$ rad patch
+╭───────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ●  ID       Title                                Author           Head     +       -   Updated    │
+├───────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ ●  e5f0a5a  Add anomalous data from ship 897AF   z6MkvZw…7aCGq3C  80b8d42  +50382  -0  1 hour ago │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
+</code></pre>
+
+Calyx then uses the `checkout` sub-command of `patch` to switch to the patch:
+
+    $ rad patch checkout e5f0a5a
+    ✓ Switched to branch patch/e5f0a5a at revision 4d0c1156f8ac7af2297d1314cd7556185cd16ae4
+    ✓ Branch patch/e5f0a5a setup to track rad/patches/e5f0a5a5adaa33c3b931235967e4930ece9bb617
+
+When collaborating with peers, it’s often useful to be able to checkout a patch
+in its own branch. With a patch checkout, you can browse the code, run tests
+and even propose your own revision to the patch.
+
+The `checkout` sub-command switches to a new local branch which has the patch
+checked out at a specific revision. By default, the latest of the patch
+author's revisions is chosen, but you can specify a different revision using
+the `--revision` option. See `rad patch --help` for more information.
+
+> 👾
+>
+> If you'd just like to view the patch changes without checking out the code,
+> use the `diff` command!
+>
+>     rad patch diff e5f0a5a
+>
+
+It's a rare occasion that someone submits a perfect patch that can be merged
+as-is. For example, in some cases a maintainer may want to rebase the patch's commits on top
+of the main branch, which could have moved since the patch was proposed.
+
+Calyx will do just that by running the following command from the patch
+checkout:
+
+    $ git rebase main
+
+This replays the patch's commits on top of the current `main` branch. All
+that's left to do is to update the patch itself, with a new revision:
+
+    $ git push -o patch.message="Rebased!" --force
+    ✓ Patch e5f0a5a updated to revision 1e0596d917725c447106b1efc900bebf4b95a810
+    ✓ Synced with 12 node(s)
+
+    To rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap
+    * [new branch]      patch/e5f0a5a -> patches/e5f0a5a5adaa33c3b931235967e4930ece9bb617
+
+Although Calyx isn't the author of the patch  he can propose a new revision. In
+fact, *anyone* can do that, and you will see their revision if you follow them!
+
+Since Calyx did a rebase, the `--force` flag was required. Notice also the  `-o
+patch.message` option; this allows Calyx to directly provide a comment related
+to this revision, bypassing his editor.
+
+> 🧠
+>
+> Git has something called "push options", these are options that are passed to
+> the remote helper and/or server when executing a push, and can be specified
+> via `-o <string>` or `--push-option=<string>`. Radicle as well as other
+> forges use these to configure a push.
+>
+> Radicle supports other options such as:
+>
+> * `-o sync`: force a network sync after the push.
+> * `-o no-sync`: don't wait for sync after the push.
+> * -`o patch.draft`: open a "draft" patch.
+>
+> See `man rad-patch` for the full list of options.
+
+If we look at the patch now, we'll see the new revision Calyx just pushed:
+
+    $ rad patch show e5f0a5a
+    ...
+    │ ● opened by z6MkvZw…7aCGq3C (b766431) 2 hours ago                           │
+    │ ↑ updated to 4d0c1156f8ac7af2297d1314cd7556185cd16ae4 (80b8d42) 2 hours ago │
+    │ * revised by calyx in 1e0596d (25f8515) 3 minutes ago                       │
+    ╰─────────────────────────────────────────────────────────────────────────────╯
+
+Here we see that Calyx's changes are associated to the revision identifier
+starting with `1e0596d` and to the commit hash `25f8515`.
+
+To merge this latest revision, Calyx uses regular Git commands. When Radicle
+detects that a patch's revision was merged into the main branch, the associated
+patch is marked as *merged*.
+
+<aside class="span-2"> In this guide, we use the term <em>main branch</em> to
+mean the branch configured as the repository's <em>default branch</em> during
+the repository initialization process (<code>rad init</code>). You can check
+which branch is set as your default branch using the <code>rad inspect
+--payload</code> command. </aside>
+
+First Calyx merges the patch's changeset into the `main` branch, by merging
+the patch branch he is on:
+
+    $ git checkout main
+    Switched to branch 'main'
+    Your branch is up to date with 'rad/main'.
+    $ git merge patch/e5f0a5a
+    Updating e81db74..25f8515
+    Fast-forward
+    data/897af.log | 50382 ++++++++++
+    1 file changed, 50382 insertions(+)
+    create mode 100644 data/897af.log
+
+Then he pushes `main` to the `rad` remote.
+
+    $ git push rad main
+    ✓ Patch e5f0a5a5adaa33c3b931235967e4930ece9bb617 merged at revision 1e0596d
+    ✓ Canonical head updated to 25f851529d68180a780cfafc15a48b89208ba8c4
+    ✓ Synced with 7 node(s)
+
+    To rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap
+      e81db74..25f8515  main -> main
+
+This marks the patch as *merged*, as seen in the output, updates the
+repository's **canonical** or "authoritative" state to `25f851`, and
+synchronizes the changes with the network.
+
+The patch no longer shows up under `rad patch`:
+
+    $ rad patch
+    Nothing to show.
+
+We can verify that it is merged via `rad patch show e5f0a5a`, or `rad patch
+--merged`, which shows all merged patches.
+
+> 👾
+>
+> Patch commands work similar to issues. You can:
+>
+> * Edit with `rad patch edit`.
+> * Label with `rad patch label`.
+> * Archive with `rad patch archive`.
+>
+> For more details on how to work with patches, read the manual with `man
+> rad-patch`.
+
+<!-- Reviewed until here -->
+
+### From remote viewing to adding remotes
+
+Whenever you `init` or `clone` a repository, your node will follow all peers
+for that repository, which means that everyone's patches and issues will be
+synchronized to your device.
+
+You can change this behavior by specifying a different scope when cloning or
+initializing a repository, with the `--scope` option. For example, `--scope
+followed` will only synchronize changes by peers you explicitly follow with the
+`rad follow` command. The default is `--scope all`.
+
+But if a peer becomes a regular collaborator, it would be useful to add them as
+a Git remote to track their changes and `checkout` their branches, even if
+they haven't been submitted as patches. The `rad remote` family of commands
+can help you achieve this.
+
+Calyx decides to do this, and adds us (Paxel) as a remote:
+
+    rad remote add z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C --name paxel
+
+This allows Calyx to keep up with our changes by creating a remote tracking
+branch in his working copy, that has our main branch as its upstream.
+
+<pre class="wide"><code>$ git remote -v
+paxel   rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C (fetch)
+paxel   rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C (push)
+rad     rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc (fetch)
+rad     rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap (push)
+</code></pre>
+
+In the above output, we see the names of the remotes on the left. We see that
+the `paxel` remote points to a different namespace than the `rad` remote, which
+points to Calyx's namespace. Remotes can also be viewed using `rad remote`:
+
+    $ rad remote
+    paxel z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C (fetch)
+    rad   (canonical upstream)                             (fetch)
+    rad   z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap (push)
+
+Now that a remote is setup, Calyx can fetch our branches with `git fetch`:
+
+    $ git fetch paxel
+      From rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
+        * [new branch]      dark-star-secrets       -> paxel/dark-star-secrets
+
+Oh darn, what has he found! If you don't want a branch to be published on
+the Radicle network, avoid pushing it to your `rad` remote!
+
+> 👾
+>
+> You can always use `rad remote list --untracked` to find peers that you are
+> following but are not tracking in your working copy.
+
+### Synchronizing the canonical
+
+Now that Calyx has updated the repository's `main` branch by merging our patch,
+all we need to do is pull those changes ourselves, to have the most up to date
+state.
+
+We'll start by switching back to our `main` branch with `git checkout main`,
+and then we'll initiate a regular `pull`:
+
+    $ git pull
+    Fetching rad
+    From rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc
+      e81db74..25f8515  main       -> rad/main
+    Updating e81db74..25f8515
+    Fast-forward
+    ...
+
+There we go, our working copy is now up to date with Calyx's.
+
+If you get `Already up to date.`, it could mean that the changes pushed by
+Calyx haven't reached your node yet. In that case, it's a good idea to ask
+your node to fetch changes from the network:
+
+    $ rad sync --fetch
+    ✓ Fetching rad:z3cyotNHuasWowQ2h4yF9c3tFFdvc from z6MkrLM…ocNYPm7..
+    ✓ Fetching rad:z3cyotNHuasWowQ2h4yF9c3tFFdvc from z6Mkg5Z…4Q8qCHw..
+    ✓ Fetched repository from 2 seed(s)
+
+After the `sync` command succeeds, try to `git pull` again.
+
+And, that's a wrap! You now know the most relevant nitty gritty details of how
+to leverage Radicle for code collaboration.
+
+<!-- TODO
+Consider continuing on to [Chapter 3][ch3] to further expand your Radicle
+consciousness and learn about setting policies and configurations for how your
+node seeds repositories.
+-->
+
+*One thing to keep in mind is that Radicle doesn't have advanced code review
+features yet for patches, but that is coming in a near-term release.*
+
 [proto]: /guides/protocol/
 [seeder]: /guides/seeder/
 [zulip]: https://radicle.zulipchat.com/
@@ -718,4 +1492,6 @@ unfold.
 [ssb]: https://en.wikipedia.org/wiki/Secure_Scuttlebutt
 [bt]: https://en.wikipedia.org/wiki/BitTorrent
 [heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
-
+[cobs]: /guides/protocol/#collaborative-objects
+[ch1]: /guides/user/#1-getting-started
+[ch3]: /guides/user/#3-grow-resilient-with-seeding
