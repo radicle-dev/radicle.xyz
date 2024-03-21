@@ -960,7 +960,7 @@ where he enters `rad inbox`.
 ╰────────────────────────────────────────────────────────────────────────────────────────────╯
 </code></pre>
 
-The Radicle inbox is like notifications center, displaying issues and patches
+The Radicle inbox is like a notifications center, displaying issues and patches
 that are newly created or have unread comments or new activity.
 
 > 👾
@@ -1046,8 +1046,8 @@ making the changes in a new branch, and once we're done, we'll open a patch.
 Let's dive into it step-by-step.
 
 First, we need to make sure we're in our working copy of the `dark-star`
-repository. We can check using the `rad .` invocation that the current
-repository's RID matches that of `dark-star`.
+repository. You can always check the current Radicle repository using the `rad
+.` invocation.
 
     $ rad .
     rad:z3cyotNHuasWowQ2h4yF9c3tFFdvc
@@ -1459,6 +1459,13 @@ and then we'll initiate a regular `pull`:
     Updating e81db74..25f8515
     Fast-forward
     ...
+
+> 🧠
+>
+> The `git pull` command is really just a `git fetch` followed by a `git
+> merge`. If you're comfortable with Git, it can be a good idea to first run
+> the `fetch`, see which remote-tracking branches were updated, and decide what
+> to merge yourself.
 
 There we go, our working copy is now up to date with Calyx's.
 
