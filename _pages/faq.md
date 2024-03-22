@@ -243,6 +243,12 @@ community.
 
 [vscode]: https://marketplace.visualstudio.com/items?itemName=radicle-ide-plugins-team.radicle
 
+# History
+
+## What is the history of the Radicle project?
+
+See the [history][history] page.
+
 # Monetization & Funding
 
 ## What is the monetization strategy for Radicle? Is Radicle free software?
@@ -268,6 +274,7 @@ for the last two years can be found [here][tally].
 
 [tally]: https://www.tally.xyz/gov/radworks
 [radworks]: https://radworks.org
+[history]: /history
 
 <footer>
   <hr>
