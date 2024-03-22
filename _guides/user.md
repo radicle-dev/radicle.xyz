@@ -787,7 +787,7 @@ The happier we'll be</div>
 
 <aside class="kicker span-2">
   <p> A <strong>Conflict-Free Replicated Data Type (CRDT)</strong> is a data
-  structure that allows distributed systems to update data independentlyand
+  structure that allows distributed systems to update data independently and
   resolve inconsistencies without central coordination. </p>
   <p> CRDTs ensure that all copies of some piece of data converge to the same
   state, making them ideal for environments with intermittent connectivity or
