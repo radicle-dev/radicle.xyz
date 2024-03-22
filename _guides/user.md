@@ -1115,6 +1115,17 @@ In the above Git output, we see our patch's identifier displayed:
 Patches are a type of COB 🌽, just like issues, and this is the SHA-1 hash that
 uniquely identifies this patch.
 
+> 👾
+>
+> If you want to avoid remembering the `git push rad HEAD:refs/patches`
+> command, you can add an alias to your local (or global) Git configuration:
+>
+>     $ git config alias.patch 'push rad HEAD:refs/patches'
+>
+> This allows you to create a patch by simply running `git patch`. Use the
+> `--global` option with `git config` to add the alias to your global Git
+> config.
+
 > 🧠
 >
 > Radicle's patch workflow is implemented using the `git-remote-rad` helper
