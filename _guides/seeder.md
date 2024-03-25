@@ -523,11 +523,10 @@ check, run the following command with your seed's domain:
 You should now be able to visit your seed node via any Radicle web frontend as
 well. For example, <https://app.radicle.xyz/nodes/seed.radicle.garden>.
 
-### Firewalls
-
-If you are running a firewall, ensure that port `443` is open for
-TCP connections. This will allow inbound HTTPS connections to your HTTP
-daemon.
+> On some distributions, installing `caddy` will start the system service
+> automatically. If you're not able to connect to your HTTP daemon from the
+> outside, try running `systemctl reload caddy` after you've updated the
+> configuration.
 
 You're all set
 --------------
