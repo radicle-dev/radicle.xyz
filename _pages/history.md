@@ -57,7 +57,7 @@ Radicle becomes self-hosted: development of the Radicle stack moves to Radicle.
 
 ### March, 2024
 
-Radicle gears up for it's 1.0 RC1 release.
+Radicle gears up for its 1.0 RC1 release.
 
 [radworks]: https://radworks.org
 [ipfs]: https://ipfs.tech/
