@@ -151,7 +151,7 @@ You can view information about your Radicle profile by running `rad self`. The
 
 Configuring your node
 ---------------------
-There are a couple of things we need to configure to set up a seed node.
+There are a couple of things we need to set up a seed node.
 
 First, we must set the node's default *seeding policy*.
 
@@ -164,8 +164,8 @@ network. This address will be advertised to peers, allowing them to connect to
 your seed node. Generally, this will be a DNS name with port `8776`, for
 example `seed.mentharos.net:8776`.
 
-Here's an example configuration file with a permissive seeding policy and
-external address set:
+Here's an example minimal configuration file with a permissive seeding policy
+and external address set:
 
 ```json
 {
@@ -178,125 +178,26 @@ external address set:
 }
 ```
 
-Your node can be configured with a file named `config.json` in your
-Radicle home directory. You can get the full path of the config file with the
-`rad self --config` command. Additionally, you can output the current
-configuration with `rad config`. Attributes that aren't set in `config.json`
-will take on default values. Create a default configuration by running:
+Your node is configured with a file named `config.json` in your Radicle home
+directory. You can get the full path of the config file with the `rad self
+--config` command. Additionally, you can output the current configuration with
+`rad config`. Attributes that aren't set in `config.json` will take on default
+values. You can open your configuration file for editing with `rad config
+edit`.
 
-    rad config init
+Let's start by configuring your seeding policy.
 
-Then, edit your configuration using the example above, with the correct
-external address under which your node is reachable.
+### Seeding policies
 
-If you are running a firewall, ensure that port `8776` is open for TCP
-connections.
-
-> **Tip**: It's recommended to run a basic firewall to further lock down your
-> server, using something like `iptables`, though this is out of scope for this
-> guide.
-
-### Running your node for the first time
-
-Before setting up your node as a system service, it's a good idea to run it
-once to make sure everything is working properly. Enter the following command
-to start your node in the foreground:
-
-    rad node start --foreground
-
-You should see log output as your node starts to sync with the network.
-If there are any errors or issues connecting to the network, you should see
-errors in the output.
-
-If the node started without problem, stop it with `Ctrl-C`, and proceed to the
-next step.
-
-### Securing the `seed` user
-
-Now that your node is configured and working, you can secure the `seed` user by
-disabling shell access. This is optional, though recommended.
-
-    sudo chsh -s /usr/sbin/nologin seed
-
-This will prevent anyone from logging in as the `seed` user. Exit the `seed`
-session by entering:
-
-    exit
-
-This should throw you back into the original session you opened via SSH. Note
-that from this point onwards, if you chose to disable the `seed` user's shell,
-you'll have to run all commands via `sudo`, eg. `sudo -u seed -- rad self`.
-
-> **Tip**: To facilitate running commands as the `seed` user, add this alias to
-> your admin shell's init scripts:
->
->     alias rad='sudo -u seed -- rad'
->
-> You can then run commands as the `seed` user by simply using `rad` as usual.
-
-### Configuring your node as a system service
-
-Though it's possible to simply run the Radicle node as a background process,
-it's recommended to set up a service to ensure the node is started on boot.
-
-In this guide, we will only cover setup using `systemd`, but the process is
-fairly similar for other service managers.
-
-The first thing to do is to get a copy of the [`radicle-node.service`][radicle-node]
-unit file. Place it in `/etc/systemd/system/radicle-node.service` for it to
-be found by `systemctl`:
-
-    sudo curl -sS https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/570a7eb141b6ba001713c46345d79b6fead1ca15/systemd/radicle-node.service -o /etc/systemd/system/radicle-node.service
-
-Make sure it fits your needs by editing the file directly, or creating an
-override using `systemctl edit`.
-
-Then, enable and run the service:
-
-    sudo systemctl enable --now radicle-node
-
-You can check that your node service is running with:
-
-    sudo systemctl status radicle-node
-
-### Sharing your node address
-
-For others to be able to connect to your node directly, they need your *Node
-Address*. This is a combination of your Node ID and your node's external
-address.
-
-If you've configured one or more external addresses, simply entering the
-following command will output your node addresses:
-
-    rad node config --addresses
-
-Share this with others, and they will be able to connect to your node using
-`rad node connect <address>`, or by adding your address to their configuration,
-under the `node.connect` field.
-
-### Checking your node status
-
-Besides using `systemctl status`, you can also check your node's status using
-`rad node status`. This will give you information on the peers connected to
-your node. You'll have to run this as the `seed` user, like so:
-
-    sudo -u seed -- rad node status
-
-To tail your node's logs, use:
-
-    sudo journalctl --unit radicle-node --follow
-
-Seeding policies
-----------------
-With your node running, it's time to configure your seeding policy. The most
-important setting is your *default seeding policy*. This setting will determine
-what content your seed node fetches and replicates on the network when it
-encounters a repository it hasn't given special instructions for.
+The most important setting when it comes to seeding is your *default seeding
+policy*. This setting will determine what content your seed node fetches and
+replicates on the network when it encounters a repository it doesn't know or
+hasn't been given special instructions for.
 
 The setting is configured under the `node.policy` field in your configuration
 (`~/.radicle/config.json`). You can open your configuration file directly
 using the `rad config edit` command, or use your preferred editor. You can
-also enter the following command:
+also enter the following command to display your current default policy:
 
     rad config get node.policy
 
@@ -305,7 +206,7 @@ default policy is applied, hence the importance of this setting.
 
 Broadly, there are two options for the default policy.
 
-### A *permissive* seeding policy
+#### A *permissive* seeding policy
 
 A permissive or "open" policy is said to be *fully-replicating*, meaning your
 seed will try to have a fully copy of all repository data available on the
@@ -319,7 +220,17 @@ having to think about it too much.
 
 Set `node.policy` to `allow` to configure your node this way.
 
-### A *selective* seeding policy
+```json
+{
+  "node": {
+    ...
+    "policy": "allow",
+    "scope": "all"
+  }
+}
+```
+
+#### A *selective* seeding policy
 
 A selective or *restricted* policy requires you, the operator, to manually
 allow repositories to be seeded. This means that the node will ignore
@@ -336,15 +247,17 @@ Set `node.policy` to `block` to enable this, and call `rad seed` to configure
 `allow` policies for specific repositories you want to seed. Your seed node
 won't seed anything until you explicitly allow it to.
 
-### Restart your node
+```json
+{
+  "node": {
+    ...
+    "policy": "block",
+    "scope": "all"
+  }
+}
+```
 
-Once you've confiugred your default policy, make sure your configuration is
-valid and as intended by calling `rad config`. Then, restart your node for the
-changes to take effect:
-
-    sudo systemctl restart radicle-node
-
-### Setting a repository's seeding policy
+#### Setting a repository's seeding policy
 
 To override the default policy for a specific repository, the `seed` and
 `block` commands are used. For example, if the default policy is `block`, we
@@ -368,26 +281,157 @@ can explicitly *block* certain repositories from being seeded. For example,
 This will override the default policy and ensure that this repository is never
 replicated on your node.
 
-### Viewing policies
+#### Viewing policies
 
-You can view your node's *default* policy with `rad config`, under the
-`node.policy` attribute, or by simply entering:
-
-    rad config get node.policy
-
+You can view your node's *default* by entering `rad config get node.policy`.
 To view the policy of a specific repository, use the `rad inspect` command. For
 example:
 
     rad inspect rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5 --policy
 
-This will fallback to the default policy if you haven't set any repository
-specific policy.
+This will return the default policy if you haven't set a specific policy for
+that repository.
 
 Finally, to view all seeding policies that have been set on repositories,
 simply enter `rad seed` with no options. This will list all configured policies.
 
-Configuring the HTTP backend
-----------------------------
+### Your external address
+
+Now that you've configured your seeding policy, it's time to set your node's
+external address. This is a public address, typically a DNS name that points
+to your node. Though a single address is sufficient, you are free to set up
+to 16 external addresses.
+
+You'll find this setting in your configuration file, under
+`node.externalAddresses`. External addresses are JSON strings of the form
+`<host>:<port>`, for example `seed.mentharos.net:8776`, where `<host>` is a
+DNS name, and port is usually `8776`.
+
+```json
+{
+  "node": {
+    ...
+    "externalAddresses": ["seed.mentharos.net:8776"]
+  }
+}
+```
+
+Once at least one external address is set, you're ready to start your node
+for the first time.
+
+### Your node address
+
+For others to be able to connect to your node directly, they need your *Node
+Address*. This is a combination of your Node ID and your node's external
+address.
+
+If you've configured one or more external addresses, simply entering the
+following command from the `seed` user will output your node addresses:
+
+    rad node config --addresses
+
+Share this with others, and they will be able to connect to your node using
+`rad node connect <address>`, or by adding your address to their configuration,
+under the `node.connect` field.
+
+Running your node
+-----------------
+Before setting up your node as a system service, it's a good idea to run it
+once to make sure everything is working properly. Enter the following command
+to start your node in the foreground:
+
+    rad node start --foreground
+
+You should see log output as your node starts to sync with the network.
+If there are any errors or issues connecting to the network, you should see
+errors in the output.
+
+If the node started without problem, stop it with `Ctrl-C`, and exit the `seed`
+session by entering:
+
+    exit
+
+This should throw you back into the original session you opened via SSH.
+
+### Configuring your node's system service
+
+Though it's possible to simply run the Radicle node as a background process,
+it's recommended to set up a service to ensure the node is started on boot.
+
+In this guide, we will only cover setup using `systemd`, but the process is
+fairly similar for other service managers.
+
+The first thing to do is to get a copy of the [`radicle-node.service`][radicle-node]
+unit file. Place it in `/etc/systemd/system/radicle-node.service` for it to
+be found by `systemctl`:
+
+    curl -sS https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/570a7eb141b6ba001713c46345d79b6fead1ca15/systemd/radicle-node.service -o /etc/systemd/system/radicle-node.service
+
+Make sure it fits your needs by editing the file directly, or creating an
+override using `systemctl edit`.
+
+> The systemd unit should be configured to run your node process as the `seed`
+> user, for security reasons. This is already the case in the above service
+> file.
+
+When you're ready, you can **enable** and **run** the service:
+
+    systemctl enable --now radicle-node
+
+### Checking your node status
+
+To check the service status of your node, run:
+
+    systemctl status radicle-node
+
+Besides using `systemctl status`, you can also check your node's status using
+`rad node status`. This will give you information on the peers connected to
+your node. You'll have to run this as the `seed` user, like so:
+
+    sudo -u seed -- rad node status
+
+To tail your node's logs, use:
+
+    journalctl --unit radicle-node --follow
+
+### Changing your node's configuration
+
+If you change your node's configuration while the node is running, you'll
+have to restart your node for the changes to take effect.
+
+First, verify that the new configuration is valid by running `rad config`, then
+restart your node with:
+
+    systemctl restart radicle-node
+
+### Securing the `seed` user
+
+Now that your node is configured and working, you can secure the `seed` user by
+disabling shell access. This is optional, though recommended.
+
+    chsh -s /usr/sbin/nologin seed
+
+This will prevent anyone from logging in as the `seed` user. Note that from
+this point onwards, if you chose to disable the `seed` user's shell, you'll
+have to run all commands via `sudo`, like we've been doing so far.
+
+> To facilitate running commands as the `seed` user, add this alias to your
+> admin shell's init scripts:
+>
+>     alias rad='sudo -u seed -- rad'
+>
+> You can then run commands as the `seed` user by simply using `rad` as usual.
+
+### Firewalls
+
+If you are running a firewall, ensure that port `8776` is open for TCP
+connections. This will allow inbound connections to your node.
+
+> It's recommended to run a basic firewall to further lock down your server,
+> using something like `iptables`, though this is out of scope for this guide.
+
+Running the HTTP backend
+------------------------
 In the sections above, we set up `radicle-node`, a background process that
 actively and continuously discovers and replicates repositories on the network,
 based on your seeding policy. This node allows users to collaborate, host,
@@ -403,23 +447,23 @@ access to the node's storage and database and expose this data via an
 HTTP JSON API. For seed nodes, the HTTP Daemon is always configured as a
 *read-only* service over the node's state.
 
-### Configuring your HTTP daemon as a system service
+### Configuring your HTTP daemon's system service
 
 As with `radicle-node`, we can start by downloading an example `systemd` unit
 file for the daemon:
 
-    sudo curl -sS https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/570a7eb141b6ba001713c46345d79b6fead1ca15/systemd/radicle-httpd.service -o /etc/systemd/system/radicle-httpd.service
+    curl -sS https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/570a7eb141b6ba001713c46345d79b6fead1ca15/systemd/radicle-httpd.service -o /etc/systemd/system/radicle-httpd.service
 
 Make sure it fits your needs by editing the file directly, or creating an
 override using `systemctl edit`.
 
-Then, enable and run the service:
+Then, **enable** and **run** the service:
 
-    sudo systemctl enable --now radicle-httpd
+    systemctl enable --now radicle-httpd
 
 You can check that your node service is running with:
 
-    sudo systemctl status radicle-httpd
+    systemctl status radicle-httpd
 
 You can query the API with `curl` to ensure everything is working properly:
 
@@ -434,7 +478,7 @@ we recommend using [Caddy][caddy].
 Start by installing `caddy`; most linux distributions have a package you can
 install. If you are using Debian or Ubuntu, you can run:
 
-    sudo apt-get install caddy
+    apt-get install caddy
 
 If you're having trouble installing Caddy, check the [installation
 guide][caddy-install]. Once installed, run `caddy version` to ensure that
@@ -445,18 +489,18 @@ everything was installed correctly.
 
 Then, download the `caddy` unit file from Caddy's GitHub repository:
 
-    sudo curl https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service -o /etc/systemd/system/caddy.service
+    curl https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service -o /etc/systemd/system/caddy.service
 
 Edit the file and change the `User` and `Group` attributes to `seed`, as we
 have for the other services. Also ensure that `ExecStart` and `ExecReload`
 are set to the correct path. You can find the path under which `caddy` is
 installed by running the `which caddy` command.
 
-Finally, edit or create the `Caddyfile` at `/etc/caddy/Caddyfile`, and replace
+Finally, edit or create the `Caddyfile` at `/etc/caddy/Caddyfile`, and *replace*
 its contents with the following configuration, using the correct domain name
 for your seed:
 
-    seed.mentharos.net {
+    seed.radicle.garden {
         reverse_proxy 127.0.0.1:8080
     }
 
@@ -466,7 +510,7 @@ connections.
 
 Finally, enable and start the Caddy service:
 
-    sudo systemctl enable --now caddy
+    systemctl enable --now caddy
 
 If you encounter issues setting up Caddy, you can try following their
 [guide][caddy-guide] instead.
@@ -474,15 +518,24 @@ If you encounter issues setting up Caddy, you can try following their
 If everything worked, you should now have HTTPS support for your daemon. To
 check, run the following command with your seed's domain:
 
-    curl https://seed.mentharos.net/api/v1
+    curl https://seed.radicle.garden/api/v1
 
 You should now be able to visit your seed node via any Radicle web frontend as
-well. For example, <https://app.radicle.xyz/nodes/seed.mentharos.net>.
+well. For example, <https://app.radicle.xyz/nodes/seed.radicle.garden>.
 
-### You're all set
+### Firewalls
 
+If you are running a firewall, ensure that port `443` is open for
+TCP connections. This will allow inbound HTTPS connections to your HTTP
+daemon.
+
+You're all set
+--------------
 If you got this far, congratulations, you now have a Radicle seed node up
 and running!
+
+Come join us on our community chat and tell us about your seed node on the
+[#seeds][zulip] channel.
 
 🎊👾
 
@@ -490,3 +543,4 @@ and running!
 [caddy]: https://caddyserver.com/
 [caddy-guide]: https://caddyserver.com/docs/running#linux-service
 [caddy-install]: https://caddyserver.com/docs/install
+[zulip]: https://radicle.zulipchat.com/#narrow/stream/384534-seeds
