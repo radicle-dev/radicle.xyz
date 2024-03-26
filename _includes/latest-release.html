@@ -52,7 +52,7 @@
       const releaseInfo = document.getElementById("release-info");
 
       release.classList.remove("loading");
-      releaseInfo.innerText = `Radicle v${version} (${commit})`;
+      releaseInfo.innerText = `Radicle ${version} (${commit})`;
       document.getElementById("release-timestamp").innerText = new Date(data.timestamp * 1000).toUTCString();
     });
 </script>

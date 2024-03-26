@@ -141,7 +141,6 @@ Once you've installed Radicle, you can make sure that it was successful by
 running:
 
     $ rad --version
-    rad 1.0.0
 
 ### Come into being from the *elliptic aether*
 
