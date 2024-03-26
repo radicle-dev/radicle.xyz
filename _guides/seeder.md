@@ -100,7 +100,7 @@ add it to the `seed` group as well:
 For a seed node, you will need to install at minimum the Radicle CLI (`rad`),
 and network daemon (`radicle-node`).
 
-To install these, head over to the [download][] page and follow the
+To install these, head over to the [download] page and follow the
 instructions there. You will have to download, verify and extract the binaries
 and manuals to your preferred location.
 
@@ -129,8 +129,8 @@ set up our basic node.
 
 ### Creating a profile
 
-Once the Radicle binaries installed, we can create a Radicle *profile*. This
-consists of an Ed25519 key pair and directory under which Radicle stores user
+Once the Radicle binaries are installed, we can create a Radicle *profile*. This
+consists of an Ed25519 key pair and a directory under which Radicle stores user
 data.
 
     rad auth --alias seed.radicle.example
@@ -148,7 +148,7 @@ is mainly used for securing connections with peers.
 </aside>
 
 > **Tip**: If you wish to set a passphrase anyway, you will have to set the
-> `RAD_PASSPHRASE` environment variable in your node's systemd unit file.
+> `RAD_PASSPHRASE` environment variable in your node's `systemd` unit file.
 
 Once your profile is initialized, a decentralized identifier (DID) will be
 output. The part after the `did:key:` prefix is your Node ID. This is how your
@@ -158,23 +158,23 @@ the Ed25519 key pair generated above, via `rad auth`.
 You can view information about your Radicle profile by running `rad self`. The
 `--nid` and `--alias` flags can be used to return the Node ID and alias.
 
-Configuring your node
+Configuring Your Node
 ---------------------
 There are a couple of things we need to set up a seed node.
 
 First, we must set the node's default *seeding policy*.
 
 The seeding policy tells the node which repositories and forks to fetch
-and offer to the network. For public seed nodes, a permissive seeding policy
-is often set, such that all data on the network is stored and replicated.
+and offer to the network. For *public seed nodes*, a *permissive* seeding policy
+is often set, such that *all data* on the network is stored and replicated.
 
-Second, we must set an external address for the node to be reached on the
+Second, we must set an *External Address* for the node to be reached on the
 network. This address will be advertised to peers, allowing them to connect to
 your seed node. Generally, this will be a DNS name with port `8776`, for
 example `seed.radicle.example:8776`.
 
 Here's an example minimal configuration file with a permissive seeding policy
-and external address set:
+and an external address set:
 
 ```json
 {
@@ -219,7 +219,7 @@ Broadly, there are two options for the default policy.
 
 #### A *permissive* seeding policy
 
-A permissive or "open" policy is said to be *fully-replicating*, meaning your
+A *permissive* or "open" policy is said to be *fully-replicating*, meaning your
 seed will try to have a full copy of all repository data available on the
 network.
 
@@ -246,11 +246,11 @@ Set `node.seedingPolicy.default` to `allow` and `node.seedingPolicy.scope` to
 
 #### A *selective* seeding policy
 
-A selective or *restricted* policy requires you, the operator, to manually
-allow repositories to be seeded. This means that the node will ignore
+A *selective* or "restricted" policy requires you, the operator, to *manually
+allow repositories to be seeded*. This means that the node will ignore
 all repositories, except the ones that are pre-configured to allow seeding.
 
-An example is the `seed.radicle.xyz` node, which only seeds core team
+An example is the `seed.radicle.xyz` node, which only seeds Radicle team
 repositories.
 
 This is a good policy for communities, teams, companies and individuals who
@@ -274,31 +274,39 @@ seed node won't seed anything until you explicitly allow it to.
 
 #### Setting a repository's seeding policy
 
-To override the default policy for a specific repository, the `seed` and
-`block` commands are used. For example, if the default policy is `block`, we
-can decide to *allow* a repository to be seeded by calling `rad seed`.
-For example,
+To override the default policy for a specific repository, the `seed` or
+`block` commands are used.
 
-    rad seed rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
-
-This will override the default `block` rule for this one specific repository.
-To remove this override, `unseed` can be used:
-
-    rad unseed rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
-
-Without a seeding policy for this repository, the default policy will apply.
-
-In the case of an *open* seeding policy, where the default is `allow`, we
-can explicitly *block* certain repositories from being seeded. For example,
+For example, in the case of a *permissive* seeding policy, where the default
+is `allow`, we can explicitly *block* certain repositories from being seeded:
 
     rad block rad:z9DV738hJpCa6aQXqvQC4SjaZvsi
 
 This will override the default policy and ensure that this repository is never
 replicated on your node.
 
-#### Viewing policies
+On the other hand, in the case of a *selective* seeding policy, where the default
+policy is `block`, we can decide to *allow* a repository to be seeded by calling
+`rad seed`. For example:
 
-You can view your node's *default* by entering `rad config get node.seedingPolicy`.
+You can view your node's *default policy* by entering `rad config get node.seedingPolicy`.
+
+    rad seed rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+
+This will override the default `block` rule for this one specific repository.
+
+To remove an override configured for a repository in either case, `unseed` can be used:
+
+    rad unseed rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+
+For both cases, the default policy will apply if a seeding policy is not defined for
+a repository.
+
+
+#### Viewing seeding policies
+
+You can view your node's *default policy* by entering `rad config get node.seedingPolicy`.
+
 To view the policy of a specific repository, use the `rad inspect` command. For
 example:
 
@@ -307,20 +315,20 @@ example:
 This will return the default policy if you haven't set a specific policy for
 that repository.
 
-Finally, to view all seeding policies that have been set on repositories,
-simply enter `rad seed` with no options. This will list all configured policies.
+Finally, to view all seeding policies that have been configured on repositories,
+simply enter `rad seed` with no options.
 
 ### Your external address
 
 Now that you've configured your seeding policy, it's time to set your node's
-external address. This is a public address, typically a DNS name that points
+*External Address*. This is a public address, typically a DNS name that points
 to your node. Though a single address is sufficient, you are free to set up
 to 16 external addresses.
 
 You'll find this setting in your configuration file, under
 `node.externalAddresses`. External addresses are JSON strings of the form
 `<host>:<port>`, for example `seed.radicle.example:8776`, where `<host>` is a
-DNS name, and port is usually `8776`.
+DNS name, and `<port>` is usually `8776`.
 
 ```json
 {
@@ -337,8 +345,8 @@ for the first time.
 ### Your node address
 
 For others to be able to connect to your node directly, they need your *Node
-Address*. This is a combination of your Node ID and your node's external
-address.
+Address*. This is a combination of your Node ID and your External
+Address.
 
 If you've configured one or more external addresses, simply entering the
 following command from the `seed` user will output your node addresses:
@@ -349,7 +357,7 @@ Share this with others, and they will be able to connect to your node using
 `rad node connect <address>`, or by adding your address to their configuration,
 under the `node.connect` field.
 
-Running your node
+Running Your Node
 -----------------
 Before setting up your node as a system service, it's a good idea to run it
 once to make sure everything is working properly. Enter the following command
@@ -366,7 +374,7 @@ session by entering:
 
     exit
 
-This should throw you back into the original session you opened via SSH.
+This should return you to the original session you opened via SSH.
 
 ### Configuring your node's system service
 
@@ -385,7 +393,7 @@ be found by `systemctl`:
 Make sure it fits your needs by editing the file directly, or creating an
 override using `systemctl edit`.
 
-> The systemd unit should be configured to run your node process as the `seed`
+> The`systemd` unit should be configured to run your node process as the `seed`
 > user, for security reasons. This is already the case in the above service
 > file.
 
@@ -412,7 +420,7 @@ To tail your node's logs, use:
 ### Changing your node's configuration
 
 If you change your node's configuration while the node is running, you'll
-have to restart your node for the changes to take effect.
+need to restart your node for the changes to take effect.
 
 First, verify that the new configuration is valid by running `rad config`, then
 restart your node with:
@@ -430,12 +438,10 @@ This will prevent anyone from logging in as the `seed` user. Note that from
 this point onwards, if you chose to disable the `seed` user's shell, you'll
 have to run all commands via `sudo`, like we've been doing so far.
 
-> To facilitate running commands as the `seed` user, add this alias to your
-> admin shell's init scripts:
+> To facilitate running commands as the `seed` user by simply using `rad` as
+> usual, add this alias to your admin shell's init scripts:
 >
 >     alias rad='sudo -u seed -- rad'
->
-> You can then run commands as the `seed` user by simply using `rad` as usual.
 
 ### Firewalls
 
@@ -446,16 +452,15 @@ connections. This will allow inbound connections to your node.
 > using something like `iptables`, though this is out of scope for this guide.
 
 Running the HTTP Daemon
------------------------
-
-In the sections above, we set up `radicle-node`, a background process that
+------------------------
+In the prior sections, we set up `radicle-node`, a background process that
 actively and continuously discovers and replicates repositories on the network,
 based on your seeding policy. This node allows users to collaborate, host,
-share and publish repositories on the network via the Radicle CLI or any
-compatible application. However, repositories on your seed node cannot be
-browsed or viewed without cloning them first, using Radicle. To enable
-web browsing of the content, the Radicle HTTP Daemon `radicle-httpd` needs to
-be deployed alongside `radicle-node`.
+share, and publish repositories on the network via the Radicle CLI or any
+compatible application. However, at this stage, the repositories on your seed
+node cannot be browsed or viewed without cloning them first, using the Radicle CLI.
+To enable web browsing of the content of your seed node, the Radicle HTTP Daemon
+`radicle-httpd` needs to be deployed alongside `radicle-node`.
 
 The HTTP Daemon is a background process that functions as a *gateway* between
 the Radicle protocol and the HTTP protocol. It is configured to have direct
@@ -501,7 +506,7 @@ For your HTTP Daemon to be accessible from a frontend such as
 <https://app.radicle.xyz>, it needs to respond to HTTPS requests. To do this,
 we recommend using [Caddy][caddy].
 
-Start by installing `caddy`; most linux distributions have a package you can
+Start by installing `caddy`; most Linux distributions have a package you can
 install. If you are using Debian or Ubuntu, you can run:
 
     apt-get install caddy
@@ -542,7 +547,8 @@ If you encounter issues setting up Caddy, you can try following their
 [guide][caddy-guide] instead.
 
 If everything worked, you should now have HTTPS support for your daemon. To
-check, run the following command with your seed's domain:
+check, run the following command, replacing `seed.radicle.garden` with your
+seed's domain:
 
     curl https://seed.radicle.garden/api/v1
 
@@ -554,7 +560,7 @@ well. For example, <https://app.radicle.xyz/nodes/seed.radicle.garden>.
 > outside, try running `systemctl reload caddy` after you've updated the
 > configuration.
 
-You're all set
+You're All Set
 --------------
 If you got this far, congratulations, you now have a Radicle seed node up
 and running!
