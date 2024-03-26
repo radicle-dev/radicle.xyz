@@ -14,5 +14,5 @@ also check out our [FAQ](/faq) if you can't find what you're looking for.
 <div class="menu">
   <a class="button secondary" href="/guides/user">User Guide &rarr;</a>
   <a class="button secondary" href="/guides/protocol">Protocol Guide &rarr;</a>
-  <a class="button secondary" href="/guides/seeder">Seeder's Guide &rarr;</a>
+  <a class="button secondary" href="/guides/seeder">Seeder Guide &rarr;</a>
 </div>

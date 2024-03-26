@@ -1,5 +1,5 @@
 ---
-title: Radicle Seeder's Guide
+title: Radicle Seeder Guide
 subtitle: How to run a Radicle seed node
 banner: 24.medium.png
 layout: guide
