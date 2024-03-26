@@ -99,12 +99,14 @@ and other clients can be developed.
 
 # Updates
 
-- 10.03.2024 New Radicle homepage! ✨
+- 26.03.2024 [Radicle 1.0.0-rc.1][1.0] released! ✨
+- 10.03.2024 New Radicle homepage!
 - 05.03.2024 [Radicle Guides](/guides) launch.
 - 05.03.2024 [Radicle makes it to the top of Hacker News][hn]!
 - 18.04.2023 [Radicle heartwood is announced](https://x.com/radicle/status/1648336186862194693?s=20).
 
 [hn]: https://news.ycombinator.com/item?id=39600810
+[1.0]: https://twitter.com/radicle/status/1772659708978991605
 
 # Contributing
 
