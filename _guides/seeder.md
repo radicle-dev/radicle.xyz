@@ -17,7 +17,7 @@ community seed nodes with more *selective* policies.
 
 Introduction
 ------------
-The term *seed node* originally comes from [BitTorrent][bittorrent]. In the
+The term *seed node* originally comes from [BitTorrent]. In the
 BitTorrent protocol, nodes that possess the data for a given torrent file
 and begin uploading it to peers are called *seeders*.
 
@@ -37,13 +37,15 @@ Therefore, a healthy peer-to-peer network necessitates at least *some* highly
 available nodes that participate in the network like regular peers, but seldom
 go offline. These are called seed nodes.
 
-### Liability of running seed nodes
+> By running a *permissive* node (see below for further explanation),
+> you are contributing to the growth and resilience of
+> the Radicle network, but it is important to be aware of the potential
+> implications of hosting data in a permissionless network. Use your best
+> judgment. If you have any concerns, consider starting with the selective
+> seeding policy, described in the following section, and expanding as you
+> become more comfortable with the network. Also refer to our [legal page] for
+> more information.
 
-Please see our [legal] page for more information on potential legalities of
-running a seed node.
-
-[bittorrent]: https://en.wikipedia.org/wiki/BitTorrent
-[legal]: /legal
 
 Getting Started
 ---------------
@@ -576,3 +578,5 @@ Come join us on our community chat and tell us about your seed node on the
 [caddy-install]: https://caddyserver.com/docs/install
 [zulip]: https://radicle.zulipchat.com/#narrow/stream/384534-seeds
 [download]: /download
+[BitTorrent]: https://en.wikipedia.org/wiki/BitTorrent
+[legal]: /legal
