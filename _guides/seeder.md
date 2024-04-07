@@ -395,9 +395,10 @@ be found by `systemctl`:
 Make sure it fits your needs by editing the file directly, or creating an
 override using `systemctl edit`.
 
-> The`systemd` unit should be configured to run your node process as the `seed`
-> user, for security reasons. This is already the case in the above service
-> file.
+> The downloaded `systemd` unit file is configured to run your node process
+> as the `seed` user and group, for security reasons. If you set up a different
+> user or group name, or set a passphrase during `rad auth`, you will have to
+> make edits to this file before proceeding.
 
 When you're ready, you can **enable** and **run** the service:
 
@@ -489,6 +490,11 @@ file for the daemon:
 
 Make sure it fits your needs by editing the file directly, or creating an
 override using `systemctl edit`.
+
+> In this guide, all `systemd` unit files are configured to run the process as
+> the `seed` user and group, for security reasons. If you set up a different
+> user or group name, you will have to make edits to these files before running
+> the services.
 
 Then, **enable** and **run** the service:
 
