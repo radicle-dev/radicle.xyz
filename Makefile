@@ -11,6 +11,7 @@ svgs:
 	scripts/cleanup-svgs.sh assets/images/*.svg
 
 publish:
+	jekyll build
 	vercel --prod
 
 .PHONY: publish

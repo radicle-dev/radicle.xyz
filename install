@@ -117,7 +117,7 @@ in_path() {
 
 upgrade() {
   # Clear refs DB so that it can be re-populated on node start.
-  rad node db exec "DELETE FROM refs;" || echo "Refs database was not cleared."
+  rad node db exec "DELETE FROM refs;" > /dev/null || echo "Refs database was not cleared."
 }
 
 get_started() {
