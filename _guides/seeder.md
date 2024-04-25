@@ -214,7 +214,7 @@ Broadly, there are two options for the default policy.
 #### A *permissive* seeding policy
 
 A permissive or "open" policy is said to be *fully-replicating*, meaning your
-seed will try to have a fully copy of all repository data available on the
+seed will try to have a full copy of all repository data available on the
 network.
 
 An example of a node with this policy is `seed.radicle.garden`, a node operated
