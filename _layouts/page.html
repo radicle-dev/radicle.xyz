@@ -4,7 +4,7 @@
   {% include meta.html %}
   <link rel="stylesheet" type="text/css" href="{{ "/assets/css/page.css" | relative_url }}"/>
 </head>
-<body>
+<body class="{{ page.variant }}">
   {% include header.html %}
   <main>
     {{ content }}

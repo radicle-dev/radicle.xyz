@@ -64,7 +64,7 @@ h2#evolvable--extensible::after {
   content: "";
 }
 
-p, ul, nav, pre, #install {
+p, ul, nav, pre.diagram, #install {
   margin-left: 2rem;
 }
 
@@ -101,14 +101,43 @@ code {
 }
 
 pre {
+  margin-left: 4rem;
   font-family: var(--font-family-code-alt);
-  overflow-x: hidden;
-  text-overflow: hidden;
-  color: var(--color-fg-dim);
+  overflow-x: scroll;
+}
+
+pre code {
+  color: var(--color-fg-highlight-tertiary);
 }
 
 pre.diagram {
   line-height: 1;
+  color: var(--color-fg-dim);
+}
+
+th {
+  font-weight: bold;
+}
+
+td, th {
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+thead {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+tbody tr:nth-child(even) td {
+  background-color: var(--color-bg-highlight);
+}
+
+table {
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px dashed var(--color-border-hint);
 }
 
 strong.highlight {
@@ -116,7 +145,7 @@ strong.highlight {
 }
 
 h2 em {
-  color: vaR(--color-fg-contrast);
+  color: var(--color-fg-contrast);
   font-weight: normal;
 }
 
@@ -178,6 +207,10 @@ body > main {
   margin: 0 auto;
   padding: 2rem;
   max-width: 96ch;
+}
+
+body.wide > main {
+  max-width: 112ch;
 }
 
 body > header {
