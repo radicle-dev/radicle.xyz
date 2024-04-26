@@ -5,7 +5,7 @@
 set -e
 
 url() {
-  echo "https://files.radicle.xyz/latest/$1/radicle-$1.tar.gz"
+  echo "https://files.radicle.xyz/releases/latest/radicle-$1.tar.xz"
 }
 
 info() {
@@ -66,13 +66,12 @@ usage() {
   echo "Options"
   echo
   echo "  --no-modify-path    Do not modify the PATH environment variable"
+  echo "  --prefix=PATH       Radicle install prefix (default: ~/.radicle)"
   echo "  --help, -h          Show this help message and exit"
   echo
   echo "Environment"
   echo
   echo "  RAD_HOME            Radicle home directory"
-  echo "  RAD_PATH            Radicle binaries directory"
-  echo "  RAD_MANPATH         Radicle manual pages directory"
 }
 
 target() {
@@ -133,58 +132,69 @@ get_started() {
 }
 
 main() {
-  RAD_HOME=${RAD_HOME:-"$HOME/.radicle"}
-  RAD_PATH=${RAD_PATH:-"$RAD_HOME/bin"}
-  RAD_MANPATH=${RAD_MANPATH:-"$RAD_HOME/man"}
+  PREFIX=${RAD_HOME:-"$HOME/.radicle"}
   SHELL_PATH=${SHELL:-"/bin/sh"}
   NO_MODIFY_PATH=false
 
-  if [ "$#" -gt 1 ]; then
-    error "too many arguments"
-    echo ; usage ; exit 1
+  if [ -n "$RAD_PATH" ]; then
+    fatal "RAD_PATH is no longer supported; Use '--prefix' instead"
   fi
-
-  case "$1" in
-    --no-modify-path)
-      NO_MODIFY_PATH=true ;;
-    -h|--help)
-      usage
-      exit 0 ;;
-    "")
-      ;; # No arguments, normal operation
-    *)
-      error "unrecognized argument '$1'"
-      echo ; usage ; exit 1 ;;
-  esac
-
-  echo
-  echo "👾 Welcome to Radicle"
-  echo
-
-  info "Detecting operating system..."
-  TARGET=$(target)
 
   if ! command -v tar >/dev/null 2>&1; then
     fatal "Please install 'tar' and try again"
+  fi
+
+  if ! command -v xz >/dev/null 2>&1; then
+    fatal "Please install 'xz' and try again"
   fi
 
   if ! command -v curl >/dev/null 2>&1; then
     fatal "Please install 'curl' and try again"
   fi
 
-  info "Installing radicle into $RAD_PATH..."
-  mkdir -p "$RAD_PATH"
-  mkdir -p "$RAD_MANPATH/man1"
-  curl -# -L "$(url "$TARGET")" | tar -xz --strip-components=1 -C "$RAD_PATH"
+  while :; do
+    case "$1" in
+      --no-modify-path)
+        NO_MODIFY_PATH=true
+        ;;
+      --prefix=*)
+        PREFIX=${1#*=}
+        ;;
+      -h|--help)
+        usage
+        exit 0 ;;
+      -*)
+        error "Unrecognized argument '$1'"
+        echo ; usage ; exit 1 ;;
+      *)
+        break ;;
+    esac
+    shift
+  done
+
+  if [ -z "$PREFIX" ]; then
+    fatal "Empty installation prefix; use --prefix=PATH or set RAD_HOME"
+  fi
+  mkdir -p $PREFIX
+
+  echo
+  echo "👾 Welcome to Radicle"
+  echo
+
+  # Where to install binaries.
+  RAD_PATH=$PREFIX/bin
+
+  info "Detecting operating system..."
+  TARGET=$(target)
+
+  info "Installing Radicle into $PREFIX..."
+  curl -# -L "$(url "$TARGET")" | tar -xJ --overwrite --strip-components=1 -C "$PREFIX"
   chmod +x \
     $RAD_PATH/radicle-node \
     $RAD_PATH/radicle-httpd \
     $RAD_PATH/rad \
     $RAD_PATH/rad-web \
     $RAD_PATH/git-remote-rad
-
-  info "Installing manuals into $RAD_MANPATH..."
-  mv "$RAD_PATH"/*.1 "$RAD_MANPATH"/man1/
 
   if ! command -v git >/dev/null 2>&1; then
     warn
