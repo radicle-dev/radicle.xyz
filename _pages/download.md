@@ -87,12 +87,15 @@ The output must correspond to the above.
 
 ## Installation
 
-To install, simply extract the files to a location in your `PATH`, for example:
+To install, simply extract the files to a location in your `PATH`, for example,
+on *Linux* you can run:
 
     $ tar -xvJf ARCHIVE.tar.xz --strip-components=1 -C /usr/local/
 
 This will place binaries in `/usr/local/bin` and manuals in `/usr/local/man`,
 and overwrite any existing Radicle binaries.
+
+On *macOS*, manuals would be placed under `/usr/local/share/` by default.
 
 <script>
   const releases = document.getElementById("releases");
