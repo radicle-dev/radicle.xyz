@@ -17,7 +17,6 @@ community seed nodes with more *selective* policies.
 
 Introduction
 ------------
-
 The term *seed node* originally comes from [BitTorrent][bittorrent]. In the
 BitTorrent protocol, nodes that possess the data for a given torrent file
 and begin uploading it to peers are called *seeders*.
@@ -97,15 +96,10 @@ and network daemon (`radicle-node`).
 
 To install these, run the following command from within your server's shell:
 
-    curl -sSf https://radicle.xyz/install | sh -s -- --no-modify-path
+    curl -sSf https://radicle.xyz/install | sh -s -- --no-modify-path --prefix=/usr/local
 
-This will install binaries in `~/.radicle/bin` by default, or in `RAD_PATH`
-if you have that set.
-
-Once the binaries are installed, move them to a location accessible by the
-`seed` user, for example `/usr/local/bin`.
-
-    sudo mv ~/.radicle/bin/* /usr/local/bin
+This will install binaries in `/usr/local/bin`. If you prefer to install Radicle
+in a different location, simply set the `--prefix` option accordingly.
 
 Finally, login as the `seed` user and proceed with installation:
 

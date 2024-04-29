@@ -127,8 +127,8 @@ This command runs an installer script that automates the setup process, by:
 > 👾
 >
 > If you want the above to be installed in a different location than
-> `~/.radicle`, you can set the `RAD_PATH` environment variable before running
-> the installation script.
+> `~/.radicle`, you can pass `--prefix` to the installation script, eg.
+> `--prefix=/usr/local`.
 >
 > Note that if you don't want to use the installer script, you can also always
 > compile from the [source code][heartwood] or get the [binaries][] if you
