@@ -114,18 +114,11 @@ in_path() {
   return 1 # The path is not in $PATH
 }
 
-upgrade() {
-  # Clear refs DB so that it can be re-populated on node start.
-  rad node db exec "DELETE FROM refs;" > /dev/null || echo "Refs database was not cleared."
-}
-
 get_started() {
   printf "\n"
   success
 
-  if is_authed; then
-    upgrade
-  else
+  if ! is_authed; then
     printf "\n"
     printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
   fi
