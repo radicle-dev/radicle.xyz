@@ -36,14 +36,14 @@
   <strong class="desktop">Latest release</strong> 💾
   <span class="release-loader"></span>
   <span>
-    <a href="https://files.radicle.xyz/latest" id="release-info"></a>
+    <a href="https://files.radicle.xyz/releases/latest" id="release-info"></a>
     <span class="desktop">&middot;</span>
     <span id="release-timestamp" class="desktop"></span>
   </span>
 </blockquote>
 
 <script>
-  fetch("https://files.radicle.xyz/latest/version.json")
+  fetch("https://files.radicle.xyz/releases/latest/radicle.json")
     .then(res => res.json())
     .then(data => {
       const version = data.version;

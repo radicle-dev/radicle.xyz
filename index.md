@@ -136,4 +136,4 @@ Follow us on [Twitter][twitter] to stay updated, or join our [Zulip][zulip].
 [heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 [cobs]: /guides/protocol#collaborative-objects
 [local-first]: https://www.inkandswitch.com/local-first/
-[binaries]: https://files.radicle.xyz/latest
+[binaries]: /download
