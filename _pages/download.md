@@ -1,10 +1,10 @@
 ---
-title: Radicle Releases
+title: Download Radicle
 subtitle: Download a Radicle release
 layout: page
 variant: wide
 ---
-This is Radicle's <strong class="highlight">releases</strong> page.
+This is Radicle's <strong class="highlight">download</strong> page.
 Radicle uses a [reproducible build][rb] pipeline to ensure that anyone can
 reproduce the binaries on this page from source.
 
