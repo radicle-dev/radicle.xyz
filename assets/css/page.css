@@ -97,7 +97,7 @@ blockquote p {
 
 code {
   font-family: var(--font-family-code-alt);
-  color: var(--color-fg-low-contrast);
+  color: var(--color-fg-highlight-tertiary);
 }
 
 pre {

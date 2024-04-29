@@ -125,6 +125,6 @@ and overwrite any existing Radicle binaries.
 
       release.classList.remove("loading");
       releaseName.innerText = `Radicle ${version}`;
-      releaseInfo.innerHTML = `Built from commit <strong>${commit}</strong> on ${new Date(data.timestamp * 1000).toUTCString()}.`;
+      releaseInfo.innerHTML = `Built from commit <code>${commit}</code> on ${new Date(data.timestamp * 1000).toUTCString()}.`;
     });
 </script>

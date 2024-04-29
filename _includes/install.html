@@ -4,7 +4,7 @@
     align-items: center;
     margin: 0.5rem 2rem;
     padding: 0.75rem 1rem;
-    border: 1px dashed var(--color-secondary);
+    border: 1px dashed var(--color-fg-highlight-tertiary);
     max-width: 90%;
     cursor: pointer;
   }
@@ -17,7 +17,7 @@
   #install code {
     line-height: 16px;
     text-overflow: ellipsis;
-    color: var(--color-secondary);
+    color: var(--color-fg-highlight-tertiary);
     overflow-x: hidden;
     white-space: nowrap;
   }
@@ -32,8 +32,11 @@
   #install:hover svg {
     color: var(--color-fg-contrast);
   }
+  #install:active svg {
+    color: var(--color-fg-highlight-secondary);
+  }
   #install svg {
-    color: var(--color-secondary);
+    color: var(--color-fg-highlight-tertiary);
   }
   #install:active code {
     color: var(--color-fg-highlight-secondary);

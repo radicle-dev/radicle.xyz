@@ -3,7 +3,7 @@
   --color-yellow: #ffff99;
   --color-secondary: #6666ff;
   --color-fg-highlight: var(--color-yellow);
-  --color-fg-highlight-tertiary: var(--color-fg-contrast);
+  --color-fg-highlight-tertiary: #1f3f8a;
   --color-fg-highlight-secondary: #229944;
   --color-bg-highlight: #efefff;
   --color-bg-default: #f5f5ff;
