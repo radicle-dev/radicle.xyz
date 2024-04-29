@@ -118,7 +118,7 @@ Once the Radicle binaries installed, we can create a Radicle *profile*. This
 consists of an Ed25519 key pair and directory under which Radicle stores user
 data.
 
-    rad auth --alias seed.mentharos.net
+    rad auth --alias seed.radicle.example
 
 The above command will create a profile with the given node *alias* in
 `~/.radicle`, or `$RAD_HOME` if set. We recommend setting your alias to the
@@ -156,7 +156,7 @@ is often set, such that all data on the network is stored and replicated.
 Second, we must set an external address for the node to be reached on the
 network. This address will be advertised to peers, allowing them to connect to
 your seed node. Generally, this will be a DNS name with port `8776`, for
-example `seed.mentharos.net:8776`.
+example `seed.radicle.example:8776`.
 
 Here's an example minimal configuration file with a permissive seeding policy
 and external address set:
@@ -164,8 +164,8 @@ and external address set:
 ```json
 {
   "node": {
-    "alias": "seed.mentharos.net",
-    "externalAddresses": ["seed.mentharos.net:8776"],
+    "alias": "seed.radicle.example",
+    "externalAddresses": ["seed.radicle.example:8776"],
     "policy": "allow",
     "scope": "all"
   }
@@ -298,14 +298,14 @@ to 16 external addresses.
 
 You'll find this setting in your configuration file, under
 `node.externalAddresses`. External addresses are JSON strings of the form
-`<host>:<port>`, for example `seed.mentharos.net:8776`, where `<host>` is a
+`<host>:<port>`, for example `seed.radicle.example:8776`, where `<host>` is a
 DNS name, and port is usually `8776`.
 
 ```json
 {
   "node": {
     ...
-    "externalAddresses": ["seed.mentharos.net:8776"]
+    "externalAddresses": ["seed.radicle.example:8776"]
   }
 }
 ```
