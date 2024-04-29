@@ -33,7 +33,9 @@ is_authed() {
 }
 
 success() {
-  printf "\033[32m✓\033[0m Radicle was installed successfully.\n"
+  version="$1"
+
+  printf "\033[32m✓\033[0m Radicle \033[2m$1\033[0m was installed successfully.\n"
 
   RAD_HOME=$(rad_home)
 
@@ -116,7 +118,7 @@ in_path() {
 
 get_started() {
   printf "\n"
-  success
+  success "$@"
 
   if ! is_authed; then
     printf "\n"
@@ -181,7 +183,7 @@ main() {
   TARGET=$(target)
 
   info "Installing Radicle into $PREFIX..."
-  curl -# -L "$(url "$TARGET")" | tar -xJ --overwrite --strip-components=1 -C "$PREFIX"
+  curl -# -L "$(url "$TARGET")" | tar -xJ --strip-components=1 -C "$PREFIX"
   chmod +x \
     $RAD_PATH/radicle-node \
     $RAD_PATH/radicle-httpd \
@@ -194,14 +196,15 @@ main() {
     warn "Warning: a Git installation was not detected on your system."
     warn "Warning: please install Git for Radicle to work correctly."
   fi
+  version="$($RAD_PATH/rad --version | cut -f2 -d' ' -)"
 
   # If radicle is not in $PATH, add it here.
   if $NO_MODIFY_PATH; then
     info "Not modifying shell path variable, as requested."
-    get_started
+    get_started $version
   elif in_path $RAD_PATH; then
     info "Radicle is configured in shell already, not modifying."
-    get_started
+    get_started $version
   else
     PROFILE=""
 
@@ -221,7 +224,7 @@ main() {
     if [ -z "$PROFILE" ]; then
       warn "Warning: unable to update your PATH variable."
       warn "Warning: please manually add $RAD_PATH to your PATH."
-      get_started
+      get_started $version
     else
       info "Configuring path variable in ~${PROFILE#$HOME}..."
       echo                                    >> "$PROFILE"
@@ -229,13 +232,13 @@ main() {
       echo "export PATH=\"\$PATH:$RAD_PATH\"" >> "$PROFILE"
       echo
 
-      success
+      success $version
 
       if command -v rad >/dev/null 2>&1; then
         EXISTING=$(command -v rad)
         printf "\n"
         warn "Warning: Pre-existing binaries found at $(dirname "$EXISTING")."
-        warn "Warning: installed new binaries in $RAD_PATH."
+        warn "Warning: Installed new binaries in $RAD_PATH."
       fi
 
       printf "\n"
