@@ -25,7 +25,7 @@ reproduce the binaries on this page from source.
   </p>
 </noscript>
 
-<table class="loading" id="releases">
+<table class="hidden loading" id="releases">
   <thead>
     <th scope="col">OS</th>
     <th scope="col">Arch</th>
@@ -89,12 +89,15 @@ The output must correspond to the above.
 
 To install, simply extract the files to a location in your `PATH`, for example:
 
-    $ tar -xvJf ARCHIVE.tar.xz --overwrite --strip-components=1 -C /usr/local/
+    $ tar -xvJf ARCHIVE.tar.xz --strip-components=1 -C /usr/local/
 
 This will place binaries in `/usr/local/bin` and manuals in `/usr/local/man`,
 and overwrite any existing Radicle binaries.
 
 <script>
+  const releases = document.getElementById("releases");
+  releases.classList.remove("hidden");
+
   fetch("https://files.radicle.xyz/releases/latest/radicle.json")
     .then(res => res.json())
     .then(data => {

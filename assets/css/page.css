@@ -103,7 +103,7 @@ code {
 pre {
   margin-left: 4rem;
   font-family: var(--font-family-code-alt);
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 pre code {
@@ -197,6 +197,10 @@ a:hover {
 .button.filled:hover, :root[data-theme="light"] .button:hover {
   background-color: var(--color-fg-low-contrast) !important;
   color: var(--color-bg-default) !important;
+}
+
+.hidden {
+  display: none;
 }
 
 li::marker {
