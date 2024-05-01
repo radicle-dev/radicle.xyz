@@ -61,6 +61,40 @@ reproduce the binaries on this page from source.
   </tr>
 </table>
 
+## Download
+
+You can download the appropriate tarball for your operating system with:
+
+    curl -O -L https://files.radicle.xyz/releases/latest/radicle-$TARGET.tar.xz
+
+Replace `$TARGET` with the appropriate target for your system:
+
+<table>
+  <thead>
+    <th scope="col">OS</th>
+    <th scope="col">Arch</th>
+    <th scope="col">Target</th>
+  </thead>
+  <tr data-release-arch="x86_64" data-release-binary="unknown-linux-musl">
+    <th scope="row" rowspan="2">Linux</th>
+    <td>x86_64</td>
+    <td>x86_64-unknown-linux-musl</td>
+  </tr>
+  <tr data-release-arch="aarch64" data-release-binary="unknown-linux-musl">
+    <td>aarch64 (ARM)</td>
+    <td>aarch64-unknown-linux-musl</td>
+  </tr>
+  <tr data-release-arch="x86_64" data-release-binary="apple-darwin">
+    <th scope="row" rowspan="2">macOS</th>
+    <td>x86_64</td>
+    <td>x86_64-apple-darwin</td>
+  </tr>
+  <tr data-release-arch="aarch64" data-release-binary="apple-darwin">
+    <td>aarch64 (ARM)</td>
+    <td>aarch64-apple-darwin</td>
+  </tr>
+</table>
+
 ## Verification
 
 Release tarballs are signed using the following SSH public key:

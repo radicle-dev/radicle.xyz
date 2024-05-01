@@ -94,12 +94,21 @@ add it to the `seed` group as well:
 For a seed node, you will need to install at minimum the Radicle CLI (`rad`),
 and network daemon (`radicle-node`).
 
-To install these, run the following command from within your server's shell:
+To install these, head over to the [download][] page and follow the
+instructions there. You will have to download, verify and extract the binaries
+and manuals to your preferred location.
 
-    curl -sSf https://radicle.xyz/install | sh -s -- --no-modify-path --prefix=/usr/local
+For this guide, we recommend installing Radicle under `/usr/local`. This will
+require you to have write permissions to `/usr/local/bin` and `/usr/local/man`.
+You can give yourself these permission by changing ownership of these
+directories to the current user and group:
 
-This will install binaries in `/usr/local/bin`. If you prefer to install Radicle
-in a different location, simply set the `--prefix` option accordingly.
+    $ sudo chown $(whoami): /usr/local/{bin,man,man/man1}
+
+You should then be able to extract the archive you downloaded and verified
+with:
+
+    $ tar -xvJf <archive> --strip-components=1 -C /usr/local/
 
 Finally, login as the `seed` user and proceed with installation:
 
@@ -537,3 +546,4 @@ Come join us on our community chat and tell us about your seed node on the
 [caddy-guide]: https://caddyserver.com/docs/running#linux-service
 [caddy-install]: https://caddyserver.com/docs/install
 [zulip]: https://radicle.zulipchat.com/#narrow/stream/384534-seeds
+[download]: /download
