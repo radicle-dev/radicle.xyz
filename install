@@ -136,15 +136,15 @@ main() {
   fi
 
   if ! command -v tar >/dev/null 2>&1; then
-    fatal "Please install 'tar' and try again"
+    fatal "The 'tar' tool is required to extract the archive; please install 'tar' and try again"
   fi
 
   if ! command -v xz >/dev/null 2>&1; then
-    fatal "Please install 'xz' and try again"
+    fatal "The 'xz' tool is required to extract the archive; please install 'xz' or 'xz-utils' and try again"
   fi
 
   if ! command -v curl >/dev/null 2>&1; then
-    fatal "Please install 'curl' and try again"
+    fatal "The 'curl' tool is required to download the archive; please install 'curl' and try again"
   fi
 
   while :; do
