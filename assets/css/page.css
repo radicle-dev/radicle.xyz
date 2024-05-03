@@ -209,6 +209,7 @@ li::marker {
 
 body > main {
   margin: 0 auto;
+  margin-bottom: 16rem;
   padding: 2rem;
   max-width: 96ch;
 }

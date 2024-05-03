@@ -97,7 +97,17 @@ and other clients can be developed.
 
 <a class="button" href="https://app.radicle.xyz/nodes/seed.radicle.xyz">Browse our repositories ↗</a>
 
+# Contributing
+
+Radicle is *free and open source* software under the MIT and Apache 2.0
+licenses. Get involved by [contributing code][contribute].
+
+[contribute]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/tree/CONTRIBUTING.md
+
 # Updates
+
+**Follow us** on 🐘 [Mastodon][mast], 🦋 [Bluesky][bsky] or 🐦 [Twitter][twitter] to stay
+updated, or join our community on 💬 [Zulip][zulip].
 
 - 26.03.2024 [Radicle 1.0.0-rc.1][1.0] released! ✨
 - 10.03.2024 New Radicle homepage!
@@ -108,18 +118,9 @@ and other clients can be developed.
 [hn]: https://news.ycombinator.com/item?id=39600810
 [1.0]: https://twitter.com/radicle/status/1772659708978991605
 
-# Contributing
+                                                 .
 
-Radicle is *free and open source* software under the MIT and Apache 2.0
-licenses. Get involved by [contributing code][contribute].
 
-[contribute]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/tree/CONTRIBUTING.md
-
-# Social
-
-Follow us on [Twitter][twitter] to stay updated, or join our [Zulip][zulip].
-
-                                                             .
                                                        *
                             .
                   *                              --O--
@@ -129,9 +130,15 @@ Follow us on [Twitter][twitter] to stay updated, or join our [Zulip][zulip].
     ..-.--*--.__-__..._.--..-._.---....~__..._.--..~._.---.--..____.--_--'`_---..
            -.--~--._  __..._.--..~._.--- - -.____.--_--'`_---..~.----_~
 
+                                        .--..~._
+                      -.-
+                                     .-.        .
+
 
 [install-script]: /install
 [twitter]: https://twitter.com/radicle
+[bsky]: https://bsky.app/profile/radicle.xyz
+[mast]: https://toot.radicle.xyz/@radicle
 [zulip]: https://radicle.zulipchat.com
 [heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 [cobs]: /guides/protocol#collaborative-objects
