@@ -4,6 +4,9 @@
 #
 set -e
 
+# SSH signing key for the release archives. This is currently cloudhead's key.
+SIGNER="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL460KIEccS4881p7PPpiiQBsxF+H5tgC6De6crw9rbU"
+
 url() {
   echo "https://files.radicle.xyz/releases/latest/radicle-$1.tar.xz"
 }
@@ -94,16 +97,6 @@ target() {
   echo $TARGET
 }
 
-tempdir() {
-  if [ -n "$TMPDIR" ]; then
-    echo "$TMPDIR"
-  elif [ -d "/tmp" ]; then
-    echo "/tmp"
-  else
-    fatal "Could not locate temporary directory"
-  fi
-}
-
 in_path() {
   IFS=":"
 
@@ -126,6 +119,17 @@ get_started() {
   fi
 }
 
+verify() {
+  archive="$1"
+  signers="$(dirname $archive)/signers"
+  # Add the signer key to the allowed signers file we pass to ssh-keygen.
+  printf "cloudhead $SIGNER\n" > $signers
+
+  # Verify that `$archive` was signed by a key in `$signers`, identified by the
+  # name "cloudhead", using the signature in `$archive.sig`.
+  ssh-keygen -Y verify -f $signers -I cloudhead -n file -s "$archive.sig" < "$archive" || fatal "Invalid signature for $archive"
+}
+
 main() {
   PREFIX=${RAD_HOME:-"$HOME/.radicle"}
   SHELL_PATH=${SHELL:-"/bin/sh"}
@@ -145,6 +149,10 @@ main() {
 
   if ! command -v curl >/dev/null 2>&1; then
     fatal "The 'curl' tool is required to download the archive; please install 'curl' and try again"
+  fi
+
+  if ! command -v ssh-keygen >/dev/null 2>&1; then
+    fatal "The 'ssh-keygen' tool is required to verify the archive; please install the 'openssh' and try again"
   fi
 
   while :; do
@@ -181,9 +189,20 @@ main() {
 
   info "Detecting operating system..."
   TARGET=$(target)
+  ARCHIVE="$(mktemp --directory)/radicle-$TARGET.tar.xz"
+  URL="$(url "$TARGET")"
+
+  info "Downloading $URL..."
+  curl -# -L "$URL"     -o "$ARCHIVE"
+  info "Downloading $URL.sig..."
+  curl -# -L "$URL.sig" -o "$ARCHIVE.sig"
+
+  info "Verifying $(basename $ARCHIVE)..."
+  verify "$ARCHIVE"
 
   info "Installing Radicle into $PREFIX..."
-  curl -# -L "$(url "$TARGET")" | tar -xJ --strip-components=1 -C "$PREFIX"
+  tar -xJf "$ARCHIVE" --strip-components=1 -C "$PREFIX"
+
   chmod +x \
     $RAD_PATH/radicle-node \
     $RAD_PATH/radicle-httpd \
