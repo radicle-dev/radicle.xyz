@@ -193,9 +193,9 @@ main() {
   URL="$(url "$TARGET")"
 
   info "Downloading $URL..."
-  curl --proto '=https' --tlsv1.3 -# -L "$URL"     -o "$ARCHIVE"
+  curl --proto '=https' --tlsv1.2 -# -L "$URL"     -o "$ARCHIVE"
   info "Downloading $URL.sig..."
-  curl --proto '=https' --tlsv1.3 -# -L "$URL.sig" -o "$ARCHIVE.sig"
+  curl --proto '=https' --tlsv1.2 -# -L "$URL.sig" -o "$ARCHIVE.sig"
 
   info "Verifying $(basename $ARCHIVE)..."
   verify "$ARCHIVE"
