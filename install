@@ -189,11 +189,11 @@ main() {
 
   info "Detecting operating system..."
   TARGET=$(target)
-  ARCHIVE="$(mktemp --directory)/radicle-$TARGET.tar.xz"
+  ARCHIVE="$(mktemp -d)/radicle-$TARGET.tar.xz" # Nb. `-d` must be used on BSDs.
   URL="$(url "$TARGET")"
 
   info "Downloading $URL..."
-  curl --proto '=https' --tlsv1.2 -# -L "$URL"     -o "$ARCHIVE"
+  curl --proto '=https' --tlsv1.2 -# -L "$URL"     -o "$ARCHIVE" # Nb. `--tlsv1.3` is not supported on macOS
   info "Downloading $URL.sig..."
   curl --proto '=https' --tlsv1.2 -# -L "$URL.sig" -o "$ARCHIVE.sig"
 
