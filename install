@@ -8,7 +8,7 @@ set -e
 SIGNER="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL460KIEccS4881p7PPpiiQBsxF+H5tgC6De6crw9rbU"
 
 url() {
-  echo "https://files.radicle.xyz/releases/latest/radicle-$1.tar.xz"
+  echo "https://files.radicle.xyz/releases/$1/radicle-$2.tar.xz"
 }
 
 info() {
@@ -71,6 +71,7 @@ usage() {
   echo "Options"
   echo
   echo "  --no-modify-path    Do not modify the PATH environment variable"
+  echo "  --version=VERSION   Install the given version of Radicle (default: latest)"
   echo "  --prefix=PATH       Radicle install prefix (default: ~/.radicle)"
   echo "  --help, -h          Show this help message and exit"
   echo
@@ -134,6 +135,7 @@ main() {
   PREFIX=${RAD_HOME:-"$HOME/.radicle"}
   SHELL_PATH=${SHELL:-"/bin/sh"}
   NO_MODIFY_PATH=false
+  VERSION=latest
 
   if [ -n "$RAD_PATH" ]; then
     fatal "RAD_PATH is no longer supported; Use '--prefix' instead"
@@ -163,6 +165,9 @@ main() {
       --prefix=*)
         PREFIX=${1#*=}
         ;;
+      --version=*)
+        VERSION=${1#*=}
+        ;;
       -h|--help)
         usage
         exit 0 ;;
@@ -174,6 +179,10 @@ main() {
     esac
     shift
   done
+
+  if [ -z "$VERSION" ]; then
+    fatal "Empty version string; use --version=VERSION"
+  fi
 
   if [ -z "$PREFIX" ]; then
     fatal "Empty installation prefix; use --prefix=PATH or set RAD_HOME"
@@ -190,12 +199,12 @@ main() {
   info "Detecting operating system..."
   TARGET=$(target)
   ARCHIVE="$(mktemp -d)/radicle-$TARGET.tar.xz" # Nb. `-d` must be used on BSDs.
-  URL="$(url "$TARGET")"
+  URL="$(url "$VERSION" "$TARGET")"
 
   info "Downloading $URL..."
-  curl --proto '=https' --tlsv1.2 -# -L "$URL"     -o "$ARCHIVE" # Nb. `--tlsv1.3` is not supported on macOS
+  curl --proto '=https' --fail --tlsv1.2 -# -L "$URL"     -o "$ARCHIVE"     || fatal "Failed to fetch $URL" # Nb. `--tlsv1.3` is not supported on macOS
   info "Downloading $URL.sig..."
-  curl --proto '=https' --tlsv1.2 -# -L "$URL.sig" -o "$ARCHIVE.sig"
+  curl --proto '=https' --fail --tlsv1.2 -# -L "$URL.sig" -o "$ARCHIVE.sig" || fatal "Failed to fetch $URL.sig"
 
   info "Verifying $(basename $ARCHIVE)..."
   verify "$ARCHIVE"
