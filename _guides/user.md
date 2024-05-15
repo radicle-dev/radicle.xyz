@@ -185,10 +185,13 @@ your key pair. Note that your alias can always be changed at a later time.
     ✓ You're all set.
     ...
 
-When you've completed the steps, your new Radicle DID (Decentralized
-Identifier) will be generated and displayed. The Radicle DID is a
-[self-sovereign][ssi] identity you have full control over. If `ssh-agent` is
-running, your private key will also be added to it for future use.
+When you've completed the steps, your new Radicle DID (Decentralized Identifier)
+will be generated and displayed. If `ssh-agent` is running, your private key will
+also be added to it for future use. While similar to your Node ID (NID), the Radicle
+DID is formatted as a [Decentralized Identifier][did], whereas the NID is simply the
+encoded public key. The Radicle DID is your own [self-sovereign][ssi] identity. Share
+it freely with collaborators!
+
 
 <aside class="span-4">
   <p><strong>DIDs</strong> are a new identifier standard established by the W3C
@@ -222,10 +225,19 @@ If you run `rad auth` again you can verify that your key was added to
     $ rad auth
     ✓ Radicle key already in ssh-agent
 
-> Your Radicle DID is similar to your Node ID (NID), the difference is the
-> former is formatted as a [Decentralized Identifier][did], while the latter is
-> just the encoded public key. Share your Radicle DID freely with
-> collaborators.
+
+> 👻
+>
+> If you plan on using multiple devices, it is very important that you do not try
+> to share your Radicle identity across those devices.
+>
+> At the moment, each device is required to be identified by its own DID,
+> meaning you have to go through the `rad auth` process on each device you plan
+> on using.
+>
+> We understand the desire and need to link devices to make collaboration smoother.
+> We are in the process of designing and implementing this functionality.
+
 
 If you forget your DID or NID, you can query your full identity by running `rad
 self` or alternatively you can grab your DID with `rad self --did` and your NID
@@ -405,8 +417,11 @@ next chapters.
 >   repository's RID.
 > * To display the repository's identity payload, which contains its name,
 >   description and default branch, run `rad inspect --payload`.
-> * To make updates to the repository identity, including its visibility, check
->   out `rad id --help` for further instructions.
+> * To be able to push changes to a repository from all of your devices, simply
+>   add each device's DID as a repository delegate, using `rad id update`.
+> * For more details on managing the repository's identity, including adding
+>   delegates, or making updates to its name, description, and visibility, refer
+>   to `rad id --help`.
 >
 > By the way since your Radicle key is a valid SSH key, it can be used to sign
 > Git commits since version Git `2.34.0`. This is an alternative to the more

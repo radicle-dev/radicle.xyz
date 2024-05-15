@@ -221,6 +221,12 @@ happens via issues, patches (pull requests), and code review. The difference
 is that Radicle doesn't have a shared write access model like GitHub. Each
 user is required to push to their own fork.
 
+## How do I use Radicle with multiple devices?
+
+At the moment, each device is required to be identified by a unique Radicle
+identity. We are currently working on proper multi-device support in Radicle,
+which will enable sharing a single identity across devices.
+
 ## Do I need to run a node to use Radicle?
 
 Yes. The node is an essential part of what makes Radicle sovereign. However,
