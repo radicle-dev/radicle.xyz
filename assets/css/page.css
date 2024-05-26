@@ -300,6 +300,7 @@ nav .cta {
 
 .links {
   display: inline-flex;
+  flex-wrap: wrap;
   margin-left: 1rem;
   gap: 2rem;
 }
@@ -352,15 +353,23 @@ img.screenshot {
 }
 
 @media (max-width: 800px) {
+  body > main {
+    padding: 1rem;
+  }
   nav {
     display: block;
   }
+  p, ul, nav, pre.diagram, pre.highlight, #install, table {
+    margin-left: 1rem !important;
+  }
+  pre.diagram {
+    overflow: hidden;
+  }
+  .links {
+    gap: 1.25rem !important;
+  }
   .desktop {
     display: none;
-  }
-  #ribbon {
-    width: 128px;
-    height: 128px;
   }
   .links {
     display: flex;

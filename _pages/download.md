@@ -28,33 +28,33 @@ reproduce the binaries on this page from source.
 <table class="hidden loading" id="releases">
   <thead>
     <th scope="col">OS</th>
-    <th scope="col">Arch</th>
+    <th scope="col" class="desktop">Arch</th>
     <th scope="col">File</th>
     <th scope="col">Signature</th>
     <th scope="col">Checksum</th>
   </thead>
   <tr data-release-arch="x86_64" data-release-binary="unknown-linux-musl">
     <th scope="row" rowspan="2">Linux</th>
-    <td class="release-arch">Loading…</td>
+    <td class="release-arch desktop">Loading…</td>
     <td>💾 <a class="release-url">Loading…</a></td>
     <td><a class="release-sig">Loading…</a></td>
     <td><a class="release-checksum">Loading…</a></td>
   </tr>
   <tr data-release-arch="aarch64" data-release-binary="unknown-linux-musl">
-    <td class="release-arch">Loading…</td>
+    <td class="release-arch desktop">Loading…</td>
     <td>💾 <a class="release-url">Loading…</a></td>
     <td><a class="release-sig">Loading…</a></td>
     <td><a class="release-checksum">Loading…</a></td>
   </tr>
   <tr data-release-arch="x86_64" data-release-binary="apple-darwin">
     <th scope="row" rowspan="2">macOS</th>
-    <td class="release-arch">Loading…</td>
+    <td class="release-arch desktop">Loading…</td>
     <td>💾 <a class="release-url">Loading…</a></td>
     <td><a class="release-sig">Loading…</a></td>
     <td><a class="release-checksum">Loading…</a></td>
   </tr>
   <tr data-release-arch="aarch64" data-release-binary="apple-darwin">
-    <td class="release-arch">Loading…</td>
+    <td class="release-arch desktop">Loading…</td>
     <td>💾 <a class="release-url">Loading…</a></td>
     <td><a class="release-sig">Loading…</a></td>
     <td><a class="release-checksum">Loading…</a></td>
