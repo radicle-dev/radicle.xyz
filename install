@@ -214,9 +214,7 @@ main() {
 
   chmod +x \
     $RAD_PATH/radicle-node \
-    $RAD_PATH/radicle-httpd \
     $RAD_PATH/rad \
-    $RAD_PATH/rad-web \
     $RAD_PATH/git-remote-rad
 
   if ! command -v git >/dev/null 2>&1; then
