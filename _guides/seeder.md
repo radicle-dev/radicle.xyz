@@ -175,8 +175,10 @@ and external address set:
   "node": {
     "alias": "seed.radicle.example",
     "externalAddresses": ["seed.radicle.example:8776"],
-    "policy": "allow",
-    "scope": "all"
+    "seedingPolicy": {
+      "default": "allow",
+      "scope": "all"
+    }
   }
 }
 ```
@@ -197,12 +199,12 @@ policy*. This setting will determine what content your seed node fetches and
 replicates on the network when it encounters a repository it doesn't know or
 hasn't been given special instructions for.
 
-The setting is configured under the `node.policy` field in your configuration
-(`~/.radicle/config.json`). You can open your configuration file directly
-using the `rad config edit` command, or use your preferred editor. You can
-also enter the following command to display your current default policy:
+The setting is configured under the `node.seedingPolicy` field in your
+configuration (`~/.radicle/config.json`). You can open your configuration file
+directly using the `rad config edit` command, or use your preferred editor. You
+can also enter the following command to display your current default policy:
 
-    rad config get node.policy
+    rad config get node.seedingPolicy
 
 When a seeding policy is *not set* for a specific repository or node, the
 default policy is applied, hence the importance of this setting.
@@ -221,14 +223,17 @@ by the Radicle team, for the Radicle community.
 This is a good default for seeders who want to support the network without
 having to think about it too much.
 
-Set `node.policy` to `allow` to configure your node this way.
+Set `node.seedingPolicy.default` to `allow` and `node.seedingPolicy.scope` to
+`all` to configure your node this way.
 
 ```json
 {
   "node": {
     ...
-    "policy": "allow",
-    "scope": "all"
+    "seedingPolicy": {
+      "default": "allow",
+      "scope": "all"
+    }
   }
 }
 ```
@@ -246,16 +251,17 @@ This is a good policy for communities, teams, companies and individuals who
 want to limit the data hosted by their seed, or node operators who want
 to require some form of authentication or payment for seeding.
 
-Set `node.policy` to `block` to enable this, and call `rad seed` to configure
-`allow` policies for specific repositories you want to seed. Your seed node
-won't seed anything until you explicitly allow it to.
+Set `node.seedingPolicy.default` to `block` to enable this, and call `rad seed`
+to configure `allow` policies for specific repositories you want to seed. Your
+seed node won't seed anything until you explicitly allow it to.
 
 ```json
 {
   "node": {
     ...
-    "policy": "block",
-    "scope": "all"
+    "seedingPolicy": {
+      "default": "block"
+    }
   }
 }
 ```
@@ -286,7 +292,7 @@ replicated on your node.
 
 #### Viewing policies
 
-You can view your node's *default* by entering `rad config get node.policy`.
+You can view your node's *default* by entering `rad config get node.seedingPolicy`.
 To view the policy of a specific repository, use the `rad inspect` command. For
 example:
 
