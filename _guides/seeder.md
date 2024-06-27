@@ -439,8 +439,9 @@ connections. This will allow inbound connections to your node.
 > It's recommended to run a basic firewall to further lock down your server,
 > using something like `iptables`, though this is out of scope for this guide.
 
-Running the HTTP backend
-------------------------
+Running the HTTP Daemon
+-----------------------
+
 In the sections above, we set up `radicle-node`, a background process that
 actively and continuously discovers and replicates repositories on the network,
 based on your seeding policy. This node allows users to collaborate, host,
@@ -452,9 +453,19 @@ be deployed alongside `radicle-node`.
 
 The HTTP Daemon is a background process that functions as a *gateway* between
 the Radicle protocol and the HTTP protocol. It is configured to have direct
-access to the node's storage and database and expose this data via an
+read-only access to the node's storage and database and expose this data via an
 HTTP JSON API. For seed nodes, the HTTP Daemon is always configured as a
 *read-only* service over the node's state.
+
+### Installation
+
+Head over to the [download][] page, and follow the instructions there. The
+process is the same as for the Radicle Node. You will have to download, verify
+and extract the binary (`radicle-httpd`) and manuals to your preferred
+location.
+
+We recommend installing the daemon under `/usr/local`, just as we did for the
+node.
 
 ### Configuring your HTTP daemon's system service
 
