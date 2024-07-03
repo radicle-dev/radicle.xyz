@@ -1115,12 +1115,13 @@ patch title, while the subsequent lines make up the description.
 Once we've entered the details describing the patch, we save and exit our
 editor. This pushes our commit to the `rad` remote, opening the patch.
 
-<pre class="wide"><code>✓ Patch e5f0a5a5adaa33c3b931235967e4930ece9bb617 opened
+<pre class="wide">
+✓ Patch e5f0a5a5adaa33c3b931235967e4930ece9bb617 opened
 ✓ Synced with 8 node(s)
 
 To rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
 * [new reference]   HEAD -> refs/patches
-</code></pre>
+</pre>
 
 In the above Git output, we see our patch's identifier displayed:
 
@@ -1413,8 +1414,6 @@ We can verify that it is merged via `rad patch show e5f0a5a`, or `rad patch
 > For more details on how to work with patches, read the manual with `man
 > rad-patch`.
 
-<!-- Reviewed until here -->
-
 ### From remote viewing to adding remotes
 
 Whenever you `init` or `clone` a repository, your node will follow all peers
@@ -1508,98 +1507,87 @@ After the `sync` command succeeds, try to `git pull` again.
 And, that's a wrap! You now know the most relevant nitty gritty details of how
 to leverage Radicle for code collaboration.
 
-<!-- TODO
-Consider continuing on to [Chapter 3][ch3] to further expand your Radicle
-consciousness and learn about setting policies and configurations for how your
-node seeds repositories.
--->
-
 *One thing to keep in mind is that Radicle doesn't have advanced code review
 features yet for patches, but that is coming in a near-term release.*
 
-
-
 ## 3. Selectively Revealing Repositories
 
-In his influential work, *[A Cypherpunk's Manifesto][cyph-man]* (1993), Eric
+In his influential work, [A Cypherpunk's Manifesto][cyph-man] (1993), Eric
 Hughes eloquently encapsulated the essence of privacy, stating: ***Privacy is
 the power to selectively reveal oneself to the world.*** This notion of
 self-determination and control over one's personal information stands in stark
 contrast to the reality of using "private repository" features on traditional
-centralized code forges. In these systems, privacy is merely an illusion
+centralized code forges. In those systems, privacy is merely an illusion
 maintained by terms of service agreements, as data is stored in cleartext, fully
-accessible to the platforms employees, vulnerable to potential misuse, and
-subject to external pressures such as government requests. Users are left with
-no real control, forced to blindly trust that their code and data won't be
-viewed, exploited, or even used without consent for purposes like training large
-language models.
+accessible to the platform's employees, vulnerable to potential misuse or
+leaks, and subject to external pressures such as government requests. Users are
+left with no real control, forced to blindly trust that their code and data
+won't be viewed, exploited, or even used without consent for purposes like
+training large language models.
 
 In contrast, Radicle's decentralized approach puts the power of privacy directly
 in the hands of users by leveraging public key cryptography and granular access
 control mechanisms. The *power to selectively reveal* is a foundational
-principle in Radicle, fostering a more resilient and autonomous environment for
+principle in Radicle, fostering a more resilient and safer environment for
 code collaboration. Through selective replication, private repositories are only
-accessible to and replicated by repository delegates and collaborators, or nodes
-specified by the delegates, while fully encrypted connections ensure
-confidential data transfer between these authorized nodes. Repositories are not
-encrypted at rest. However, the combination of selective replication and
-encrypted connections renders them invisible to the rest of the network. This
-approach effectively creates isolated spaces for private collaboration,
-embodying the true essence of user-controlled privacy.
+accessible to and replicated by repository collaborators, while fully encrypted
+connections ensure confidential data transfer between peers.
+
+By combining selective replication and encrypted and authenticated connections,
+repositories are invisible to the rest of the network. This approach
+effectively creates isolated spaces for private collaboration, forgoing the
+need for encryption at rest.
 
 In this chapter, we'll explore how to maintain sovereignty and control over a
-private repository while collaborating with a trusted circle. We'll demonstrate
-how this works by including a seed node in the repository's allow list.
+private repository while collaborating with a set of peers and a trusted
+seed node.
 
 ### Initializing a private repository
 
-When a private repository is created in Radicle, it's only visible and
-accessible to explicitly authorized nodes. Privacy is extended to all aspects of
-the repository, including its data, creation time, Repository ID (RID), and the
-set of collaborators.
+When a private repository is created in Radicle, it is only visible and
+accessible to explicitly authorized peers. Privacy is extended to all aspects
+of the repository, including its data, creation time, Repository ID (RID), COBs,
+and its set of collaborators.
 
 To maintain this privacy during data transfer, all connections between nodes,
-including those to seed nodes, are fully encrypted using the Noise Protocol
-Framework, which employs ChaCha20-Poly1305 for its cryptographic operations.
+including those to seed nodes, are fully encrypted using an AEAD algorithm,
+`ChaCha20-Poly1305`.
 
 <aside class="span-2">
-<strong>ChaCha20-Poly1305</strong> is a modern encryption system designed for speed and security. It combines two parts: ChaCha20, which scrambles the data to keep it secret, and Poly1305, which creates a unique "fingerprint" for the encrypted data to ensure it hasn't been tampered with. This system works efficiently on all types of devices, from smartphones to computers, without needing special hardware.
+  <strong>ChaCha20-Poly1305</strong> is a modern AEAD encryption algorithm
+  designed for speed and security. It combines two parts: ChaCha20, which
+  scrambles the data to keep it secret, and Poly1305, which creates a unique
+  "fingerprint" for the encrypted data to ensure it hasn't been tampered with.
+  This system works efficiently on all types of devices, from smartphones to
+  computers, without needing special hardware.
 </aside>
 
 To demonstrate how this works in practice, let's create a private repository for
 a sensitive research project we're working on with our peer, Calyx. We'll start
-by initializing Git within a new directory named `schrödingers-paradox` and
-committing our initial research findings:
+by initializing a repository within a new directory named
+`schrödingers-paradox` and committing our initial research findings:
 
     $ cd schrödingers-paradox
     $ git init
-    $ cp /var/run/897af.log data/897af.log
-    $ git add data/
-    $ git add analysis/paxels-report.md
-    $ git commit -m "Add data and report from ship 897AF"
+    $ cp ~/secrets/897af-captain.log data/897af-captain.log
+    $ git commit -a -m "Add captain's log from ship 897AF"
 
 Next, to securely share this with Calyx, we initialize it as a private
-repository in Radicle by passing the `--private` flag with `rad init`:
+repository in Radicle using the `--private` flag:
+
+<aside class="kicker"><code>Paxel</code></aside>
 
     $ rad init --private
 
-This command functions similarly to the public repository initialization
-process. It guides us through creating a new private repository, generates a
-Repository ID (RID), and creates a special Git remote named `rad` in our working
-copy.
-
-The key difference is that setting the `--private` flag automatically configures
-the `visibility` option to private. As a result, the repository remains
-unannounced and unpublished on the network, reflecting its nature 🥷.
+This invocation functions similarly to the public repository initialization
+process; the key difference is that it automatically configures the
+`visibility` option of the repository to private. As a result, the repository
+remains unannounced 🥷 and unpublished on the network, reflecting its nature.
 
     $ rad init --private
 
     Initializing private radicle 👾 repository in /home/paxel/src/schrödingers-paradox..
-
-    ✓ Name schrödingers-paradox
-    ✓ Description Recent data from research vessel 897AF has revealed peculiar patterns that, if verified, could have significant implications for our understanding of the universe.
-    ✓ Default branch main
-    ✓ Repository schrödingers-paradox created.
+    ...
 
     Your Repository ID (RID) is rad:z3jEQE4VMzkR1UVeSLiN9E8AMtV6a.
     You can show it any time by running `rad .` from this directory.
@@ -1610,138 +1598,101 @@ unannounced and unpublished on the network, reflecting its nature 🥷.
     To make it public, run `rad publish`.
     To push changes, run `git push`.
 
+If we run `rad ls --private`, we'll find the repository with its `private`
+visibility.
+
+<pre class="wide">
+╭────────────────────────────────────────────────────────────────────────╮
+│ Name                   RID                                 Visibility  │
+├────────────────────────────────────────────────────────────────────────┤
+│ schrödingers-paradox   rad:z3jEQE4VMzkR1UVeSLiN9E8AMtV6a   private     │
+╰────────────────────────────────────────────────────────────────────────╯
+</pre>
+
 ### Curating the *allow* list
 
 Now that we have our private repository, the next step is to grant access to our
 collaborators.
 
 The newly created private repository, `schrödingers-paradox`, will initially be
-accessible solely to us. However, to collaborate on this repository with others,
-we need to curate its allow list to include the Decentralized Identifiers (DIDs)
-of Calyx, and a trusted [seed node][seeder] that we manage that has a public DNS
-address (e.g `example.darkstar.org`). This seed node is necessary to facilitate
-the synchronization of repository updates between Calyx and us.
+accessible only by us, the lone delegate. This is due to the fact that
+repository delegates always have access to their private repositories. However,
+to collaborate on this repository with others, we need to curate its allow list
+to include the DIDs of Calyx, and at least one [seed node][seeder] *we trust*.
+This seed node will act as a trusted relay, necessary for the synchronization
+of repository state between Calyx and us.
 
+Though this trusted seed node needs a public DNS address, it doesn't have to
+be advertized to the network. One can simply omit adding the address to
+the `externalAddresses` key in the Radicle node configuration.
 
 > 👻
 >
 > Private repositories are not encrypted at rest, so any node that you add to
-> the allow list will have visibility to the contents of your private
-> repositories, but they are completely invisible to the rest of the network.
->
-> There are two possible approaches for distributing private repositories among
-> collaborative peers:
->
-> 1. Adding an intermediary seed node with a public DNS address to the allow
->    list (this is the option discussed in this current chapter).
-> 2. Adding a user node or seed node configured with a Tor .onion address (this
->    option is discussed in [Chapter 4][ch4]).
+> the allow list will have visibility over the contents of your private
+> repository. In the [Chapter 4][ch4] we explore a different setup that works
+> over Tor and doesn't require a trusted seed node.
 
-
-We can add both Calyx and our managed seed node to the allow list using a single
+We can add both Calyx and our trusted seed node to the allow list using a single
 `rad id update` command. This command requires a `--title` for the update, along
-with each authorized DID specified following an `--allow` flag:
+with each authorized DID specified with the `--allow` flag:
 
-    $ rad id update --title "Add Calyx and example.darkstar.org to allow list" \
+    $ rad id update --title "Allow Calyx and seed.darkstar.example" \
         --allow did:key:z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap \
         --allow did:key:z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt
 
 Once we submit the update above, it is automatically approved, as we are the
-repository's sole delegate:
+repository's sole delegate. If you look at the resulting diff, you see that
+both Calyx and our trusted node are being added to the `allow` list under the
+`visibility` key:
 
+```json
+"allow": [
+  "did:key:z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap",
+  "did:key:z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt"
+]
 ```
-$ rad id update --title "Add Calyx and example.darkstar.org to allow list" \
-    --allow did:key:z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap \
-    --allow did:key:z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt
-✓ Identity revision 8d3b8d3d4903026f7e0d4c969d82613025d34432 created
-╭────────────────────────────────────────────────────────────────────────╮
-│ Title    Add Calyx and iui.darkstar.org to allow list                  │
-│ Revision 8d3b8d3d4903026f7e0d4c969d82613025d34432                      │
-│ Blob     219f9cd8130dad644375fa729ba7b31997358945                      │
-│ Author   did:key:z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C      │
-│ State    accepted                                                      │
-│ Quorum   yes                                                           │
-│                                                                        │
-│                                                                        │
-├────────────────────────────────────────────────────────────────────────┤
-│ ✓ did:key:z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C paxel (you) │
-╰────────────────────────────────────────────────────────────────────────╯
-
-@@ -1,17 +1,21 @@
-{
-"payload": {
-    "xyz.radicle.project": {
-    "defaultBranch": "main",
-    "description": "Recent data from research vessel 897AF has revealed peculiar patterns that, if verified, could have significant implications for our understanding of the universe.",
-    "name": "schrödingers-paradox"
-    }
-},
-"delegates": [
-    "did:key:z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C"
-],
-"threshold": 1,
-"visibility": {
--    "type": "private"
-+    "type": "private",
-+    "allow": [
-+      "did:key:z6Mkgom1bTxdh9fMFxFNXFMw3SbXnma6NARdsfcFuunurCap",
-+      "did:key:z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt"
-+    ]
-```
-
-You can see that the two DIDs were added to the `allow` list, which now grants
-both Calyx and our seed node access to the `schrödingers-paradox` repository.
-
-
-> 👻
->
-> It is possible to update a repository that is currently public to become
-> private, with a repository identity update:
->  ```
->  $ rad id update --title "Update visibility" --visibility private
->  ```
-> This won't delete historic repository data from public seed nodes or other
-> peers that previously seeded or cloned the repository, meaning the public will
-> still be able to clone the old version of the repository.
->
-> Instead, future updates to the repository, including and repository's private
-> status will only be announced and accessible to those explicitly defined in
-> the `allow` list.
-
-
-### Replicating to our seed node
-
-Now that we've set up our private repository and managed access, let's replicate
-`schrödingers-paradox` onto our seed node. Our repository has the RID
-`rad:z3jEQE4VMzkR1UVeSLiN9E8AMtV6a`, which we'll use with the `rad seed` command
-to accomplish this. Since `schrödingers-paradox` is a private repository, we
-also need to specify our (Paxel's) Node ID using the `--from` flag to explicitly
-indicate the source node.
-
-Let's run the command:
-
-        darkstar$ rad seed rad:z3jEQE4VMzkR1UVeSLiN9E8AMtV6a --from z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
-
-This will both update the seeding policy to include
-`rad:z3jEQE4VMzkR1UVeSLiN9E8AMtV6a` and also fetch the repository from our node.
-To ensure the replication was successful, we can check the seeding status:
-
-        darkstar$ rad seed
-
-Now that the repository is on the seed node, it can serve as a reliable access
-point for other authorized peers, since the seed node will always be running,
-and our computer won't be. Remember, only peers on the repository's allow list
-will be able to fetch from this seed node.
-
 
 > 👾
 >
-> In the instructions above, we are assuming the use case where the seed node is
-> already specified as a `preferredSeeds` in our node configuration, which
-> ensures an automatic connection is established when starting our node.
+> It is also possible to update a repository that is currently public to become
+> private, with a repository identity update:
+>  ```
+>  $ rad id update --title "Make private" --visibility private
+>  ```
+> This won't delete historic repository data from public seed nodes or other
+> peers that previously seeded or cloned the repository, meaning users will
+> still be able to clone the old version of the repository.
 >
-> If you're experiencing issues with repository replication, try these
-> troubleshooting steps:
+> Instead, future updates to the repository, including the repository's private
+> status will be hidden to unauthorized users, only to be announced and
+> accessible to those explicitly defined in the `allow` list.
+
+### Replicating to our seed node
+
+Now that we've set up our private repository, it's essential to configure it
+from our trusted seed node. Since our seed node is likely configured with a
+selective seeding policy, we'll have to tell it to seed our private repository
+with the `rad seed` command.
+
+Since `schrödingers-paradox` is a private repository, we also need to specify
+our (Paxel's) Node ID using the `--from` flag to explicitly indicate a source
+node to fetch from. We therefore run the following command from within an SSH
+session on our seed node:
+
+<aside class="kicker"><code>seed.darkstar.example</code></aside>
+
+    $ rad seed rad:z3jEQE4VMzkR1UVeSLiN9E8AMtV6a --from z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
+
+This will update darkstar's seeding policy and attempt to fetch the repository
+from our node. For the fetching to be successful, we'll have to be connected
+to the seed node. Check that it is indeed the case with `rad node status`,
+and use `rad node connect` or adjust your node's configuration if it isn't
+the case.
+
+> 👾
+>
+> If you're experiencing issues with repository replication, try these steps:
 >
 > 1. Check your current connections:
 >    ```
@@ -1754,110 +1705,121 @@ will be able to fetch from this seed node.
 >    ```
 >    For example:
 >    ```
->    $ rad node connect z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt@example.darkstar.org:8776
+>    $ rad node connect z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt@seed.darkstar.example:8776
 >    ```
 >
-> To find your seed node's address, run `rad node config --addresses` on the
-> seed node itself.
+> To find your seed node's address, run `rad node config --addresses` while logged in
+> to the seed node.
 >
 > For comprehensive information on setting up and managing seed nodes, refer to
 > our [Seeder's Guide][seeder].
 
+Once the repository is on the seed, you should be able to see it by running
+`rad ls --private` from within the SSH session. It can then serve as an always
+online reliable access point for other authorized peers. Remember, only peers
+on the repository's allow list will be able to fetch from this seed node.
 
 ### Cloning as a trusted peer
+
 With our repository now successfully seeded, Calyx can clone our project. Since
 `schrödingers-paradox` is a private repository, Calyx needs to specify the seed
-node to fetch from, using the `--seed` flag:
+node to fetch from, using the `--seed` flag. In this case, Calyx specifies
+the Node ID of `seed.darkstar.example`:
 
-    calyx$ rad clone rad:z3jEQE4VMzkR1UVeSLiN9E8AMtV6a --seed z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt
+<aside class="kicker"><code>Calyx</code></aside>
 
-By providing the seed node's NID, Calyx can fetch the repository data directly.
-There's no need for a `rad node connect` command because the seed node is
-already hosting the repository and is accessible via a public address.
+    $ rad clone rad:z3jEQE4VMzkR1UVeSLiN9E8AMtV6a --seed z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt
 
-After cloning, Calyx begins working on the research project. Once he completes
-his initial findings, he commits them to the repository and pushes a patch:
+Once the repository is fetched, it's no longer necessary to specify the seed.
+Commands such as `rad sync` will automatically try to sync with our trusted
+seed.
 
-    $ git add analysis/calyxs-report.md
-    $ git commit -m "Calyx's report of vessel 897AF data"
-    $ git push rad HEAD:refs/patches
-
-> 👾
->
-> Need a refresher on collaboration basics? Check out [Chapter 2][ch2], or
-> review `man rad-patch` for details on working with patches.
+*With a local copy of the repository, Calyx can now collaborate freely,
+in full secrecy.*
 
 ### Removing nodes from the *allow* list
 
-Our seed node became compromised, and now we have to revoke access privileges to
-it. We use the `rad id update` command with the `--disallow` flag:
+In the event that our seed node became compromised, we could revoke access
+privileges to the repository from it. The same `rad id update` command is used,
+but this time with the `--disallow` flag:
 
-    $ rad id update --title "Revoke compromised node" \
+    $ rad id update --title "Darkstar is compromised!" \
         --disallow did:key:z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt
 
-This removes the seed node from being able to access it. 
-
-(Luckily, we were able to delete the data on the seed node before the attacker
-got access to it!)
+Our *no-longer-trusted* seed node will now be unable to fetch updates from us,
+for `schrödingers-paradox`.
 
 > 👾
 >
-> As projects evolve, you might decide that a repository no longer needs to be
-> private. In such cases, you can easily change its visibility. Simply run `rad
-> publish` within the repository to transform it from private to public.
+> As time goes by, you might decide that a repository no longer needs to be
+> private. In such a case, you can easily change its visibility. Simply run `rad
+> publish` within a repository's working copy to transform it from private to
+> public.
 
-*Radicle's codebase hasn't yet undergone formal security audits. While we're
-confident in its security, undiscovered vulnerabilities may exist. If you
-encounter any issues, we encourage you to report them to
-**security@radicle.xyz***
-
+> 👻
+>
+> Radicle's codebase hasn't yet undergone formal security audits. While we're
+> confident in its security, undiscovered vulnerabilities may exist. If you
+> encounter any issues, we encourage you to report them to
+> **security@radicle.xyz**.
 
 ## 4. Embracing the Onion
 
-**[Tor][tor]**, aka The Onion Router, is a decentralized network that anonymizes
-users' online activities by routing internet traffic through multiple encrypted
-relays, providing stronger anonymity compared to traditional VPNs. To further
-enhance collaboration on private repositories, Radicle nodes can be configured
-to run on Tor, allowing connections to be represented by `.onion` addresses.  
+**[Tor][tor]**, "The Onion Router", is a decentralized network that
+anonymizes users' online activity by routing internet traffic through
+multiple encrypted relays, providing stronger anonymity compared to traditional
+VPNs.
 
-<aside class="span-2">
-Tor, originally developed by the U.S. Naval Research Laboratory in the 1990s, was designed to protect government communications. It was further developed by DARPA before becoming a public project. In 2006, the non-profit Tor Project was established to maintain and improve the network. Today, Tor is widely used by individuals, activists, journalists, and organizations seeking greater online privacy.</aside>
+<aside class="span-3"> Tor, originally developed by the U.S. Naval Research
+Laboratory in the 1990s, was designed to protect government communications. It
+was further developed by DARPA before becoming a public project. In 2006, the
+non-profit Tor Project was established to maintain and improve the network.
+Today, Tor is widely used by individuals, activists, journalists, and
+organizations seeking greater online privacy.</aside>
 
-Depending on how you configure Tor with Radicle, it offers several key
-advantages:
+To further enhance repository and user privacy, Radicle nodes can be
+configured to run behind Tor. This allows connections to be made to `.onion`
+addresses as well as hiding one's IP address and exposing Radicle as a Tor
+*onion service*.
 
-* **Enhanced Anonymity**: Your node's real IP address is hidden, making it
+Depending on how you configure Radicle, it offers several key advantages:
+
+* **Enhanced anonymity**: Your node's real IP address is hidden, making it
   difficult for others to track your online activities or determine your
   location.
-* **NAT Traversal**: Tor automatically handles Network Address Translation (NAT)
-  traversal, eliminating the need for manual port forwarding or UPnP
-  configuration. This means peers can directly connect with one another, without
-  a seed node, even those behind restrictive firewalls.
-* **Censorship Resistance**: Repositories accessible via Tor are more resilient
+* **NAT traversal**: Tor automatically handles [NAT traversal][nat],
+  eliminating the need for manual port forwarding or UPnP configuration. This
+  means peers can directly connect with one another, without a seed node, even
+  behind a restrictive firewall.
+* **Censorship resistance**: Repositories accessible via Tor are more resilient
   against censorship attempts, as the Tor network is designed to circumvent
   blocking.
 
+[nat]: https://en.wikipedia.org/wiki/NAT_traversal
+
 Network Address Translation (NAT) typically creates barriers for direct
-peer-to-peer (P2P) communication. Devices behind NAT gateways are often isolated
+peer-to-peer communication. Devices behind NAT gateways are often isolated
 with non-routable private IP addresses, making them inaccessible from the public
 internet. This is common in most consumer internet setups.
 
 Tor addresses this issue by providing static `.onion` addresses – cryptographic
 identifiers representing nodes that are routable across the Tor network. This
-allows peers behind NAT to connect directly without needing to know each other's
-public IP addresses, overcoming limitations faced by traditional P2P networks.
+allows peers behind NAT to connect directly without needing to know each
+other's public IP addresses, overcoming limitations faced by traditional
+peer-to-peer networks.
 
-This chapter will explore a few distinct Tor configurations for Radicle:
+This chapter will explore a few distinct ways to configure Radicle with Tor:
 
-1. **Mixed Mode**: Only connections to other onion addresses go through Tor,
-   while other connections work normally.
-2. **Full Proxy Mode**: All traffic is routed through Tor for maximum anonymity.
-3. **Transparent Proxy**: Leverages an existing fully transparent Tor proxy on
+1. **Mixed Mode**: Only connections to `.onion` addresses go through Tor, while
+   other connections work normally.
+2. **Full Proxy Mode**: All traffic is routed through Tor for maximum anonymity,
+    including traffic to nodes that are *not* behind Tor.
+3. **Transparent Proxy Mode**: Leverages an existing fully transparent Tor proxy on
    the network.
 
 Before proceeding, ensure you have Tor installed on your system. Use your
 preferred package manager to install it (the package name is typically "tor").
-For detailed instructions, refer to the [Tor installation guide][install-tor].
+For detailed instructions, refer to the Tor [installation guide][install-tor].
 
 
 ### Setting up a Tor Onion Service for Radicle
@@ -1867,142 +1829,170 @@ repository. Recently, we removed a compromised seed node from the repository's
 `allow` list, which inadvertently cut off Calyx's access to the repository.
 
 To restore Calyx's access and enhance the security of our sensitive research,
-we'll configure our own node as a Tor Onion Service (also known as a hidden
+we'll configure our node as a Tor Onion Service (also known as a hidden
 service). This setup will make our node accessible via a `.onion` address,
-allowing Calyx to connect directly to us without relying on any intermediary
-seed nodes.
+allowing Calyx to connect directly to us without relying on any intermediaries.
 
-Let's set up our Tor Onion Service (the following steps are for Linux-based
-systems):
+Let's set up our Tor Onion Service. The following steps are for Linux-based
+systems, but they should be similar for other operating systems.
 
-1. Create a new `radicle` directory for our Onion Service, ensuring it's
-   readable and writable:
+First we create a new `radicle` directory for our Onion Service, ensuring it's
+readable and writable:
 
-       $ sudo mkdir -m 700 /var/lib/tor/radicle
+    $ sudo mkdir -m 700 /var/lib/tor/radicle
 
-This directory will store information and cryptographic keys for your Onion
+This directory will store information and cryptographic keys for our Onion
 Service.
 
-2. Open up your Tor configuration file (`torrc`) in an editor, such as vi:
+Then we update our Tor configuration (`/etc/tor/torrc`) by adding the following
+lines to it:
 
-        $ sudo vi /etc/tor/torrc
+    HiddenServiceDir /var/lib/tor/radicle
+    HiddenServicePort 8776
 
-3. Add the following lines to the configuration file:
+These lines set the `HiddenServiceDir` to the path of the directory we just
+created and specify the `HiddenServicePort` as `8776`, which is the default
+Radicle node port.
 
-        HiddenServiceDir /var/lib/tor/radicle
-        HiddenServicePort 8776
+Finally, we restart our Tor daemon to apply the configuration changes:
 
-These lines set the `HiddenServiceDir` to the path of the folder we just created
-(replace the path if yours is in a different location) and specify the
-`HiddenServicePort` as 8776, which is the default port for Radicle.
+    $ sudo systemctl restart tor
 
-4. Restart Tor to apply the configuration changes:
+Our `.onion` address is stored in a file under our Onion Service
+directory. Let's take a look:
 
-        $ sudo systemctl restart tor
+    $ sudo cat /var/lib/tor/radicle/hostname
+    1odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion
 
-5. Retrieve your `.onion` address:
-
-        $ sudo cat /var/lib/tor/radicle/hostname
-
-Copy this `.onion` address to your clipboard, as we'll need it to configure our
-Radicle node in the next steps. (It should be something like
-`1odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion`)
-
+We can copy this address to our clipboard, as we'll need it to configure our
+Radicle node in the next steps.
 
 > 🧠
 >
-> If you are a macOS user, these alternate commands may be handy:
->   - You can install Tor via `brew install tor` and restart it via `brew
->     services restart tor`
->   - Use the command `mkdir -m 700 ~/.tor/radicle` to create your hidden
->     service directory
->   - Edit the `torrc` configuration file via `vi /usr/local/etc/tor/torrc`
->     - The hidden service directory line should be: `HiddenServiceDir
->       /Users/your-user-name/.tor/radicle` -- yet replace `your-user-name`
->   - Get your `.onion` address via `cat ~/.tor/radicle/hostname`
+> If you are a **macOS** user, install Tor via `brew install tor` and restart
+> it via `brew services restart tor`.
 >
-> If you are a Debian user who got Tor from a Debian repo, you may need to
+> Use `mkdir -m 700 ~/.tor/radicle` to create your onion service directory.
+>
+> The Tor configuration file is located at `/usr/local/etc/tor/torrc` and your
+> `.onion` address can be found in `~/.tor/radicle/hostname`.
+>
+> If you are a **Debian** user who got Tor from a Debian repo, you may need to
 > change the ownership of the `radicle` directory to the `debian-tor` user and
-> group first:
+> group after creating it:
 >
 >     $ sudo chown -R debian-tor:debian-tor /var/lib/tor/radicle
 
 
-### Balancing privacy and performance with the *mixed mode*
+#### Configuring Radicle in *Mixed Mode*
 
 Now that we have Tor properly set up, it's time to configure the networking on
 our Radicle node to work with it. There are several configuration options
 available, but for our use case, we'll implement the *Mixed Mode* where only
-connections to `.onion` addresses go through Tor, while other connections work
-normally.
+connections to `.onion` addresses go through Tor, while regular connections go
+through the regular internet. For our particular use-case, we're trying to
+collaborate on a private repository, not to hide our IP address.
 
 This configuration offers a balance between privacy and performance:
 
-* It maintains low latency for regular public repositories.
-* It allows connectivity to Tor nodes for enhanced privacy when needed.
+* It maintains low latency for regular public nodes.
+* It allows connectivity through Tor, for nodes that are exposed as an onion
+  service.
 
-We're choosing this mode because we've already been collaborating on public
-repositories with our IP address exposed.
+<figure class="diagram">
+  <object type="image/svg+xml" data="/assets/images/tor-mixed-mode.svg"></object>
+  <figcaption>Tor <em>Mixed Mode</em>.</figcaption>
+</figure>
 
-To set this up:
+To set this up, we first ensure that our Radicle node is stopped and then edit
+our node's configuration file:
 
-1. We stop our Radicle node and open our node configuration file:
+    $ rad node stop
+    $ rad config edit
 
-        $ rad node stop
-        $ rad config edit
+Under the `node` key in our configuration, we define a new `onion` attribute
+as follows:
 
-2. Under the `node` key in our configuration, we define a new `onion` subkey
-where we set its `mode` to `proxy` and `address` to the Tor SOCKS5 address
-   `127.0.0.1:9050`:
+```json
+"node": {
+    ...
+    "onion": {
+        "mode": "proxy",
+        "address": "127.0.0.1:9050"
+    }
+}
+```
 
-        "node": {
-            ...
-            "onion": {
-                "mode": "proxy",
-                 "address": "127.0.0.1:9050"
-            },
-            ...
-        }
+This tells Radicle that for `.onion` addresses, we want to use the specified
+Tor *SOCKS5* proxy address. This is the address on which the Tor daemon should
+be listening on.
 
-1. Still under the `node` key, we make our node publicly accessible via our
-   `.onion` address, on port 8776:
+Next, we ensure our node is listening for incoming connections on port `8776`.
+This is the port that our Tor proxy will be using to bridge connections to our
+node, and is the same as the `HiddenServicePort` in our Tor configuration.
 
-        "node": {
-            ...
-            "externalAddresses": [
-            "1odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:8776"
-            ],
-            ...
-        }
+```json
+"node": {
+    ...
+    "listen": ["0.0.0.0:8776"]
+}
+```
 
-   *This is the `.onion` address we obtained earlier.*
+Finally, if we want our `.onion` address to be publicly *discoverable* on the
+network, we add it to our `externalAddresses`, including the port. This will
+configure our node to advertize its `.onion` address to peers.
 
-2. Lastly, under the `node` key again, we ensure our node listens for connection
-   requests on `0.0.0.0:8776`:
+```json
+"node": {
+    ...
+    "externalAddresses": [
+        "1odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:8776"
+    ]
+}
+```
 
-        "node": {
-                ...
-                "listen": [
-                    "0.0.0.0:8776"
-                ],
-                ...
-        }
+> 👾 This is the `.onion` address we obtained earlier from the Tor `hostname`
+> file.
+
+Note that this is **optional**: if you don't specify it here, peers will still
+be able to connect to you if they know your `.onion` address.
 
 This configuration allows our node to use Tor for `.onion` connections while
 maintaining direct connections for regular traffic, balancing our privacy and
 performance needs.
 
-### Applying changes and making connections
+#### Making connections
 
 Now that we have updated our configuration, we can start up our node again:
 
-    paxel$ rad node start
+    $ rad node start
 
 Since our node is online, Calyx can now continue to collaborate with us on
 `schrödingers-paradox`. He uses the `rad node connect` command to establish a
 direct connection with us:
 
-    calyx$ rad node connect z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9@odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:8776
+<aside class="kicker"><code>Calyx</code></aside>
+
+    $ rad node connect z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9@odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:8776
+
+Notice that the connect address is a combination of the peer's NID and its
+`.onion` address:
+
+    <nid> @ <onion> : <port>
+
+Tor connections can take some time to establish, as a route through the network
+of relays is computed. If you want your node to maintain a persistent
+connection to a peer even after your node is restarted, simply add the above
+address to the `connect` field in your node configuration:
+
+```json
+"node": {
+    ...
+    "connect": [
+        "z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9@odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:8776"
+    ]
+}
+```
 
 By leveraging Radicle's private repositories and the Tor network, we protected
 our project's confidentiality and stood resilient in the face of attacks on our
@@ -2019,82 +2009,73 @@ intermediary seed node.
 
 ### Alternative Tor configurations
 
-While we've focused on Mixed Mode, there are two additional configurations that
-offer more comprehensive network privacy through Tor. These options route all
-Radicle traffic through the Tor network, which may impact latency but provide
-enhanced anonymity.
+While Mixed Mode allows us to connect to Tor nodes and traverse NATs, there are
+two additional configurations that offer more comprehensive network privacy
+through Tor, at the expense of network latency. These options route all Radicle
+traffic through the Tor network, including to nodes that are not configured
+with Tor.
 
-**Full Proxy Mode**
+#### Full Proxy Mode
 
-Full Proxy Mode routes all traffic through Tor for maximum anonymity. This mode
-leverages the same Tor connection we set up earlier. Here's how to configure it:
+Full Proxy Mode routes all traffic through Tor for maximum anonymity.
 
-1. In your Radicle configuration file, assign the global proxy to the Tor SOCKS5
-   address `127.0.0.1:9050`:
+<figure class="diagram">
+  <object type="image/svg+xml" data="/assets/images/tor-full-proxy-mode.svg"></object>
+  <figcaption>Tor <em>Full Proxy Mode</em>.</figcaption>
+</figure>
 
-        "node": {
-            ...
-            "proxy": "127.0.0.1:9050",
-            ...
-        }
+Instead of setting up a proxy only for `.onion` addresses, we set up a global
+proxy for all address types:
 
-2. Configure onion connections to use the global proxy by setting the mode to
-   `forward`:
+```json
+"node": {
+    ...
+    "proxy": "127.0.0.1:9050"
+}
+```
 
-        "node": {
-            ...
-            "onion": {
-                "mode": "forward"
-            },
-            ...
-        }
+Then, we change the `mode` for `.onion` addresses to `forward`, and remove
+the `proxy` configuration from there:
 
-3. Make your node publicly accessible via its `.onion` address, on port 8776:
+```json
+"node": {
+    ...
+    "onion": {
+        "mode": "forward"
+    }
+}
+```
 
-        "node": {
-            ...
-            "externalAddresses": [
-                "your-onion-address.onion:8776"
-            ],
-            ...
-        }
+The `listen` and `externalAddresses` configuration doesn't change.
 
-   *Be sure to replace `your-onion-address.onion` with your actual `.onion`
-   address.*
+#### Transparent Proxy Mode
 
-4. Ensure your node listens for connection requests on `0.0.0.0:8776`:
+If you've already set up a fully transparent Tor proxy on your network, simply
+omit the global proxy configuration, and set `.onion` configuration to
+`forward`:
 
-        "node": {
-            ...
-            "listen": [
-                "0.0.0.0:8776"
-            ],
-            ...
-        }    
+<aside class="span-2">Configuring a transparent Tor proxy for your entire
+network is beyond the scope of this guide. If you're interested in this setup,
+consult the Tor Project documentation for detailed instructions.</aside>
 
-**Transparent Proxy Mode**
+```json
+"node": {
+    ...
+    "onion": {
+        "mode": "forward"
+    }
+}
+```
 
-If you've already set up a fully transparent Tor proxy on your network, you can
-use this simpler *Transparent Proxy Mode* configuration:
+This will configure your node to use your operating system's DNS resolver
+to resolve `.onion` addresses.
 
-Don't set any other `proxy` settings. Instead, set the onion mode to `forward`:
-
-        "node": {
-            ...
-            "onion": {
-                "mode": "forward"
-            },
-            ...
-        }
-
-<aside>Configuring a transparent Tor proxy for your entire network is beyond the scope
-of this guide. If you're interested in this setup, consult the Tor Project
-documentation for detailed instructions.</aside>
-
-*Radicle's codebase hasn't yet undergone formal security audits. While we're
-confident in its security, undiscovered vulnerabilities may exist. If you
-encounter any issues, we encourage you to report them to
-**security@radicle.xyz***
+> 👻
+>
+> Radicle's codebase hasn't yet undergone formal security audits. While we're
+> confident in its security, undiscovered vulnerabilities may exist. If you
+> encounter any issues, we encourage you to report them to
+> **security@radicle.xyz**.
 
 [proto]: /guides/protocol/
 [seeder]: /guides/seeder/

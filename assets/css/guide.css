@@ -122,6 +122,7 @@ pre {
 }
 
 pre code {
+  background: none !important;
   padding: 0;
 }
 
@@ -274,6 +275,12 @@ figure pre {
   margin: 0;
 }
 
+li pre {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  padding: 0.75rem;
+}
+
 figure img, figure object {
   display: block;
   margin: 0 auto;
@@ -347,7 +354,7 @@ a {
   text-decoration: unset;
 }
 
-p a {
+li a, p a {
   border-bottom: 1px solid var(--color-fg-dim);
 }
 p a:hover {
@@ -407,7 +414,7 @@ span.highlight-secondary {
   font-size: 0.75rem !important;
   margin: 2rem 0 3rem 0;
   padding: 0;
-  max-height: 16rem;
+  max-height: 18rem;
 }
 
 .toc a {

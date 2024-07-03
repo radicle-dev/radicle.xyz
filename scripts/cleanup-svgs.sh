@@ -6,6 +6,11 @@ if [ $# -lt 1 ]; then
   exit 1
 fi
 
+if ! command -v tidy 2>&1; then
+  echo "error: the 'tidy' executable is required for formatting"
+  exit 1
+fi
+
 # Function to process a single file
 process() {
     FILE="$1"
@@ -17,9 +22,9 @@ process() {
     fi
 
     # Format SVG.
-    xmllint --format "$FILE" --output "$FILE"
-    # Remove `<?xml>` header.
-    sed -i 1d "$FILE"
+    tidy -xml -i -m -q -w 0 "$FILE"
+    # Remove `<?xml>` header, if present.
+    sed -i '1{/^<?xml/d;}' "$FILE"
 
     # Remove all instances of `font-family="..."` and `font-size="..."`
     sed -i -e 's/font-family="[^"]*"//g' -e 's/font-size="16px"//g' "$FILE"
