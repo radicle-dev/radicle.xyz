@@ -1545,9 +1545,9 @@ seed node.
 ### Initializing a private repository
 
 When a private repository is created in Radicle, it is only visible and
-accessible to explicitly authorized peers. Privacy is extended to all aspects
-of the repository, including its data, creation time, Repository ID (RID), COBs,
-and its set of collaborators.
+accessible to explicitly authorized peers. Privacy is extended to all aspects of
+the repository, including its data, creation time, Repository ID (RID),
+Collaborative Objects (COBs), and its set of collaborators.
 
 To maintain this privacy during data transfer, all connections between nodes,
 including those to seed nodes, are fully encrypted using an AEAD algorithm,
@@ -1623,7 +1623,7 @@ This seed node will act as a trusted relay, necessary for the synchronization
 of repository state between Calyx and us.
 
 Though this trusted seed node needs a public DNS address, it doesn't have to
-be advertized to the network. One can simply omit adding the address to
+be advertised to the network. One can simply omit adding the address to
 the `externalAddresses` key in the Radicle node configuration.
 
 > 👻
@@ -1746,7 +1746,7 @@ but this time with the `--disallow` flag:
     $ rad id update --title "Darkstar is compromised!" \
         --disallow did:key:z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt
 
-Our *no-longer-trusted* seed node will now be unable to fetch updates from us,
+Our *no-longer-trusted* seed node will now be unable to fetch updates from us
 for `schrödingers-paradox`.
 
 > 👾
@@ -1779,7 +1779,7 @@ organizations seeking greater online privacy.</aside>
 
 To further enhance repository and user privacy, Radicle nodes can be
 configured to run behind Tor. This allows connections to be made to `.onion`
-addresses as well as hiding one's IP address and exposing Radicle as a Tor
+addresses, as well as hiding one's IP address and exposing Radicle as a Tor
 *onion service*.
 
 Depending on how you configure Radicle, it offers several key advantages:
@@ -1789,7 +1789,7 @@ Depending on how you configure Radicle, it offers several key advantages:
   location.
 * **NAT traversal**: Tor automatically handles [NAT traversal][nat],
   eliminating the need for manual port forwarding or UPnP configuration. This
-  means peers can directly connect with one another, without a seed node, even
+  means peers can directly connect with one another without a seed node, even
   behind a restrictive firewall.
 * **Censorship resistance**: Repositories accessible via Tor are more resilient
   against censorship attempts, as the Tor network is designed to circumvent
@@ -1925,7 +1925,7 @@ as follows:
 
 This tells Radicle that for `.onion` addresses, we want to use the specified
 Tor *SOCKS5* proxy address. This is the address on which the Tor daemon should
-be listening on.
+be listening.
 
 Next, we ensure our node is listening for incoming connections on port `8776`.
 This is the port that our Tor proxy will be using to bridge connections to our
@@ -1940,7 +1940,7 @@ node, and is the same as the `HiddenServicePort` in our Tor configuration.
 
 Finally, if we want our `.onion` address to be publicly *discoverable* on the
 network, we add it to our `externalAddresses`, including the port. This will
-configure our node to advertize its `.onion` address to peers.
+configure our node to advertise its `.onion` address to peers.
 
 ```json
 "node": {
@@ -1980,7 +1980,7 @@ Notice that the connect address is a combination of the peer's NID and its
 
     <nid> @ <onion> : <port>
 
-Tor connections can take some time to establish, as a route through the network
+Tor connections can take some time to establish as a route through the network
 of relays is computed. If you want your node to maintain a persistent
 connection to a peer even after your node is restarted, simply add the above
 address to the `connect` field in your node configuration:
@@ -2051,7 +2051,7 @@ The `listen` and `externalAddresses` configuration doesn't change.
 #### Transparent Proxy Mode
 
 If you've already set up a fully transparent Tor proxy on your network, simply
-omit the global proxy configuration, and set `.onion` configuration to
+omit the global proxy configuration, and set the `.onion` configuration to
 `forward`:
 
 <aside class="span-2">Configuring a transparent Tor proxy for your entire
