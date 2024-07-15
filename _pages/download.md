@@ -10,11 +10,11 @@ reproduce the binaries on this page from source.
 
 [rb]: https://reproducible-builds.org/
 
-<p id="release" class="loading">
+<p id="radicle-release-header" class="loading">
   <span class="release-loader"></span>
   <span>
-    <h2 id="release-name">Latest release</h2>
-    <p id="release-info"><!-- Dynamic --></p>
+    <h2 id="radicle-release-name">Latest release</h2>
+    <p id="radicle-release-info"><!-- Dynamic --></p>
   </span>
 </p>
 
@@ -25,7 +25,51 @@ reproduce the binaries on this page from source.
   </p>
 </noscript>
 
-<table class="hidden loading" id="releases">
+<table class="hidden loading" id="radicle-releases">
+  <thead>
+    <th scope="col">OS</th>
+    <th scope="col" class="desktop">Arch</th>
+    <th scope="col">File</th>
+    <th scope="col">Signature</th>
+    <th scope="col">Checksum</th>
+  </thead>
+  <tr data-release-arch="x86_64" data-release-binary="unknown-linux-musl">
+    <th scope="row" rowspan="2">Linux</th>
+    <td class="release-arch desktop">Loading…</td>
+    <td>💾 <a class="release-url">Loading…</a></td>
+    <td><a class="release-sig">Loading…</a></td>
+    <td><a class="release-checksum">Loading…</a></td>
+  </tr>
+  <tr data-release-arch="aarch64" data-release-binary="unknown-linux-musl">
+    <td class="release-arch desktop">Loading…</td>
+    <td>💾 <a class="release-url">Loading…</a></td>
+    <td><a class="release-sig">Loading…</a></td>
+    <td><a class="release-checksum">Loading…</a></td>
+  </tr>
+  <tr data-release-arch="x86_64" data-release-binary="apple-darwin">
+    <th scope="row" rowspan="2">macOS</th>
+    <td class="release-arch desktop">Loading…</td>
+    <td>💾 <a class="release-url">Loading…</a></td>
+    <td><a class="release-sig">Loading…</a></td>
+    <td><a class="release-checksum">Loading…</a></td>
+  </tr>
+  <tr data-release-arch="aarch64" data-release-binary="apple-darwin">
+    <td class="release-arch desktop">Loading…</td>
+    <td>💾 <a class="release-url">Loading…</a></td>
+    <td><a class="release-sig">Loading…</a></td>
+    <td><a class="release-checksum">Loading…</a></td>
+  </tr>
+</table>
+
+<p id="radicle-httpd-release-header" class="loading">
+  <span class="release-loader"></span>
+  <span>
+    <h2 id="radicle-httpd-release-name">Latest release</h2>
+    <p id="radicle-httpd-release-info"><!-- Dynamic --></p>
+  </span>
+</p>
+
+<table class="hidden loading" id="radicle-httpd-releases">
   <thead>
     <th scope="col">OS</th>
     <th scope="col" class="desktop">Arch</th>
@@ -66,6 +110,12 @@ reproduce the binaries on this page from source.
 You can download the appropriate tarball for your operating system with:
 
     curl -O -L https://files.radicle.xyz/releases/latest/radicle-$TARGET.tar.xz
+
+For Radicle proper, and:
+
+    curl -O -L https://files.radicle.xyz/releases/radicle-httpd/latest/radicle-$TARGET.tar.xz
+
+For Radicle HTTP Daemon.
 
 Replace `$TARGET` with the appropriate target for your system:
 
@@ -129,36 +179,41 @@ This will place binaries in `~/.radicle/bin` and manuals in `~/.radicle/man`,
 and overwrite any existing Radicle binaries.
 
 <script>
-  const releases = document.getElementById("releases");
-  releases.classList.remove("hidden");
+  getRelease("Radicle", "https://files.radicle.xyz/releases/latest", "radicle");
+  getRelease("Radicle HTTP Daemon", "https://files.radicle.xyz/releases/radicle-httpd/latest", "radicle-httpd");
 
-  fetch("https://files.radicle.xyz/releases/latest/radicle.json")
-    .then(res => res.json())
-    .then(data => {
-      const version = data.version;
-      const commit = data.commit;
-      const release = document.getElementById("release");
-      const releaseName = document.getElementById("release-name");
-      const releaseInfo = document.getElementById("release-info");
+  function getRelease(name, urlBase, releaseId) {
+      const releases = document.getElementById(`${releaseId}-releases`);
+      releases.classList.remove("hidden");
 
-      document.querySelectorAll("#releases [data-release-binary]").forEach((row) => {
-        const arch = row.dataset.releaseArch;
-        const binary = row.dataset.releaseBinary;
-        const archive = `radicle-${version}-${arch}-${binary}.tar.xz`;
-        const url = `https://files.radicle.xyz/releases/latest/${archive}`;
+      fetch(`${urlBase}/${releaseId}.json`)
+        .then(res => res.json())
+        .then(data => {
+          const version = data.version;
+          const commit = data.commit;
+          const release = document.getElementById(`${releaseId}-release-header`);
+          const releaseName = document.getElementById(`${releaseId}-release-name`);
+          const releaseInfo = document.getElementById(`${releaseId}-release-info`);
 
-        row.querySelector(".release-arch").innerText = arch;
-        row.querySelector(".release-url").innerText = archive;
-        row.querySelector(".release-sig").innerText = ".sig";
-        row.querySelector(".release-checksum").innerText = ".sha256";
+          document.querySelectorAll(`#${releaseId}-releases [data-release-binary]`).forEach((row) => {
+            const arch = row.dataset.releaseArch;
+            const binary = row.dataset.releaseBinary;
+            const archive = `${releaseId}-${version}-${arch}-${binary}.tar.xz`;
+            const url = `${urlBase}/${archive}`;
 
-        row.querySelector(".release-url").href = url;
-        row.querySelector(".release-sig").href = `${url}.sig`;
-        row.querySelector(".release-checksum").href = `${url}.sha256`;
-      });
+            row.querySelector(".release-arch").innerText = arch;
+            row.querySelector(".release-url").innerText = archive;
+            row.querySelector(".release-sig").innerText = ".sig";
+            row.querySelector(".release-checksum").innerText = ".sha256";
 
-      release.classList.remove("loading");
-      releaseName.innerText = `Radicle ${version}`;
-      releaseInfo.innerHTML = `Built from commit <code>${commit}</code> on ${new Date(data.timestamp * 1000).toUTCString()}.`;
-    });
+            row.querySelector(".release-url").href = url;
+            row.querySelector(".release-sig").href = `${url}.sig`;
+            row.querySelector(".release-checksum").href = `${url}.sha256`;
+          });
+
+          release.classList.remove("loading");
+          releaseName.innerText = `${name} ${version}`;
+          releaseInfo.innerHTML = `Built from commit <code>${commit}</code> on ${new Date(data.timestamp * 1000).toUTCString()}.`;
+        });
+    }
 </script>
