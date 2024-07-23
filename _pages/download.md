@@ -61,6 +61,13 @@ reproduce the binaries on this page from source.
   </tr>
 </table>
 
+<table>
+  <thead><th>Signer</th></thead>
+  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL460KIEccS4881p7PPpiiQBsxF+H5tgC6De6crw9rbU</code></td></tr>
+  <tr><td>Fingerprint</td><td><code>SHA256:iTDjRHSIaoL8dpHbQ0mv+y0IQqPufGl2hQwk4TbXFlw</code></td></tr>
+  <tr><td>Owner</td><td>cloudhead@radicle.xyz</td></tr>
+</table>
+
 <p id="radicle-httpd-release-header" class="loading">
   <span class="release-loader"></span>
   <span>
@@ -105,6 +112,13 @@ reproduce the binaries on this page from source.
   </tr>
 </table>
 
+<table>
+  <thead><th>Signer</th></thead>
+  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKU7IHRsae2q1/qd8NaWxfGhPEFGHwK1dcxvSjNdttjb</code></td></tr>
+  <tr><td>Fingerprint</td><td><code>SHA256:mqjWN1YrPRDTcVTxB4IZPHyH+vXpjWSogi+3zezZ/rQ</code></td></tr>
+  <tr><td>Owner</td><td>me@sebastinez.dev</td></tr>
+</table>
+
 ## Download
 
 You can download the appropriate tarball for your operating system with:
@@ -113,7 +127,7 @@ You can download the appropriate tarball for your operating system with:
 
 For Radicle proper, and:
 
-    curl -O -L https://files.radicle.xyz/releases/radicle-httpd/latest/radicle-$TARGET.tar.xz
+    curl -O -L https://files.radicle.xyz/releases/radicle-httpd/latest/radicle-httpd-$TARGET.tar.xz
 
 For Radicle HTTP Daemon.
 
@@ -147,17 +161,10 @@ Replace `$TARGET` with the appropriate target for your system:
 
 ## Verification
 
-Release tarballs are signed using the following SSH public key:
-
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL460KIEccS4881p7PPpiiQBsxF+H5tgC6De6crw9rbU
-
-The key's fingerprint is:
-
-    SHA256:iTDjRHSIaoL8dpHbQ0mv+y0IQqPufGl2hQwk4TbXFlw
-
 After you've downloaded the archive (`ARCHIVE.tar.xz` in the examples below),
 verify the signature using the `.sig` file and `ssh-keygen`. The output must
-match exactly, including the key fingerprint:
+match the following, including the respective signing key fingerprint from
+the section above. For example:
 
     $ ssh-keygen -Y check-novalidate -n file -s ARCHIVE.tar.xz.sig < ARCHIVE.tar.xz
     Good "file" signature with ED25519 key SHA256:iTDjRHSIaoL8dpHbQ0mv+y0IQqPufGl2hQwk4TbXFlw
