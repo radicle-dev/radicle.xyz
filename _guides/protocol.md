@@ -204,11 +204,13 @@ message types, each fulfilling a distinct role:
 
 | Node Announcement
 | -----------------
+| **`version`**   | `u8`             | Supported protocol version
 | **`features`**  | `u64`            | Advertised node capabilities
 | **`timestamp`** | `u64`            | Message timestamp (unix time)
 | **`alias`**     | `u8[]`           | Non-unique alias (UTF-8)
 | **`addresses`** | `Address[]`      | External addresses
 | **`nonce`**     | `u64`            | Nonce used for DoS protection
+| **`agent`**     | `u8[]`           | User-agent (UTF-8)
 
 **Inventory Announcements** are used for broadcasting repository inventories
    and constructing the routing table which maps out what repositories are
