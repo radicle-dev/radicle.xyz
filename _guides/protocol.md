@@ -740,11 +740,7 @@ each other in a non-destructive, idempotent way.
 mathematics and computer science whereby they can be applied multiple times
 without changing the result. </aside>
 
-<figure class="diagram tall">
-  <object type="image/svg+xml" data="/assets/images/cob-dag.svg"></object>
-</figure>
-
-<aside class="diagram">
+<aside class="diagram span-2">
   <p>
     Git DAG representing an Issue COB. Each box represents a
     commit object with a change to the COB.
@@ -755,6 +751,10 @@ without changing the result. </aside>
     dependencies.
   </p>
 </aside>
+
+<figure class="diagram tall">
+  <object type="image/svg+xml" data="/assets/images/cob-dag.svg"></object>
+</figure>
 
 Then, to materialize the state that is displayed to the user, this new graph is
 *reduced* in [topological order][topo], starting from the root of the graph and
