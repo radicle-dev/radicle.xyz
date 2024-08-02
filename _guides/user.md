@@ -1872,7 +1872,7 @@ Radicle node in the next steps.
 > If you are a **macOS** user, install Tor via `brew install tor` and restart
 > it via `brew services restart tor`.
 >
-> Use `mkdir -m 700 ~/.tor/radicle` to create your onion service directory.
+> Use `mkdir -p -m 700 ~/.tor/radicle` to create your onion service directory.
 >
 > The Tor configuration file is located at `/usr/local/etc/tor/torrc` and your
 > `.onion` address can be found in `~/.tor/radicle/hostname`.
