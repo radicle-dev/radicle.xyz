@@ -135,7 +135,7 @@ This command runs an installer script that automates the setup process, by:
 > prefer.
 
 [heartwood]: https://app.radicle.xyz/seeds/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
-[binaries]: https://files.radicle.xyz/latest/
+[binaries]: https://radicle.xyz/download
 
 Once you've installed Radicle, you can make sure that it was successful by
 running:
