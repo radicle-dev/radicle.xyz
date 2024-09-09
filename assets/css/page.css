@@ -75,8 +75,8 @@ hr {
 }
 
 ul {
-  list-style-position: inside;
-  padding-left: 0;
+  list-style-position: outside;
+  padding-left: 2rem;
 }
 
 ul li {
@@ -206,6 +206,14 @@ a:hover {
   display: none;
 }
 
+.date {
+  color: var(--color-fg-dim);
+}
+
+.dim {
+  color: var(--color-fg-dim);
+}
+
 li::marker {
   content: "- ";
 }
@@ -219,6 +227,15 @@ body > main {
 
 body.wide > main {
   max-width: 112ch;
+}
+
+body > main > header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+body > main > header > h1 {
+  margin: 0;
 }
 
 body > header {
@@ -333,6 +350,15 @@ img.screenshot {
   border: 1px dashed var(--color-secondary);
   width: 100%;
   filter: grayscale(100%);
+}
+
+img.banner {
+  width: 100%;
+  height: 10rem;
+  padding-left: 2rem;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: 50%;
 }
 
 /* TICKER */

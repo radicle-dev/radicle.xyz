@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    {% include meta.html %}
+    <link rel="stylesheet" type="text/css" href="{{ "/assets/css/page.css" | relative_url }}"/>
+  </head>
+  <body class="{{ page.variant }}">
+    {% include header.html %}
+    <main>
+      <img class="banner" src="/assets/images/{{ page.image }}" />
+      <p class="dim"><em>Radicle is a peer-to-peer, local-first code
+        collaboration stack built on Git.</em></p>
+      <br />
+      <header>
+        <h1>{{ page.title }}</h1>
+        <span class="date">{{ page.date | date: "%d.%m.%Y" }}</span>
+      </header>
+      {{ content }}
+    </main>
+    {% include footer.html %}
+    <script src="{{ "/assets/js/toggle-theme.js" | relative_url }}"></script>
+  </body>
+</html>

@@ -3,6 +3,8 @@ title: "Radicle: the sovereign forge"
 layout: index
 ---
 
+> ✨ Radicle 1.0 is out. Read the [announcement](/2024/09/10/radicle-1.0.html).
+
 # Synopsis
 
 Radicle is an open source, peer-to-peer code collaboration stack built on Git.
@@ -109,8 +111,9 @@ licenses. Get involved by [contributing code][contribute].
 **Follow us** on 🐘 [Mastodon][mast], 🦋 [Bluesky][bsky] or 🐦 [Twitter][twitter] to stay
 updated, or join our community on 💬 [Zulip][zulip].
 
-- 26.03.2024 [Radicle 1.0.0-rc.1][1.0] released! ✨
-- 10.03.2024 New Radicle homepage!
+- 10.09.2024 [Radicle 1.0](/2024/09/10/radicle-1.0.html) is out. ✨
+- 26.03.2024 [Radicle 1.0.0-rc.1][1.0] released.
+- 10.03.2024 New Radicle homepage.
 - 05.03.2024 [Radicle Guides](/guides) launch.
 - 05.03.2024 [Radicle makes it to the top of Hacker News][hn]!
 - 18.04.2023 [Radicle heartwood is announced](https://x.com/radicle/status/1648336186862194693?s=20).
