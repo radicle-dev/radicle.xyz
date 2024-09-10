@@ -22,8 +22,8 @@
     width: 1rem;
     animation: spin 1s linear infinite;
   }
-  #release-timestamp {
-    color: var(--color-fg-low-contrast);
+  #release-timestamp, #release-commit {
+    color: var(--color-fg-dim);
   }
 
   @keyframes spin {
@@ -37,7 +37,8 @@
   <span class="release-loader"></span>
   <span>
     <a href="https://files.radicle.xyz/releases/latest" id="release-info"></a>
-    <span class="desktop">&middot;</span>
+    <span class="desktop dim">&middot; </span>
+    <span id="release-commit" class="desktop"></span>
     <span id="release-timestamp" class="desktop"></span>
   </span>
 </blockquote>
@@ -52,7 +53,8 @@
       const releaseInfo = document.getElementById("release-info");
 
       release.classList.remove("loading");
-      releaseInfo.innerText = `Radicle ${version} (${commit})`;
-      document.getElementById("release-timestamp").innerText = new Date(data.timestamp * 1000).toUTCString();
+      releaseInfo.innerText = `Radicle ${version}`;
+      document.getElementById("release-commit").innerText = commit;
+      document.getElementById("release-timestamp").innerText = `(${new Date(data.timestamp * 1000).toUTCString()})`;
     });
 </script>
