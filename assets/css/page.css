@@ -331,6 +331,10 @@ nav .cta {
   gap: 2rem;
 }
 
+.links a {
+  line-height: 1rem;
+}
+
 a.screenshot {
   border: none;
 }
