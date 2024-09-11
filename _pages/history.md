@@ -3,45 +3,20 @@ title: Radicle's History
 layout: page
 ---
 
-A brief <strong class="highlight">history</strong> of the Radicle project.
+A brief <strong class="highlight">history</strong> of the Radicle project, in
+reverse-chronological order.
 
-### January, 2018
+### September, 2024
 
-Berlin-based **Monadic GmbH** is founded by [Eleftherios Diakomichalis][ed] and
-[Alexis Sellier][as] a.k.a cloudhead to pursue the vision of a sovereign
-developer stack.
+Radicle 1.0 is released.
 
-### February, 2019
+### March, 2024
 
-Radicle, a code collaboration platform launches in *alpha*. The initial version
-of Radicle is built on [IPFS][ipfs].
+Radicle gears up for its 1.0 release-candidate phase, with `1.0.0-rc.1`.
 
-### October, 2019
+### January, 2023
 
-Development on the second generation of the Radicle protocol, **Radicle Link**
-starts.
-
-### June, 2020
-
-The Radicle Foundation is established. A Swiss non-profit that oversees the
-development of the project.
-
-### December, 2020
-
-The **Radicle Upstream** desktop client is released, based on the new Radicle
-Link protocol.
-
-The Link protocol is modeled around [Secure Scuttlebut][ssb] and uses Git under
-the hood for replication. IPFS is [no longer][689] used.
-
-### January 2021
-
-Development of Radicle moves to the Radicle Foundation, funded by the
-[Radworks][radworks] organization.
-
-### February, 2022
-
-Radicle launches a new [web client][web] based on the Radicle Link protocol.
+Radicle becomes self-hosted: development of the Radicle stack moves to Radicle.
 
 ### July, 2022
 
@@ -51,17 +26,43 @@ called [Heartwood][heartwood].
 Upstream is sunset in favor of the web client which transitions to the
 Heartwood protocol.
 
-### January, 2023
+### February, 2022
 
-Radicle becomes self-hosted: development of the Radicle stack moves to Radicle.
+Radicle launches a new [web client][web] based on the Radicle Link protocol.
 
-### March, 2024
+### January 2021
 
-Radicle gears up for its 1.0 RC1 release.
+Development of Radicle moves to the Radicle Foundation, funded by the
+[Radworks][radworks] organization.
 
-### September, 2024
+### December, 2020
 
-Radicle 1.0 is released, from release candidate 17.
+The **Radicle Upstream** desktop client is released, based on the new Radicle
+Link protocol.
+
+The Link protocol is modeled around [Secure Scuttlebut][ssb] and uses Git under
+the hood for replication. IPFS is [no longer][689] used.
+
+### June, 2020
+
+The Radicle Foundation is established. A Swiss non-profit that oversees the
+development of the project.
+
+### October, 2019
+
+Development on the second generation of the Radicle protocol, **Radicle Link**
+starts.
+
+### February, 2019
+
+Radicle, a code collaboration platform launches in *alpha*. The initial version
+of Radicle is built on [IPFS][ipfs].
+
+### January, 2018
+
+Berlin-based **Monadic GmbH** is founded by [Eleftherios Diakomichalis][ed] and
+[Alexis Sellier][as] a.k.a cloudhead to pursue the vision of a sovereign
+developer stack.
 
 [radworks]: https://radworks.org
 [ipfs]: https://ipfs.tech/
