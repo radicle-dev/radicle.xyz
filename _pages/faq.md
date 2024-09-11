@@ -23,9 +23,8 @@ compromising on the social aspects of collaboration platforms.
 
 ## Who is using Radicle currently? How many users does it have?
 
-Radicle is still in beta and hasn't officially launched yet. Many people in the
-community are already using it internally. The product is set to launch at the
-end of March 2024, and we are just starting to onboard users.
+As of September 2024, there are around 2000 repositories hosted on the network,
+and a little over 200 nodes online on a weekly basis.
 
 ## How many people are working on it?
 
