@@ -348,6 +348,12 @@ a.screenshot img {
   color: var(--color-fg-dim);
 }
 
+p.notice {
+  border: 1px solid var(--color-fg-dim);
+  padding: 1rem;
+  color: var(--color-fg-dim);
+}
+
 img.screenshot {
   margin-top: 1rem;
   margin-bottom: 1rem;

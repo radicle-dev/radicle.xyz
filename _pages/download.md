@@ -10,10 +10,16 @@ reproduce the binaries on this page from source.
 
 [rb]: https://reproducible-builds.org/
 
+<noscript>
+  <p class="notice">
+    <strong>Note</strong>: to load the latest release data, enable JavaScript in your browser.
+  </p>
+</noscript>
+
 <p id="radicle-release-header" class="loading">
   <span class="release-loader"></span>
   <span>
-    <h2 id="radicle-release-name">Latest release</h2>
+    <h2 id="radicle-release-name">Radicle</h2>
     <p id="radicle-release-info"><!-- Dynamic --></p>
   </span>
 </p>
@@ -71,10 +77,17 @@ reproduce the binaries on this page from source.
 <p id="radicle-httpd-release-header" class="loading">
   <span class="release-loader"></span>
   <span>
-    <h2 id="radicle-httpd-release-name">Latest release</h2>
+    <h2 id="radicle-httpd-release-name">Radicle HTTP Daemon</h2>
     <p id="radicle-httpd-release-info"><!-- Dynamic --></p>
   </span>
 </p>
+
+<noscript>
+  <p>
+    Browse the latest release at
+    <a href="https://files.radicle.xyz/releases/radicle-httpd/latest">https://files.radicle.xyz/radicle-httpd/releases/latest</a>
+  </p>
+</noscript>
 
 <table class="hidden loading" id="radicle-httpd-releases">
   <thead>
@@ -121,18 +134,6 @@ reproduce the binaries on this page from source.
 
 ## Download
 
-You can download the appropriate tarball for your operating system with:
-
-    curl -O -L https://files.radicle.xyz/releases/latest/radicle-$TARGET.tar.xz
-
-For Radicle proper, and:
-
-    curl -O -L https://files.radicle.xyz/releases/radicle-httpd/latest/radicle-httpd-$TARGET.tar.xz
-
-For Radicle HTTP Daemon.
-
-Replace `$TARGET` with the appropriate target for your system:
-
 <table>
   <thead>
     <th scope="col">OS</th>
@@ -158,6 +159,19 @@ Replace `$TARGET` with the appropriate target for your system:
     <td>aarch64-apple-darwin</td>
   </tr>
 </table>
+
+You can download the appropriate tarball for your operating system with:
+
+    curl -O -L https://files.radicle.xyz/releases/latest/radicle-$TARGET.tar.xz
+
+For Radicle proper, and:
+
+    curl -O -L https://files.radicle.xyz/releases/radicle-httpd/latest/radicle-httpd-$TARGET.tar.xz
+
+For Radicle HTTP Daemon.
+
+Replace `$TARGET` with the appropriate target for your system, from the table
+above.
 
 ## Verification
 

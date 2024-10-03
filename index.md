@@ -26,16 +26,14 @@ decentralized manner, and users are in full control of their data and workflow.
 
 {% include latest-release.html %}
 
-To install Radicle on your system, simply run the [install
-script][install-script] from a POSIX shell. For now, Radicle only works on
-Linux, macOS and BSD variants.
-
-The following command downloads and runs the installation script on your
-system:
+To install Radicle, simply run the command below from your shell, or go to the
+[download][] page.
 
 {% include install.html %}
 
-Alternatively, you can build from [source][heartwood] or get the [binaries][].
+Alternatively, you can build from [source][heartwood].
+
+For now, Radicle only works on Linux, macOS and BSD variants.
 
 <a class="button" href="/guides/user">Follow the guide &rarr;</a>
 
@@ -146,4 +144,4 @@ updated, or join our community on 💬 [Zulip][zulip].
 [heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 [cobs]: /guides/protocol#collaborative-objects
 [local-first]: https://www.inkandswitch.com/local-first/
-[binaries]: /download
+[download]: /download
