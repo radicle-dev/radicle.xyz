@@ -1,0 +1,31 @@
+down
+Node: ellipse "radicle-node" mono "process" width 120%
+line <->
+Storage: cylinder "Node storage" "~/.radicle/storage" mono small width 140%
+line <->
+Helper: ellipse "git-helper-rad" mono width 140%
+line <->
+Working: cylinder "working" "tree"
+
+arc from Node.w to Helper.w <-
+
+move right from Node.e
+move right
+move down
+Httpd: ellipse "radicle-httpd" mono "process" width 140%
+line <-> from Node.se to Httpd.nw
+line <-> from Httpd.sw to Storage.e
+
+move right from Node.e
+move
+move
+move
+Other: ellipse "Other node" dashed
+
+down
+move
+move
+Exp: box "Radicle" "explorer" dashed
+
+line from Other.w to Node.e -> dashed
+line from Exp.nw to Httpd.se -> dashed

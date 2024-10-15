@@ -1,0 +1,11 @@
+@startuml
+actor User
+participant Node
+database Storage
+
+User -> Node: "rad seed RID"
+Node -> Other: "git fetch RID"
+Other -> Node: "Git pack file"
+Node -> Storage: "add repository"
+Node -> User: "OK"
+@enduml

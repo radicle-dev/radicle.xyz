@@ -1,0 +1,39 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 365.184 328.32">
+<path d="M2.592,12.96L2.592,63.36A54 10.8 0 0 0 110.592 63.36L110.592,12.96A54 10.8 0 0 0 2.592 12.96A54 10.8 0 0 0 110.592 12.96"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="56.592" y="46.26" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Radicle node</text>
+<path d="M254.592,12.96L254.592,63.36A54 10.8 0 0 0 362.592 63.36L362.592,12.96A54 10.8 0 0 0 254.592 12.96A54 10.8 0 0 0 362.592 12.96"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="308.592" y="46.26" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Radicle node</text>
+<path d="M128.592,182.16L236.592,182.16L236.592,110.16L128.592,110.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="182.592" y="136.08" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Radicle</text>
+<text x="182.592" y="156.24" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">explorer</text>
+<polygon points="254.592,38.16 246.874,41.0544 246.874,35.2656" style="fill:rgb(0,0,0)"/>
+<polygon points="110.592,38.16 118.31,35.2656 118.31,41.0544" style="fill:rgb(0,0,0)"/>
+<path d="M250.733,38.16L114.451,38.16"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);" />
+<text x="182.592" y="26.9946" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">sync</text>
+<polygon points="110.592,63.36 116.064,69.5249 110.661,71.603" style="fill:rgb(0,0,0)"/>
+<path d="M128.592,110.16L111.977,66.962"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);" />
+<text x="119.592" y="97.9254" text-anchor="middle" fill="rgb(0,0,0)" transform="rotate(-111.037511 119.592,86.76)" dominant-baseline="central">http</text>
+<polygon points="254.592,63.36 254.523,71.603 249.12,69.5249" style="fill:rgb(0,0,0)"/>
+<path d="M236.592,110.16L253.207,66.962"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);" />
+<text x="245.592" y="97.9254" text-anchor="middle" fill="rgb(0,0,0)" transform="rotate(-68.96248897 245.592,86.76)" dominant-baseline="central">http</text>
+<ellipse cx="182.592" cy="290.16" rx="54" ry="36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="182.592" y="290.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Web browser</text>
+<polygon points="182.592,182.16 185.486,189.878 179.698,189.878" style="fill:rgb(0,0,0)"/>
+<path d="M182.592,254.16L182.592,186.019"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);" />
+<text x="182.592" y="229.325" text-anchor="middle" fill="rgb(0,0,0)" transform="rotate(-90 182.592,218.16)" dominant-baseline="central">http</text>
+<path d="M2.592,290.16L110.592,290.16L110.592,218.16L2.592,218.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="56.592" y="254.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Radicle user</text>
+<polygon points="56.592,218.16 52.272,206.64 60.912,206.64" style="fill:rgb(0,0,0)"/>
+<polygon points="56.592,74.16 60.912,85.68 52.272,85.68" style="fill:rgb(0,0,0)"/>
+<path d="M56.592,212.4L56.592,79.92"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="56.592" y="157.86" text-anchor="middle" fill="rgb(0,0,0)" transform="rotate(-90 56.592,146.16)" dominant-baseline="central">git</text>
+<path d="M254.592,290.16L362.592,290.16L362.592,218.16L254.592,218.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="308.592" y="254.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Git user</text>
+<polygon points="308.592,218.16 305.698,210.442 311.486,210.442" style="fill:rgb(0,0,0)"/>
+<path d="M308.592,214.301L308.592,74.16"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);" />
+<text x="308.592" y="157.325" text-anchor="middle" fill="rgb(0,0,0)" transform="rotate(-90 308.592,146.16)" dominant-baseline="central">git fetch</text>
+<polygon points="144.408,315.616 136.4,324.956 132.233,317.387" style="fill:rgb(0,0,0)"/>
+<path d="M56.592,290.16Q87.7722,346.796 139.362,318.394"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<polygon points="220.776,315.616 232.951,317.387 228.784,324.956" style="fill:rgb(0,0,0)"/>
+<path d="M225.822,318.394Q277.412,346.796 308.592,290.16"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+</svg>

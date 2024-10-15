@@ -1,0 +1,14 @@
+@startuml
+actor User
+participant Git
+participant Helper
+participant Node
+database Storage
+
+User -> Git: "git push rad HEAD"
+Git -> Helper: "push to RID"
+Helper -> Storage: "update storage"
+Helper -> Node: "notify of changes"
+Helper -> Git: "OK"
+Git -> User: "OK"
+@enduml

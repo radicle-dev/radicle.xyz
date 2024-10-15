@@ -1,0 +1,15 @@
+@startuml
+actor User
+participant Git
+participant Helper
+participant Node
+database Storage
+
+User -> Git: "rad checkout RID"
+Git -> Helper: "where is RID?"
+Helper -> Git: "path to RID"
+Git -> Storage: "get repository"
+Storage -> Git: "repository objects"
+Git -> WorkingTree: "git checkout"
+Git -> User: "OK"
+@enduml

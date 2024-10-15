@@ -1,0 +1,28 @@
+right
+Node1: cylinder "Radicle node"
+move
+move
+Node2: cylinder "Radicle node"
+move right from Node1.e
+move down
+Exp: box "Radicle" "explorer"
+line from Node2.w to Node1.e <-> "sync" above thin
+line from Exp.nw to Node1.se -> "http" below aligned thin
+line from Exp.ne to Node2.sw -> "http" below aligned thin
+
+move down from Exp.s
+Web: ellipse "Web browser"
+line from Web.n to Exp.s -> "http" below aligned thin
+
+move down from Node1.s
+move
+Rad: box "Radicle user"
+line from Rad.n to Node1.s <-> "git" below aligned
+
+move down from Node2.s
+move
+Git: box "Git user"
+line from Git.n to Node2.s <- "git fetch" below aligned thin
+
+arc from Rad.s to Web.sw -> 
+arc from  Web.se to Git.s <-

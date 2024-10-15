@@ -1,0 +1,42 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 607.32 508.32">
+<ellipse cx="144.36" cy="38.16" rx="64.8" ry="36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="144.36" y="28.08" text-anchor="middle" font-family="monospace" fill="rgb(0,0,0)" dominant-baseline="central">radicle-node</text>
+<text x="144.36" y="48.24" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">process</text>
+<polygon points="144.36,74.16 148.68,85.68 140.04,85.68" style="fill:rgb(0,0,0)"/>
+<polygon points="144.36,146.16 140.04,134.64 148.68,134.64" style="fill:rgb(0,0,0)"/>
+<path d="M144.36,79.92L144.36,140.4"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<path d="M68.76,156.96L68.76,207.36A75.6 10.8 0 0 0 219.96 207.36L219.96,156.96A75.6 10.8 0 0 0 68.76 156.96A75.6 10.8 0 0 0 219.96 156.96"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="144.36" y="180.18" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Node storage</text>
+<text x="144.36" y="198.324" text-anchor="middle" font-family="monospace" fill="rgb(0,0,0)" font-size="80%" dominant-baseline="central">~/.radicle/storage</text>
+<polygon points="144.36,218.16 148.68,229.68 140.04,229.68" style="fill:rgb(0,0,0)"/>
+<polygon points="144.36,290.16 140.04,278.64 148.68,278.64" style="fill:rgb(0,0,0)"/>
+<path d="M144.36,223.92L144.36,284.4"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<ellipse cx="144.36" cy="326.16" rx="75.6" ry="36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="144.36" y="326.16" text-anchor="middle" font-family="monospace" fill="rgb(0,0,0)" dominant-baseline="central">git-helper-rad</text>
+<polygon points="144.36,362.16 148.68,373.68 140.04,373.68" style="fill:rgb(0,0,0)"/>
+<polygon points="144.36,434.16 140.04,422.64 148.68,422.64" style="fill:rgb(0,0,0)"/>
+<path d="M144.36,367.92L144.36,428.4"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<path d="M90.36,444.96L90.36,495.36A54 10.8 0 0 0 198.36 495.36L198.36,444.96A54 10.8 0 0 0 90.36 444.96A54 10.8 0 0 0 198.36 444.96"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="144.36" y="468.18" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">working</text>
+<text x="144.36" y="488.34" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">tree</text>
+<polygon points="79.56,38.16 74.0527,49.1619 68.1765,42.8279" style="fill:rgb(0,0,0)"/>
+<path d="M75.3373,42.0774Q-69.84,176.76 68.76,326.16"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<ellipse cx="353.16" cy="146.16" rx="75.6" ry="36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="353.16" y="136.08" text-anchor="middle" font-family="monospace" fill="rgb(0,0,0)" dominant-baseline="central">radicle-httpd</text>
+<text x="353.16" y="156.24" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">process</text>
+<polygon points="190.181,63.6158 202.393,65.1098 198.399,72.7715" style="fill:rgb(0,0,0)"/>
+<polygon points="299.703,120.704 287.49,119.21 291.484,111.549" style="fill:rgb(0,0,0)"/>
+<path d="M195.288,66.2783L294.595,118.042"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<polygon points="299.703,171.616 288.848,177.409 287.716,168.843" style="fill:rgb(0,0,0)"/>
+<polygon points="219.96,182.16 230.814,176.367 231.947,184.933" style="fill:rgb(0,0,0)"/>
+<path d="M293.992,172.371L225.67,181.405"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);" />
+<ellipse cx="551.16" cy="38.16" rx="54" ry="36"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);stroke-dasharray:7.2,7.2;" />
+<text x="551.16" y="38.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Other node</text>
+<path d="M497.16,290.16L605.16,290.16L605.16,218.16L497.16,218.16Z"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);stroke-dasharray:7.2,7.2;" />
+<text x="551.16" y="244.08" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">Radicle</text>
+<text x="551.16" y="264.24" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">explorer</text>
+<polygon points="209.16,38.16 220.68,33.84 220.68,42.48" style="fill:rgb(0,0,0)"/>
+<path d="M497.16,38.16L214.92,38.16"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);stroke-dasharray:7.2,7.2;" />
+<polygon points="406.617,171.616 418.838,173.041 414.888,180.725" style="fill:rgb(0,0,0)"/>
+<path d="M497.16,218.16L411.74,174.249"  style="fill:none;stroke-width:2.16;stroke:rgb(0,0,0);stroke-dasharray:7.2,7.2;" />
+</svg>
