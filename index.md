@@ -120,6 +120,13 @@ updated, or join our community on 💬 [Zulip][zulip].
 [hn]: https://news.ycombinator.com/item?id=39600810
 [1.0]: https://twitter.com/radicle/status/1772659708978991605
 
+# Feedback
+
+If you have feedback, join our [Zulip][zulip] or send us an email at
+[feedback@radicle.xyz](mailto:feedback@radicle.xyz). Emails sent to this
+address are automatically posted to our [#feedback](https://radicle.zulipchat.com/#narrow/channel/392584-feedback)
+channel on Zulip.
+
                                                  .
 
 
