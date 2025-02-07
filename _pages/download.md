@@ -127,8 +127,8 @@ reproduce the binaries on this page from source.
 
 <table>
   <thead><th>Signer</th></thead>
-  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKU7IHRsae2q1/qd8NaWxfGhPEFGHwK1dcxvSjNdttjb</code></td></tr>
-  <tr><td>Fingerprint</td><td><code>SHA256:mqjWN1YrPRDTcVTxB4IZPHyH+vXpjWSogi+3zezZ/rQ</code></td></tr>
+  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFw+wCPZUh8OndhgavJMSZluorVvzJjz22PH81XrkvIu</code></td></tr>
+  <tr><td>Fingerprint</td><td><code>SHA256:HYV32eX6vSKEXpuXNstYGsbWDYTOxG1eqv/HjwuZnck</code></td></tr>
   <tr><td>Owner</td><td>me@sebastinez.dev</td></tr>
 </table>
 
