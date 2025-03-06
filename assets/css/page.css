@@ -299,6 +299,11 @@ body > footer .radworks {
 body > footer a {
   border-bottom: none;
 }
+main > footer {
+  position: initial;
+  padding-bottom: 1em;
+}
+
 :root[data-theme="light"] .radworks {
   opacity: 0.33;
 }
