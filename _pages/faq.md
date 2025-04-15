@@ -277,9 +277,16 @@ The Radicle team is funded by [Radworks][radworks]. To date, around $7m has
 been granted towards the development of Radicle, by Radworks. Grant proposals
 for the last two years can be found [here][tally].
 
+# Legal
+
+## Am I liable as a Node Operator?
+
+Please see our [legal] page for more information.
+
 [tally]: https://www.tally.xyz/gov/radworks
 [radworks]: https://radworks.org
 [history]: /history
+[legal]: /legal
 
 <footer>
   <hr>

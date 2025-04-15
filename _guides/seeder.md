@@ -37,7 +37,13 @@ Therefore, a healthy peer-to-peer network necessitates at least *some* highly
 available nodes that participate in the network like regular peers, but seldom
 go offline. These are called seed nodes.
 
+### Liability of running seed nodes
+
+Please see our [legal] page for more information on potential legalities of
+running a seed node.
+
 [bittorrent]: https://en.wikipedia.org/wiki/BitTorrent
+[legal]: /legal
 
 Getting Started
 ---------------
