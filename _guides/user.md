@@ -825,7 +825,7 @@ building blocks of the Radicle protocol.
   community, where patches are often sent to mailing lists for review before
   being applied to the main repository. </p>
   <p>Radicle takes some ideas from this email based workflow but tries to
-  offer a much more modern, secure and user-friendly experience than that
+  offer a much more modern, secure, and user-friendly experience than that
   of email. </p>
 </aside>
 
