@@ -9,11 +9,11 @@ This is the Radicle homepage and documentation repository.
 1. Make sure you have [Ruby][ruby] installed
 2. Install project dependencies
 
-        $ make dependencies
+        make dependencies
 
 3. Build and serve the project
 
-        $ make serve
+        make serve
 
 4. Visit <http://localhost:3000/> in your web browser
 
