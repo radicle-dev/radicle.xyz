@@ -1874,8 +1874,10 @@ Radicle node in the next steps.
 >
 > Use `mkdir -p -m 700 ~/.tor/radicle` to create your onion service directory.
 >
-> The Tor configuration file is located at `/usr/local/etc/tor/torrc` and your
-> `.onion` address can be found in `~/.tor/radicle/hostname`.
+> The Tor configuration file is located at `/opt/homebrew/etc/tor/torrc` and
+> your `.onion` address can be found in `~/.tor/radicle/hostname`.
+>
+> Make sure to set the torrc HiddenServiceDir to `/Users/<user>/.tor/radicle`.
 >
 > If you are a **Debian** user who got Tor from a Debian repo, you may need to
 > change the ownership of the `radicle` directory to the `debian-tor` user and
