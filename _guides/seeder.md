@@ -325,12 +325,16 @@ that repository.
 Finally, to view all seeding policies that have been configured on repositories,
 simply enter `rad seed` with no options.
 
-### Your external address
+### Addressing
 
-Now that you've configured your seeding policy, it's time to set your node's
-*External Address*. This is a public address, typically a DNS name that points
-to your node. Though a single address is sufficient, you are free to set up
-to 16 external addresses.
+Now that you've configured your seeding policy, it's time to consider how your
+node is addressed on the network.
+
+#### Your external address
+
+You should set your node's external address. This is a public address,
+typically a DNS name that points to your node. Though a single external address
+is sufficient, you are free to set up to 16 external addresses.
 
 You'll find this setting in your configuration file, under
 `node.externalAddresses`. External addresses are JSON strings of the form
@@ -349,7 +353,7 @@ DNS name, and `<port>` is usually `8776`.
 Once at least one external address is set, you're ready to start your node
 for the first time.
 
-### Your node address
+#### Your node address
 
 For others to be able to connect to your node directly, they need your *Node
 Address*. This is a combination of your Node ID and your External
@@ -363,6 +367,44 @@ following command from the `seed` user will output your node addresses:
 Share this with others, and they will be able to connect to your node using
 `rad node connect <address>`, or by adding your address to their configuration,
 under the `node.connect` field.
+
+#### DNS-Based Service Discovery
+
+If you would like to facilitate discovery of your node via DNS, you can do so
+via [DNS-Based Service Discovery (DNS-SD)][dnssd]. This requires you to set
+three DNS records per node you are running.
+
+ 1. A `SRV` record, which communicates the external address of your node
+    (DNS name and TCP port number).
+ 2. A `TXT` record, which communicates the Node ID of your node.
+ 3. A `PTR` record, which makes the other two records discoverable.
+
+Taken together, the `SRV` and `TXT` records contain all the information
+required to reconstruct your node address.
+
+Suppose the node address you want others to discover is
+`z6MkXB…Z6sTAz@seed.radicle.example:58776` and the domain name you want it to
+be discovered for is `radicle.example`, then the three DNS records required are:
+
+```zone
+seed._radicle-node._tcp.radicle.example.  3600  IN  SRV  32767 32767 58776 seed.radicle.example.
+seed._radicle-node._tcp.radicle.example.  3600  IN  TXT  "nid=z6MkXB…Z6sTAz"
+_radicle-node._tcp.radicle.example.       3600  IN  PTR  seed._radicle-node._tcp.radicle.example.
+```
+
+With most nameservers, there are shorter versions to denote these records, like
+dropping TTL and record class, as well as abbreviating names by omitting the
+origin. The variant above is purposely verbose to avoid ambiguity. Of course,
+you may choose different values for the TTL.
+
+With these records set, anyone can discover your nodes from the domain name
+`radicle.example`. This method of discovery is ideal if you maintain a set of
+nodes, and want to have them discovered by a group of people, such as your
+collaborators or coworkers. It also works if your nodes addresses and/or ports
+change frequently.
+
+To find out more about the the interpretation of `SRV` records, refer to
+[RFC 2782][srv].
 
 Running Your Node
 -----------------
@@ -592,3 +634,5 @@ Come join us on our community chat and tell us about your seed node on the
 [download]: /download
 [BitTorrent]: https://en.wikipedia.org/wiki/BitTorrent
 [legal]: /legal
+[dnssd]: https://datatracker.ietf.org/doc/html/rfc6763
+[srv]: https://datatracker.ietf.org/doc/html/rfc2782
