@@ -1,0 +1,6 @@
+flake.lock
+LICENSE
+.direnv
+.jj
+*~undo-tree~
+**/.\#*
