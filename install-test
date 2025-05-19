@@ -1,0 +1,285 @@
+#!/bin/sh
+#
+# Radicle installation script.
+#
+set -e
+
+# SSH signing key for the release archives. This currently cloudhead and fintan's keys.
+# FIXME: Technically, there should be a release signing key, with a shamir threshold of > 1, with the secret encrypted by something like SOPS.
+CLOUDHEAD="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL460KIEccS4881p7PPpiiQBsxF+H5tgC6De6crw9rbU"
+FINTAN="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFsaRqAJ1r6bBFwlcWzJKN7DdjItQDumCNc0wqw6Dvk"
+
+url() {
+  echo "https://files.radicle.xyz/releases/$1/radicle-$2.tar.xz"
+}
+
+info() {
+  printf "\033[36m$*\033[0m\n"
+}
+
+warn() {
+  printf "\033[33m$*\033[0m\n"
+}
+
+rad_home() {
+  if command -v rad >/dev/null 2>&1; then
+    rad path || true
+  fi
+}
+
+is_authed() {
+  RAD_HOME=$(rad_home)
+
+  if [ -n "$RAD_HOME" ] && [ -f "$RAD_HOME/keys/radicle.pub" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+success() {
+  version="$1"
+
+  printf "\033[32m✓\033[0m Radicle \033[2m$1\033[0m was installed successfully.\n"
+
+  RAD_HOME=$(rad_home)
+
+  if [ -n "$RAD_HOME" ] && [ -S "$RAD_HOME/node/control.sock" ];  then
+    printf "\n"
+    printf "Please restart your node to complete the upgrade.\n"
+  fi
+}
+
+error() {
+  printf "\033[31merror\033[0m: $*\n" >&2
+}
+
+fatal() {
+  error "$@"
+  exit 1
+}
+
+usage() {
+  echo "Usage"
+  echo
+  echo "  $0 [<options>]"
+  echo
+  echo "  This script will install the Radicle binaries under '$RAD_PATH'".
+  echo "  To change the location, set \$RAD_PATH to a different directory."
+  echo
+  echo "  Your Radicle home is set to '$RAD_HOME'."
+  echo "  To change it, set \$RAD_HOME to a different directory."
+  echo
+  echo "Options"
+  echo
+  echo "  --no-modify-path    Do not modify the PATH environment variable"
+  echo "  --version=VERSION   Install the given version of Radicle (default: latest)"
+  echo "  --prefix=PATH       Radicle install prefix (default: ~/.radicle)"
+  echo "  --help, -h          Show this help message and exit"
+  echo
+  echo "Environment"
+  echo
+  echo "  RAD_HOME            Radicle home directory"
+}
+
+target() {
+  TARGET=""
+
+  case "$(uname)/$(uname -m)" in
+  Darwin/arm64)
+    TARGET="aarch64-apple-darwin" ;;
+  Darwin/x86_64)
+    TARGET="x86_64-apple-darwin" ;;
+  Linux/arm64|Linux/aarch64)
+    TARGET="aarch64-unknown-linux-musl" ;;
+  Linux/x86_64)
+    TARGET="x86_64-unknown-linux-musl" ;;
+  *)
+    fatal "Your operating system is currently unsupported. Sorry!" ;;
+  esac
+  echo $TARGET
+}
+
+in_path() {
+  IFS=":"
+
+  for dir in $PATH; do
+    if [ "$dir" = "$1" ]; then
+      return 0 # The path is in $PATH
+    fi
+  done
+
+  return 1 # The path is not in $PATH
+}
+
+get_started() {
+  printf "\n"
+  success "$@"
+
+  if ! is_authed; then
+    printf "\n"
+    printf "Get started by creating your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+  fi
+}
+
+verify() {
+  archive="$1"
+  signers="$(dirname $archive)/signers"
+  # Add the signer key to the allowed signers file we pass to ssh-keygen.
+  printf "fintan@radicle.xyz $FINTAN\n" > $signers
+  printf "cloudhead@radicle.xyz $CLOUDHEAD\n" >> $signers
+
+  # Verify that `$archive` was signed by a key in `$signers`, identified by the
+  # pattern "*@radicle.xyz", using the signature in `$archive.sig`.
+  ssh-keygen -Y verify -f $signers -I "*@radicle.xyz" -n file -s "$archive.sig" < "$archive" || fatal "Invalid signature for $archive"
+}
+
+main() {
+  PREFIX=${RAD_HOME:-"$HOME/.radicle"}
+  SHELL_PATH=${SHELL:-"/bin/sh"}
+  NO_MODIFY_PATH=false
+  VERSION=latest
+
+  if [ -n "$RAD_PATH" ]; then
+    fatal "RAD_PATH is no longer supported; Use '--prefix' instead"
+  fi
+
+  if ! command -v tar >/dev/null 2>&1; then
+    fatal "The 'tar' tool is required to extract the archive; please install 'tar' and try again"
+  fi
+
+  if ! command -v xz >/dev/null 2>&1; then
+    fatal "The 'xz' tool is required to extract the archive; please install 'xz' or 'xz-utils' and try again"
+  fi
+
+  if ! command -v curl >/dev/null 2>&1; then
+    fatal "The 'curl' tool is required to download the archive; please install 'curl' and try again"
+  fi
+
+  if ! command -v ssh-keygen >/dev/null 2>&1; then
+    fatal "The 'ssh-keygen' tool is required to verify the archive; please install the 'openssh' and try again"
+  fi
+
+  while :; do
+    case "$1" in
+      --no-modify-path)
+        NO_MODIFY_PATH=true
+        ;;
+      --prefix=*)
+        PREFIX=${1#*=}
+        ;;
+      --version=*)
+        VERSION=${1#*=}
+        ;;
+      -h|--help)
+        usage
+        exit 0 ;;
+      -*)
+        error "Unrecognized argument '$1'"
+        echo ; usage ; exit 1 ;;
+      *)
+        break ;;
+    esac
+    shift
+  done
+
+  if [ -z "$VERSION" ]; then
+    fatal "Empty version string; use --version=VERSION"
+  fi
+
+  if [ -z "$PREFIX" ]; then
+    fatal "Empty installation prefix; use --prefix=PATH or set RAD_HOME"
+  fi
+  mkdir -p $PREFIX
+
+  echo
+  echo "👾 Welcome to Radicle"
+  echo
+
+  # Where to install binaries.
+  RAD_PATH=$PREFIX/bin
+
+  info "Detecting operating system..."
+  TARGET=$(target)
+  ARCHIVE="$(mktemp -d)/radicle-$TARGET.tar.xz" # Nb. `-d` must be used on BSDs.
+  URL="$(url "$VERSION" "$TARGET")"
+
+  info "Downloading $URL..."
+  curl --proto '=https' --fail --tlsv1.2 -# -L "$URL"     -o "$ARCHIVE"     || fatal "Failed to fetch $URL" # Nb. `--tlsv1.3` is not supported on macOS
+  info "Downloading $URL.sig..."
+  curl --proto '=https' --fail --tlsv1.2 -# -L "$URL.sig" -o "$ARCHIVE.sig" || fatal "Failed to fetch $URL.sig"
+
+  info "Verifying $(basename $ARCHIVE)..."
+  verify "$ARCHIVE"
+
+  info "Installing Radicle into $PREFIX..."
+  tar -xJf "$ARCHIVE" --strip-components=1 -C "$PREFIX"
+
+  chmod +x \
+    $RAD_PATH/radicle-node \
+    $RAD_PATH/rad \
+    $RAD_PATH/git-remote-rad
+
+  if ! command -v git >/dev/null 2>&1; then
+    warn
+    warn "Warning: a Git installation was not detected on your system."
+    warn "Warning: please install Git for Radicle to work correctly."
+  fi
+  version="$($RAD_PATH/rad --version | cut -f2 -d' ' -)"
+
+  # If radicle is not in $PATH, add it here.
+  if $NO_MODIFY_PATH; then
+    info "Not modifying shell path variable, as requested."
+    get_started $version
+  elif in_path $RAD_PATH; then
+    info "Radicle is configured in shell already, not modifying."
+    get_started $version
+  else
+    PROFILE=""
+
+    case $SHELL_PATH in
+      */zsh)
+        PROFILE=$HOME/.zshenv ;;
+      */bash)
+        PROFILE=$HOME/.bashrc ;;
+      */fish)
+        PROFILE=$HOME/.config/fish/config.fish ;;
+      */ash)
+        PROFILE=$HOME/.profile ;;
+      */csh)
+        PROFILE=$HOME/.cshrc ;;
+    esac
+
+    if [ -z "$PROFILE" ]; then
+      warn "Warning: unable to update your PATH variable."
+      warn "Warning: please manually add $RAD_PATH to your PATH."
+      get_started $version
+    else
+      info "Configuring path variable in ~${PROFILE#$HOME}..."
+      echo                                    >> "$PROFILE"
+      echo "# Added by Radicle."              >> "$PROFILE"
+      echo "export PATH=\"\$PATH:$RAD_PATH\"" >> "$PROFILE"
+      echo
+
+      success $version
+
+      if command -v rad >/dev/null 2>&1; then
+        EXISTING=$(command -v rad)
+        printf "\n"
+        warn "Warning: Pre-existing binaries found at $(dirname "$EXISTING")."
+        warn "Warning: Installed new binaries in $RAD_PATH."
+      fi
+
+      printf "\n"
+      printf "Before running Radicle for the first time,\n"
+      printf "run \033[34m\`source ~${PROFILE#$HOME}\`\033[0m or open a new terminal.\n"
+
+      if ! is_authed; then
+        printf "\n"
+        printf "Then, create your Radicle key pair with \033[35m\`rad auth\`\033[0m.\n"
+      fi
+    fi
+  fi
+}
+
+main "$@"
