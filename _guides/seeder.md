@@ -170,8 +170,8 @@ is often set, such that all data on the network is stored and replicated.
 
 Second, we must set an external address for the node to be reached on the
 network. This address will be advertised to peers, allowing them to connect to
-your seed node. Generally, this will be a DNS name with port `8776`, for
-example `seed.radicle.example:8776`.
+your seed node. Generally, this will be a DNS name with a port, for
+example `seed.radicle.example:58776`.[^port]
 
 Here's an example minimal configuration file with a permissive seeding policy
 and external address set:
@@ -180,7 +180,7 @@ and external address set:
 {
   "node": {
     "alias": "seed.radicle.example",
-    "externalAddresses": ["seed.radicle.example:8776"],
+    "externalAddresses": ["seed.radicle.example:58776"],
     "seedingPolicy": {
       "default": "allow",
       "scope": "all"
@@ -319,14 +319,14 @@ to 16 external addresses.
 
 You'll find this setting in your configuration file, under
 `node.externalAddresses`. External addresses are JSON strings of the form
-`<host>:<port>`, for example `seed.radicle.example:8776`, where `<host>` is a
-DNS name, and port is usually `8776`.
+`<host>:<port>`, for example `seed.radicle.example:58776`, where `<host>` is a
+DNS name, and `<port>` is a TCP port number.[^port]
 
 ```json
 {
   "node": {
     ...
-    "externalAddresses": ["seed.radicle.example:8776"]
+    "externalAddresses": ["seed.radicle.example:58776"]
   }
 }
 ```
@@ -439,8 +439,9 @@ have to run all commands via `sudo`, like we've been doing so far.
 
 ### Firewalls
 
-If you are running a firewall, ensure that port `8776` is open for TCP
-connections. This will allow inbound connections to your node.
+If you are running a firewall, ensure that port the port Radicle node listens
+on is open for TCP connections. This will allow inbound connections to your
+node.
 
 > It's recommended to run a basic firewall to further lock down your server,
 > using something like `iptables`, though this is out of scope for this guide.
@@ -564,9 +565,13 @@ Come join us on our community chat and tell us about your seed node on the
 
 🎊👾
 
+[^port]: Previous versions of this guide suggested to use port `8776`.
+         This recommendation was changed to comply with [RFC 6335, Sec. 6][ports].
+
 [radicle-node]: https://seed.radicle.xyz/raw/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/570a7eb141b6ba001713c46345d79b6fead1ca15/systemd/radicle-node.service
 [caddy]: https://caddyserver.com/
 [caddy-guide]: https://caddyserver.com/docs/running#linux-service
 [caddy-install]: https://caddyserver.com/docs/install
 [zulip]: https://radicle.zulipchat.com/#narrow/stream/384534-seeds
+[ports]: https://datatracker.ietf.org/doc/html/rfc6335#autoid-8
 [download]: /download

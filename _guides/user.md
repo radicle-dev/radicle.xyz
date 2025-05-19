@@ -1705,7 +1705,7 @@ the case.
 >    ```
 >    For example:
 >    ```
->    $ rad node connect z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt@seed.darkstar.example:8776
+>    $ rad node connect z6MkqNZS9QWvC4wbZ8Vz4hQZ1FzN8q4XGj2KGmK9qNgQ8VWt@seed.darkstar.example:58776
 >    ```
 >
 > To find your seed node's address, run `rad node config --addresses` while logged in
@@ -1848,11 +1848,11 @@ Then we update our Tor configuration (`/etc/tor/torrc`) by adding the following
 lines to it:
 
     HiddenServiceDir /var/lib/tor/radicle
-    HiddenServicePort 8776
+    HiddenServicePort 58776
 
 These lines set the `HiddenServiceDir` to the path of the directory we just
-created and specify the `HiddenServicePort` as `8776`, which is the default
-Radicle node port.
+created and specify the `HiddenServicePort` as `58776`, which is the same port
+number that we will configure the Radicle node to listen on (see below). [^port]
 
 Finally, we restart our Tor daemon to apply the configuration changes:
 
@@ -1927,14 +1927,15 @@ This tells Radicle that for `.onion` addresses, we want to use the specified
 Tor *SOCKS5* proxy address. This is the address on which the Tor daemon should
 be listening.
 
-Next, we ensure our node is listening for incoming connections on port `8776`.
-This is the port that our Tor proxy will be using to bridge connections to our
-node, and is the same as the `HiddenServicePort` in our Tor configuration.
+Next, we ensure our node is listening for incoming connections on the loopback
+interface on port `58776`. This is the port that our Tor proxy will be using to
+bridge connections to our node, and is the same as the `HiddenServicePort` in
+our Tor configuration. [^port]
 
 ```json
 "node": {
     ...
-    "listen": ["0.0.0.0:8776"]
+    "listen": ["127.0.0.1:58776"]
 }
 ```
 
@@ -1946,7 +1947,7 @@ configure our node to advertise its `.onion` address to peers.
 "node": {
     ...
     "externalAddresses": [
-        "1odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:8776"
+        "1odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:58776"
     ]
 }
 ```
@@ -1973,7 +1974,7 @@ direct connection with us:
 
 <aside class="kicker"><code>Calyx</code></aside>
 
-    $ rad node connect z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9@odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:8776
+    $ rad node connect z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9@odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:58776
 
 Notice that the connect address is a combination of the peer's NID and its
 `.onion` address:
@@ -1989,7 +1990,7 @@ address to the `connect` field in your node configuration:
 "node": {
     ...
     "connect": [
-        "z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9@odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:8776"
+        "z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9@odmmeotgcfx65l5hn6ejkaruvai222vs7o7tmtllszqk5xbysolfdd.onion:58776"
     ]
 }
 ```
@@ -2077,6 +2078,9 @@ to resolve `.onion` addresses.
 > encounter any issues, we encourage you to report them to
 > **security@radicle.xyz**.
 
+[^port]: Previous versions of this guide suggested to use port `8776`.
+         This recommendation was changed to comply with [RFC 6335, Sec. 6][ports].
+
 [proto]: /guides/protocol/
 [seeder]: /guides/seeder/
 [zulip]: https://radicle.zulipchat.com/
@@ -2087,6 +2091,7 @@ to resolve `.onion` addresses.
 [install-tor]: https://community.torproject.org/onion-services/setup/install/
 [cyph-man]: https://www.activism.net/cypherpunk/manifesto.html
 [heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+[ports]: https://datatracker.ietf.org/doc/html/rfc6335#autoid-8
 [cobs]: /guides/protocol/#collaborative-objects
 [ch1]: /guides/user/#1-getting-started
 [ch2]: /guides/user/#2-collaborating-the-radicle-way
