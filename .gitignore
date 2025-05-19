@@ -6,3 +6,5 @@ node_modules/
 vendor/
 notes/
 .vercel
+.jj
+.direnv
