@@ -6,3 +6,8 @@ node_modules/
 vendor/
 notes/
 .vercel
+.jj
+.direnv
+*~undo-tree~
+**/.\#*
+flake.lock
