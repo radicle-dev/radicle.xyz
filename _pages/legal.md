@@ -50,3 +50,8 @@ legal advice. The information provided here is not intended to replace
 professional legal counsel. We strongly recommend consulting with a qualified
 legal professional for specific advice regarding your individual circumstances
 and how these regulations may affect you.
+
+For comparable approaches in similar contexts see also [the work][tor] of the Tor
+Project and the Electronic Frontier Foundation
+
+[tor]: https://community.torproject.org/relay/community-resources/eff-tor-legal-faq/
