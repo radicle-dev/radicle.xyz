@@ -2,7 +2,7 @@
   description = "radicle.xyz";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-25.05";
     flake-utils.url = "github:numtide/flake-utils";
     bundix = {
       url = "github:inscapist/bundix/main";
