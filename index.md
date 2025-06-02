@@ -109,6 +109,7 @@ licenses. Get involved by [contributing code][contribute].
 **Follow us** on 🐘 [Mastodon][mast], 🦋 [Bluesky][bsky] or 🐦 [Twitter][twitter] to stay
 updated, or join our community on 💬 [Zulip][zulip].
 
+- 02.06.2025 [Radicle 1.2](/2025/06/02/radicle-1.2.html) released. ✨
 - 05.12.2024 [Radicle 1.1](/2024/12/05/radicle-1.1.html) released. ✨
 - 10.09.2024 [Radicle 1.0](/2024/09/10/radicle-1.0.html) is out.
 - 26.03.2024 [Radicle 1.0.0-rc.1][1.0] released.
