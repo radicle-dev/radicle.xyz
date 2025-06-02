@@ -12,3 +12,8 @@ collections:
   pages:
     output: true
     permalink: /:path/
+exclude:
+  - Makefile
+  - LICENSE
+  - flake.*
+  - README.md
