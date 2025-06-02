@@ -69,9 +69,9 @@ reproduce the binaries on this page from source.
 
 <table>
   <thead><th>Signer</th></thead>
-  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL460KIEccS4881p7PPpiiQBsxF+H5tgC6De6crw9rbU</code></td></tr>
-  <tr><td>Fingerprint</td><td><code>SHA256:iTDjRHSIaoL8dpHbQ0mv+y0IQqPufGl2hQwk4TbXFlw</code></td></tr>
-  <tr><td>Owner</td><td>cloudhead@radicle.xyz</td></tr>
+  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFsaRqAJ1r6bBFwlcWzJKN7DdjItQDumCNc0wqw6Dvk</code></td></tr>
+  <tr><td>Fingerprint</td><td><code>SHA256:vV38nW5eSWfTMITdAoMCBOFzEEr0bDMXjSWHpwrpsKY</code></td></tr>
+  <tr><td>Owner</td><td>fintan@radicle.xyz</td></tr>
 </table>
 
 <p id="radicle-httpd-release-header" class="loading">
