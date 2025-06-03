@@ -2,8 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/desktop",
-      "destination": "https://desktop.radicle.xyz",
+      "source": "/desktop/:path*",
+      "destination": "https://desktop.radicle.xyz/:path*",
       "permanent": false
     }
   ]
