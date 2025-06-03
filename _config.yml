@@ -5,6 +5,8 @@ highlighter: rouge
 markdown: kramdown
 kramdown:
   syntax_highlighter: rouge
+plugins:
+  - jekyll-feed
 collections:
   guides:
     output: true
@@ -12,6 +14,11 @@ collections:
   pages:
     output: true
     permalink: /:path/
+# jekyll-feed configuration
+feed:
+  title: "Radicle: the sovereign forge"
+  description: "The Radicle forge is an open source, peer-to-peer code collaboration stack built on Git."
+  icon: /assets/images/logo-small.svg
 exclude:
   - Makefile
   - LICENSE

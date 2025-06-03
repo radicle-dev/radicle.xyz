@@ -107,7 +107,9 @@ licenses. Get involved by [contributing code][contribute].
 # Updates
 
 **Follow us** on 🐘 [Mastodon][mast], 🦋 [Bluesky][bsky] or 🐦 [Twitter][twitter] to stay
-updated, or join our community on 💬 [Zulip][zulip].
+updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.path | default: '/feed.xml' | relative_url }}">
+  Subscribe <img src="/assets/images/rss.svg" alt="RSS logo" style="width:15px;"/>
+</a>
 
 - 02.06.2025 [Radicle 1.2](/2025/06/02/radicle-1.2.html) released. ✨
 - 05.12.2024 [Radicle 1.1](/2024/12/05/radicle-1.1.html) released. ✨
