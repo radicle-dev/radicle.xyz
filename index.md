@@ -32,7 +32,6 @@ To install Radicle, simply run the command below from your shell, or go to the
 {% include install.html %}
 
 Alternatively, you can build from [source][heartwood].
-You can check out [desktop.radicle.xyz][desktop] for a local GUI.
 
 For now, Radicle only works on Linux, macOS and BSD variants.
 
