@@ -6,6 +6,14 @@ layout: page
 A brief <strong class="highlight">history</strong> of the Radicle project, in
 reverse-chronological order.
 
+### June, 2025
+
+Radicle 1.2 is released.
+
+### December, 2024
+
+Radicle 1.1 is released.
+
 ### September, 2024
 
 Radicle 1.0 is released.
