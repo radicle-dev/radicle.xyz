@@ -3,7 +3,7 @@ title: "Radicle: the sovereign forge"
 layout: index
 ---
 
-> ✨ Radicle 1.1 is out. Read the [announcement](/2024/12/05/radicle-1.1.html).
+> ✨ Radicle 1.2 is out. Read the [announcement](/2025/06/02/radicle-1.2.html).
 
 # Synopsis
 
