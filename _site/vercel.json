@@ -7,13 +7,13 @@
       "permanent": false
     },
     {
-      "source": "/desktop",
+      "source": "/desktop/",
       "destination": "https://desktop.radicle.xyz",
       "permanent": false
     },
     {
-      "source": "/desktop/",
-      "destination": "https://desktop.radicle.xyz",
+      "source": "/debian/:path*",
+      "destination": "https://files.radicle.xyz/debian/:path*",
       "permanent": false
     }
   ]
