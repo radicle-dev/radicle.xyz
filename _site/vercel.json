@@ -5,6 +5,16 @@
       "source": "/desktop/:path*",
       "destination": "https://desktop.radicle.xyz/:path*",
       "permanent": false
+    },
+    {
+      "source": "/desktop",
+      "destination": "https://desktop.radicle.xyz",
+      "permanent": false
+    },
+    {
+      "source": "/desktop/",
+      "destination": "https://desktop.radicle.xyz",
+      "permanent": false
     }
   ]
 }
