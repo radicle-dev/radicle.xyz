@@ -1,5 +1,8 @@
 default: _site
+	$(eval TMP := $(shell mktemp))
+	cp _site/vercel.json $(TMP)
 	bundle exec jekyll build
+	mv $(TMP) _site/vercel.json
 
 serve:
 	bundle exec jekyll serve --port 3000
