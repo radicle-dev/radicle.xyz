@@ -15,6 +15,11 @@
       "source": "/debian/:path*",
       "destination": "https://files.radicle.xyz/debian/:path*",
       "permanent": false
+    },
+    {
+      "source": "/apt/:path*",
+      "destination": "https://files.radicle.xyz/apt/:path*",
+      "permanent": false
     }
   ]
 }
