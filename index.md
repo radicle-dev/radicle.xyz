@@ -127,6 +127,10 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
 [hn]: https://news.ycombinator.com/item?id=39600810
 [1.0]: https://twitter.com/radicle/status/1772659708978991605
 
+## Blog
+
+- 30.05.2025 [How we used Radicle with GitHub Actions](/2025/05/30/radicle-with-github-actions.html)
+
 # Feedback
 
 If you have feedback, join our [Zulip][zulip] or send us an email at
