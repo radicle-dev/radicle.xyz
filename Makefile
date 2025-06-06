@@ -1,20 +1,22 @@
-default: _site
-	$(eval TMP := $(shell mktemp))
-	cp _site/vercel.json $(TMP)
+default:
 	bundle exec jekyll build
-	mv $(TMP) _site/vercel.json
 
 serve:
-	bundle exec jekyll serve --port 3000
+	bundle exec jekyll serve --port 3000 --livereload
 
 dependencies:
 	gem install jekyll
 
+cloudflare:
+	sudo gem install bundler
+	bundle config path vendor/bundle
+	bundle install
+	bundle exec jekyll build
+
 svgs:
 	scripts/cleanup-svgs.sh assets/images/*.svg
 
-publish:
-	bundle exec jekyll build
-	vercel --prod
+publish: default
+	wrangler deploy
 
-.PHONY: publish
+.PHONY: default publish

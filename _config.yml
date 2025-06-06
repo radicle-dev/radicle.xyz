@@ -24,3 +24,5 @@ exclude:
   - LICENSE
   - flake.*
   - README.md
+include:
+  - _redirects

@@ -1,0 +1,8 @@
+name = "website"
+compatibility_date = "2025-01-01"
+account_id = "dcd58b4607e42dafa1592d13077a60bc"
+
+[assets]
+directory = "_site"
+html_handling = "drop-trailing-slash"
+not_found_handling = "404-page"

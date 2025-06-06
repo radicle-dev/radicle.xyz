@@ -25,39 +25,42 @@
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ ruby-nix.overlays.ruby ];
+        overlays = [ruby-nix.overlays.ruby];
       };
       rubyNix = ruby-nix.lib pkgs;
-		  bundixcli = bundix.packages.${system}.default;
+      bundixcli = bundix.packages.${system}.default;
 
-      deps = with pkgs; [ env ruby bundixcli nodePackages.vercel ];
+      deps = with pkgs; [env ruby bundixcli wrangler];
 
-      inherit (rubyNix {
-        name = "seroperson.gitlab.io";
-        gemset = ./gemset.nix;
-        gemConfig = pkgs.defaultGemConfig;
-      })
-        env ruby;
+      inherit
+        (rubyNix {
+          name = "seroperson.gitlab.io";
+          gemset = ./gemset.nix;
+          gemConfig = pkgs.defaultGemConfig;
+        })
+        env
+        ruby
+        ;
     in {
       packages = let
         bundlecli = pkgs.writeShellApplication {
           name = "bundle";
           runtimeInputs = deps;
           text = ''
-          export BUNDLE_PATH=vendor/bundle
-          bundle "$@"
-        '';
+            export BUNDLE_PATH=vendor/bundle
+            bundle "$@"
+          '';
         };
         jekyll = pkgs.writeShellApplication {
           name = "jekyll";
           runtimeInputs = deps;
           text = ''
-          if [ $# -eq 0 ]; then
-            jekyll build
-          else
-            jekyll "$@"
-          fi
-        '';
+            if [ $# -eq 0 ]; then
+              jekyll build
+            else
+              jekyll "$@"
+            fi
+          '';
         };
       in {
         jekyll = jekyll;
@@ -68,9 +71,9 @@
 
       devShells.default = pkgs.mkShell {
         shellHook = ''
-        export BUNDLE_PATH=vendor/bundle
-      '';
+          export BUNDLE_PATH=vendor/bundle
+        '';
         buildInputs = deps;
-    };
-  });
+      };
+    });
 }

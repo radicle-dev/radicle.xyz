@@ -1,0 +1,5 @@
+/apt https://files.radicle.xyz/apt
+/apt/* https://files.radicle.xyz/apt/:splat
+
+/desktop https://desktop.radicle.xyz
+/desktop/* https://desktop.radicle.xyz/:splat
