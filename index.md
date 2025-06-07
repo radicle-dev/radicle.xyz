@@ -132,6 +132,7 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
 
 ## Blog
 
+- 14.08.2025 [Jujutsu + Radicle = ❤️](/2025/08/14/jj-with-radicle.html)
 - 12.08.2025 [Canonical References](/2025/08/12/canonical-references.html) released. ✨
 - 23.07.2025 [Using Radicle CI for Development](/2025/07/23/using-radicle-ci-for-development.html)
 - 30.05.2025 [How we used Radicle with GitHub Actions](/2025/05/30/radicle-with-github-actions.html)
