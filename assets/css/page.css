@@ -368,6 +368,10 @@ p.notice {
   color: var(--color-fg-dim);
 }
 
+p img {
+  max-width: 100%;
+}
+
 img.screenshot {
   margin-top: 1rem;
   margin-bottom: 1rem;
