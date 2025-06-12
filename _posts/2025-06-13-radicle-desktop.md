@@ -28,20 +28,5 @@ Radicle Desktop is not trying to replace your terminal, IDE, or code editor - yo
 
 Radicle Desktop marks the latest addition to the growing Radicle ecosystem. A lot of work has gone into this release, and we’re happily using Radicle Desktop ourselves for some time now. We also want to extend a big thank you to everyone who tried the earlier versions - the feedback has been immensely valuable. Even some of the CLI fans admit that certain workflows are better in the app.
 
----
 
-**Follow us** on 🐘 [Mastodon] or 🦋 [Bluesky].
-
-**Contribute** to Radicle as a 🌱 [seeder](/guides/seeder), 🧙
-[developer][heartwood] or by 🪞 [mirroring][mirror] your repositories on
-the Radicle network.
-
-**Join** our community on 💬 [Zulip] and discuss your ideas to
-improve Radicle.
-
-[heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
-[Mastodon]: https://toot.radicle.xyz/@radicle
-[Bluesky]: https://bsky.app/profile/radicle.xyz
-[Zulip]: https://radicle.zulipchat.com
-[mirror]: /guides/user/#git-going-with-repositories
 [desktop]: https://radicle.xyz/desktop
