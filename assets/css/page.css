@@ -227,9 +227,8 @@ li::marker {
   content: "- ";
 }
 
-body > main {
+body > main, body > aside {
   margin: 0 auto;
-  margin-bottom: 16rem;
   padding: 2rem;
   max-width: 96ch;
 }
