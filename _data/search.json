@@ -1,0 +1,62 @@
+[
+  {
+    "description": "https://radicle.xyz",
+    "name": "radicle-homepage",
+    "rid": "z2ATVRDqFu2Yq2MG5ZZCWecwSDYqj"
+  },
+  {
+    "description": "A NixOS module to run your own Radicle Seed.",
+    "name": "nixos-radicle-seed",
+    "rid": "z2Yq7uMFhhrLrJPwC1iyiyDmeLcwh"
+  },
+  {
+    "description": "Radicle Documentation & Guides",
+    "name": "radicle-docs",
+    "rid": "z371PVmDHdjJucejRoRYJcDEvD5pp"
+  },
+  {
+    "description": "Radicle terminal user interface",
+    "name": "radicle-tui",
+    "rid": "z39mP9rQAaGmERfUMPULfPUi473tY"
+  },
+  {
+    "description": "Radicle Heartwood Protocol & Stack",
+    "name": "heartwood",
+    "rid": "z3gqcJUoA1n9HaHKufZs5FCSGazv5"
+  },
+  {
+    "description": "Radicle CI adapter for native CI",
+    "name": "radicle-native-ci",
+    "rid": "z3qg5TKmN83afz2fj9z3fQjU8vaYE"
+  },
+  {
+    "description": "Radicle Team Repository",
+    "name": "radicle-team",
+    "rid": "z3TajuiHXifEDEX4qbJxe8nXr9ufi"
+  },
+  {
+    "description": "Radicle Improvement Proposals (RIPs)",
+    "name": "rips",
+    "rid": "z3trNYnLWS11cJWC6BbxDs5niGo82"
+  },
+  {
+    "description": "Radicle desktop app",
+    "name": "radicle-desktop",
+    "rid": "z4D5UCArafTzTQpDZNQRuqswh3ury"
+  },
+  {
+    "description": "Radicle web interface",
+    "name": "radicle-explorer",
+    "rid": "z4V1sjrXqjvFdnCUbxPFqd5p4DtH5"
+  },
+  {
+    "description": "Git libraries for Radicle",
+    "name": "radicle-git",
+    "rid": "z6cFWeWpnZNHh9rUW8phgA3b5yGt"
+  },
+  {
+    "description": "Radicle CI broker",
+    "name": "radicle-ci-broker",
+    "rid": "zwTxygwuz5LDGBq255RA2CbNGrz8"
+  }
+]

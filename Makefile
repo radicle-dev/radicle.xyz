@@ -16,6 +16,9 @@ cloudflare:
 svgs:
 	scripts/cleanup-svgs.sh assets/images/*.svg
 
+_data/explore.json:
+	ssh seed.radicle.xyz rad-dump > _data/explore.json
+
 publish: default
 	wrangler deploy
 
