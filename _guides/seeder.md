@@ -182,6 +182,7 @@ and an external address set:
 {
   "node": {
     "alias": "seed.radicle.example",
+    "listen": ["0.0.0.0:8776"],
     "externalAddresses": ["seed.radicle.example:8776"],
     "seedingPolicy": {
       "default": "allow",
