@@ -7,7 +7,9 @@ set -e
 # SSH signing key for the release archives. This is currently cloudhead and fintan's keys.
 # FIXME: Technically, there should be a release signing key, with a shamir threshold of > 1, with the secret encrypted by something like SOPS.
 CLOUDHEAD="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL460KIEccS4881p7PPpiiQBsxF+H5tgC6De6crw9rbU"
+ERIK="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBrJyJTwj/xG7F7qY0HDFXbb8A+xNNH8eILQ8hlvKW7/"
 FINTAN="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFsaRqAJ1r6bBFwlcWzJKN7DdjItQDumCNc0wqw6Dvk"
+LORENZ="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFhK7CqgIIbSthoNn8ea32krOnMzC807Z+PpBkR2YOVj"
 
 url() {
   echo "https://files.radicle.xyz/releases/$1/radicle-$2.tar.xz"
@@ -126,8 +128,10 @@ verify() {
   archive="$1"
   signers="$(dirname $archive)/signers"
   # Add the signer key to the allowed signers file we pass to ssh-keygen.
-  printf "radicle $FINTAN\n" > $signers
   printf "radicle $CLOUDHEAD\n" >> $signers
+  printf "radicle $ERIK\n" > $signers
+  printf "radicle $FINTAN\n" > $signers
+  printf "radicle $LORENZ\n" > $signers
 
   # Verify that `$archive` was signed by a key in `$signers`, identified by the
   # pattern "*@radicle.xyz", using the signature in `$archive.sig`.
