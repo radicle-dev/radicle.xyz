@@ -115,6 +115,7 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
   Subscribe <img src="/assets/images/rss.svg" alt="RSS logo" style="width:15px;"/>
 </a>
 
+- 17.07.2025 [Radicle 1.2.1](/2025/07/17/radicle-1.2.1.html) released. ✨
 - 13.06.2025 [Radicle Desktop](/2025/06/13/radicle-desktop.html) is out. 🖥️
 - 02.06.2025 [Radicle 1.2](/2025/06/02/radicle-1.2.html) released. ✨
 - 05.12.2024 [Radicle 1.1](/2024/12/05/radicle-1.1.html) released. ✨
