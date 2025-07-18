@@ -127,9 +127,9 @@ reproduce the binaries on this page from source.
 
 <table>
   <thead><th>Signer</th></thead>
-  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFw+wCPZUh8OndhgavJMSZluorVvzJjz22PH81XrkvIu</code></td></tr>
-  <tr><td>Fingerprint</td><td><code>SHA256:HYV32eX6vSKEXpuXNstYGsbWDYTOxG1eqv/HjwuZnck</code></td></tr>
-  <tr><td>Owner</td><td>me@sebastinez.dev</td></tr>
+  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFsaRqAJ1r6bBFwlcWzJKN7DdjItQDumCNc0wqw6Dvk</code></td></tr>
+  <tr><td>Fingerprint</td><td><code>SHA256:vV38nW5eSWfTMITdAoMCBOFzEEr0bDMXjSWHpwrpsKY</code></td></tr>
+  <tr><td>Owner</td><td>fintan@radicle.xyz</td></tr>
 </table>
 
 ## Download
