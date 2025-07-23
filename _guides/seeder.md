@@ -192,6 +192,10 @@ and an external address set:
 }
 ```
 
+> In the above example the server listen to any IPv4 interface. If your host
+> supports only IPv6 or if you want to support both IPv4 and IPv6, replace
+> `0.0.0.0` with `[::]`.
+
 Your node is configured with a file named `config.json` in your Radicle home
 directory. You can get the full path of the config file with the `rad self
 --config` command. Additionally, you can output the current configuration with
@@ -396,10 +400,11 @@ be found by `systemctl`:
 Make sure it fits your needs by editing the file directly, or creating an
 override using `systemctl edit`.
 
-> The downloaded `systemd` unit file is configured to run your node process
-> as the `seed` user and group, for security reasons. If you set up a different
-> user or group name, or set a passphrase during `rad auth`, you will have to
-> make edits to this file before proceeding.
+> The downloaded `systemd` unit file is configured to run your node process as
+> the `seed` user and group, for security reasons. If you set up a different
+> user or group name, or set a passphrase during `rad auth`, or if you want to
+> listen on an IPv6 interface, you will have to make edits to this file before
+> proceeding.
 
 When you're ready, you can **enable** and **run** the service:
 
