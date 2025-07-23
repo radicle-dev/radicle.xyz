@@ -1,0 +1,27 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 427.582 364.32">
+<ellipse cx="56.16" cy="38.16" rx="54" ry="36"  style="fill:rgb(245,245,220);stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="56.16" y="38.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">radicle-node</text>
+<ellipse cx="308.16" cy="38.16" rx="54" ry="36"  style="fill:rgb(240,255,255);stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="308.16" y="38.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">cib</text>
+<path d="M254.16,218.16L362.16,218.16L362.16,146.16L254.16,146.16Z"  style="fill:rgb(240,255,255);stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="308.16" y="182.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">adapter</text>
+<path d="M254.16,362.16L362.16,362.16L362.16,290.16L254.16,290.16Z"  style="fill:rgb(127,255,212);stroke-width:2.16;stroke:rgb(0,0,0);" />
+<text x="308.16" y="306" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">external</text>
+<text x="308.16" y="326.16" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">CI</text>
+<text x="308.16" y="346.32" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">system</text>
+<polygon points="254.16,38.16 246.442,41.0544 246.442,35.2656" style="fill:rgb(0,0,0)"/>
+<path d="M110.16,38.16L250.301,38.16"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);" />
+<text x="182.16" y="26.9946" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">node</text>
+<text x="182.16" y="49.3254" text-anchor="middle" fill="rgb(0,0,0)" dominant-baseline="central">event</text>
+<polygon points="254.16,146.16 247.432,141.398 252.222,138.148" style="fill:rgb(0,0,0)"/>
+<path d="M269.976,63.6158Q220.796,96.9798 251.993,142.966"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);stroke-dasharray:7.2,7.2;" />
+<text x="215.551" y="96.8239" text-anchor="middle" fill="rgb(0,0,0)" font-size="80%" dominant-baseline="central">stdin</text>
+<text x="215.551" y="112.952" text-anchor="middle" fill="rgb(0,0,0)" font-size="80%" dominant-baseline="central">trigger</text>
+<polygon points="346.344,63.6158 354.356,65.5538 351.106,70.3442" style="fill:rgb(0,0,0)"/>
+<path d="M362.16,146.16Q395.524,96.9798 349.537,65.7824"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);stroke-dasharray:7.2,7.2;" />
+<text x="398.419" y="96.8239" text-anchor="middle" fill="rgb(0,0,0)" font-size="80%" dominant-baseline="central">stdout</text>
+<text x="398.419" y="112.952" text-anchor="middle" fill="rgb(0,0,0)" font-size="80%" dominant-baseline="central">result</text>
+<polygon points="308.16,290.16 305.266,282.442 311.054,282.442" style="fill:rgb(0,0,0)"/>
+<polygon points="308.16,218.16 311.054,225.878 305.266,225.878" style="fill:rgb(0,0,0)"/>
+<path d="M308.16,286.301L308.16,222.019"  style="fill:none;stroke-width:1.4472;stroke:rgb(0,0,0);stroke-dasharray:7.2,7.2;" />
+</svg>
