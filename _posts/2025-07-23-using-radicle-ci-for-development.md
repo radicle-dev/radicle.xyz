@@ -2,7 +2,7 @@
 title: "Using Radicle CI for Development"
 subtitle: "In this blog post I show how I use Radicle and its CI support for my own software development."
 author: "lars"
-authorUrl: "https://app.radicle.xyz/nodes/seed.radicle.xyz/users/did:key:z6MkgEMYod7Hxfy9qCvDv5hYHkZ4ciWmLFgfvm3Wn1b2w2FV"
+authorUrl: "https://liw.fi/"
 layout: "blog"
 ---
 
