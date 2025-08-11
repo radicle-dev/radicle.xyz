@@ -10,26 +10,26 @@ layout: "blog"
 
 Most people who use Git are used to referring to things called branches
 (`refs/heads`). "I pushed the branch", "check out the feature branch to see the
-work", "Ok, I'll pull your branch", etc. A branch is simply a more specific
-version of a reference in a Git. You're also likely familiar with tags
-(`refs/tags`), and these are another version of references too! A reference,
+work", "Ok, I'll pull your branch", etc. A branch is simply a specific
+kind of reference in a Git. You're also likely familiar with tags
+(`refs/tags`), and these are another kind of references, too! A reference,
 quite simply, is a name that points to a Git object, like a commit object or a
 tag object. The naming convention and what objects they point to allow us to
 talk more specifically about branches, remote branches, tags, and notes.
 
 So what's a canonical reference? In the Radicle protocol, all your references
-live under your namespace (`refs/namespaces/<nid>/refs/{head, tags, etc.})`. We
-want Radicle repositories to also be to act like more traditional Git
+live under your namespace (`refs/namespaces/<nid>/refs/{head,tags,*})`. We
+want Radicle repositories to also act like more traditional Git
 repositories that have the typical references `refs/heads/main`,
 `refs/tags/v1.0.0`, `refs/heads/qa/feature-1`. So we introduced a way to
 synthesise these references from the references under the set of
-`refs/namespaces`. These references become canon[^4] and can be considered for
+`refs/namespaces/<nid>/refs`. These references become canon[^4] and can be considered for
 use, e.g. fetching a specific tag object for building binaries.
 
 ## Git History in the Making
 
-Since the dawn of the `heartwood` version of the Radicle protocol, we have had
-this concept of the `defaultBranch` in the identity document. Alongside this, we
+Since the dawn of the `heartwood` version of the Radicle protocol, the concept of
+the `defaultBranch` was included in the identity document. Alongside this, we
 have had the `threshold` value. Even more importantly, we have had the
 `delegates` managing the identity of the identity document, as well. By
 combining these 3 values we were able to calculate the canonical reference of
@@ -41,7 +41,7 @@ If you have been using Radicle, you'll have noticed that whenever you push Git
 tags that they get placed under your namespace. Most people who have used `git`
 would expect these tags to be placed under `refs/tags`. Up until now, we have
 broke this expectation, because we are working in a decentralised environment
-using Radicle, and the `tags` namespace is a global namespace. So, we asked
+using Radicle, protecting the global namespace of the repository. So, we asked
 ourselves, "Can the `defaultBranch` approach be generalised?" This way, the
 `refs/tags` namespace can be populated using the canonical form of the tag.
 
@@ -59,7 +59,8 @@ canonical references, so let's go through how to use them.
 ## A Quick Guide to Canonical Reference
 
 As alluded to above, we need three values to specify a rule for a canonical
-reference. We need a reference the rule applies to, a set of allowed `did:key`s,
+reference. We need a reference the rule applies to, a set of allowed DIDs
+(currently alwyas `did:key`s),
 and a `threshold`. These three values form a canonical reference rule. In fact,
 we can generalise the reference value to use a Git reference pattern[^3] .
 
@@ -69,7 +70,7 @@ expects a `rules` key, which in turn can hold a number of canonical reference
 rules that are identified by their Git reference pattern.
 
 For each rule, there are two keys: `allow` and `threshold` – these refer to the
-allowed set of `did:key`s and the `threshold` value respectively.
+allowed set of DIDs and the `threshold` value respectively.
 
 To demonstrate, the maintainers of the `heartwood` repository have prepared a
 rule already so that we can use release tags. I (@fintohaps) used the command
@@ -129,7 +130,7 @@ And here's the output of the `rad id` command:
 │ ? did:key:z6MksFqXN3Yhqk8pTJdUGLwATkRfQvwZXPqR2qMEhbS9wzpT cloudhead              │
 │ ? did:key:z6MktaNvN1KVFMkSRAiN4qK5yvX1zuEEaseeX5sffhzPZRZW cloudhead-laptop       │
 │ ? did:key:z6MkgFq6z5fkF2hioLLSNu1zP2qEL1aHXHZzGH1FLFGAnBGz erikli                 │
-│ ? did:key:z6MkkPvBfjP4bQmco5Dm7UGsX2ruDBieEHi8n9DVJWX5sTEz lorenz                 │
+│ ✓ did:key:z6MkkPvBfjP4bQmco5Dm7UGsX2ruDBieEHi8n9DVJWX5sTEz lorenz                 │
 ╰───────────────────────────────────────────────────────────────────────────────────╯
 
 @@ -1,17 +1,29 @@
