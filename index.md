@@ -116,7 +116,6 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
 </a>
 
 - 12.08.2025 [Radicle 1.3.0](/2025/08/12/radicle-1.3.0.html) released. ✨
-- 12.08.2025 [Canonical References](/2025/08/12/canonical-references.html) released. ✨
 - 17.07.2025 [Radicle 1.2.1](/2025/07/17/radicle-1.2.1.html) released. ✨
 - 13.06.2025 [Radicle Desktop](/2025/06/13/radicle-desktop.html) is out. 🖥️
 - 02.06.2025 [Radicle 1.2](/2025/06/02/radicle-1.2.html) released. ✨
@@ -133,6 +132,7 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
 
 ## Blog
 
+- 12.08.2025 [Canonical References](/2025/08/12/canonical-references.html) released. ✨
 - 23.07.2025 [Using Radicle CI for Development](/2025/07/23/using-radicle-ci-for-development.html)
 - 30.05.2025 [How we used Radicle with GitHub Actions](/2025/05/30/radicle-with-github-actions.html)
 

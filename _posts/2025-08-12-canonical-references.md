@@ -23,7 +23,7 @@ Radicle repositories to also act like more traditional Git repositories that
 have the typical references `refs/heads/main`, `refs/tags/v1.0.0`,
 `refs/heads/qa/feature-1`. So we introduced a way to synthesise these references
 from the references under the set of `refs/namespaces/<nid>/refs`. These
-references become canon[^4] and can be considered for use, e.g. fetching a
+references become canon[^1] and can be considered for use, e.g. fetching a
 specific tag object for building binaries.
 
 ## Git History in the Making
@@ -47,7 +47,7 @@ ourselves, "Can the `defaultBranch` approach be generalised?" This way, the
 
 "It should be easy!", I said – famous last words.
 
-What ensued was a RIP[^0] and two patches[^1][^2], over a time period that felt
+What ensued was a RIP[^2] and two patches[^3][^4], over a time period that felt
 like forever. It turned out that evolving things in a protocol can be quite
 tricky when it comes to compatibility. You may notice that the merged patch and
 the RIP will differ slightly in the approach recommended. For now, the approach
@@ -62,7 +62,7 @@ As alluded to above, we need three values to specify a rule for a canonical
 reference. We need a reference the rule applies to, a set of allowed DIDs
 (currently always `did:key`s), and a `threshold`. These three values form a
 canonical reference rule. In fact, we can generalise the reference value to use
-a Git reference pattern[^3].
+a Git reference pattern[^5].
 
 So, where do these new rules go? The new update of Radicle will now interpret a
 new payload identified by the key `xyz.radicle.crefs`. Under this key, it
@@ -184,12 +184,12 @@ now take advantage of Radicle repositories!
 Now, it's time to go try out this feature and report back to us! Release tags to
 your hearts content ❤️🌱
 
-[^0]: RIP-4 Canonical References https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/patches/1d1ce874f7c39ecdcd8c318bbae46ffd02fe1ea8?tab=changes
+[^1]: Here we are using the term in the sense that some content made may not be considered part of the canon of some story or universe. For example, some Star Wars content may be considered as canon by George Lucas, but some may not be.
 
-[^1]: First patch attempting to implement canonical references https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches/c54883e5ffb1f8a99f432e3ac79c0b728cd0dab3
+[^2]: [RIP-4 Canonical References](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/patches/1d1ce874f7c39ecdcd8c318bbae46ffd02fe1ea8?tab=changes)
 
-[^2]: Second patch implementing canonical references using the identity payload https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches/bea09df15505cfcebc72ad40f629747d2e82f670
+[^3]: [First patch attempting to implement canonical references](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches/c54883e5ffb1f8a99f432e3ac79c0b728cd0dab3)
 
-[^3]: Git ref format and reference patterns https://git-scm.com/docs/git-check-ref-format
+[^4]: [Second patch implementing canonical references using the identity payload](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches/bea09df15505cfcebc72ad40f629747d2e82f670)
 
-[^4]: Here we are using the term in the sense that some content made may not be considered part of the canon of some story or universe. For example, some Star Wars content may be considered as canon by George Lucas, but some may not be.
+[^5]: [Git ref format and reference patterns](https://git-scm.com/docs/git-check-ref-format)
