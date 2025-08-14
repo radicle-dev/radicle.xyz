@@ -116,10 +116,10 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
 </a>
 
 - 12.08.2025 [Radicle 1.3.0]({% post_url 2025-08-12-radicle-1.3.0 %}) released. ✨
-- 17.07.2025 [Radicle 1.2.1]({% post_url 2025-07-17-radicle-1.2.1 %}) released. ✨
+- 17.07.2025 [Radicle 1.2.1]({% post_url 2025-07-17-radicle-1.2.1 %}) released.
 - 13.06.2025 [Radicle Desktop]({% post_url 2025-06-13-radicle-desktop %}) is out. 🖥️
-- 02.06.2025 [Radicle 1.2]({% post_url 2025-06-02-radicle-1.2 %}) released. ✨
-- 05.12.2024 [Radicle 1.1]({% post_url 2024-12-05-radicle-1.1 %}) released. ✨
+- 02.06.2025 [Radicle 1.2]({% post_url 2025-06-02-radicle-1.2 %}) released.
+- 05.12.2024 [Radicle 1.1]({% post_url 2024-12-05-radicle-1.1 %}) released.
 - 10.09.2024 [Radicle 1.0]({% post_url 2024-09-10-radicle-1.0 %}) is out.
 - 26.03.2024 [Radicle 1.0.0-rc.1][1.0] released.
 - 10.03.2024 New Radicle homepage.
@@ -133,7 +133,7 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
 ## Blog
 
 - 14.08.2025 [Jujutsu + Radicle = ❤️]({% post_url 2025-08-14-jujutsu-with-radicle %})
-- 12.08.2025 [Canonical References]({% post_url 2025-08-12-canonical-references %}) released. ✨
+- 12.08.2025 [Canonical References]({% post_url 2025-08-12-canonical-references %})
 - 23.07.2025 [Using Radicle CI for Development]({% post_url 2025-07-23-using-radicle-ci-for-development %})
 - 30.05.2025 [How we used Radicle with GitHub Actions]({% post_url 2025-05-30-radicle-with-github-actions %})
 
