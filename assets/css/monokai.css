@@ -69,3 +69,88 @@
 .highlight .gu { color: #75715e; } /* Generic.Subheading & Diff Unified/Comment? */
 .highlight .gd { color: #f92672; } /* Generic.Deleted & Diff Deleted */
 .highlight .gi { color: #a6e22e; } /* Generic.Inserted & Diff Inserted */
+
+/* Light Mode */
+
+/* Light mode syntax highlighting improvements */
+:root:not([data-theme="dark"]) .highlight {
+  /* Base text and background */
+  .c { color: #6a737d; } /* Comment - GitHub style gray */
+  .err { color: #cb2431; background-color: #ffeaea; } /* Error */
+  .k { color: #d73a49; } /* Keyword - GitHub red */
+  .l { color: #005cc5; } /* Literal - GitHub blue */
+  .n { color: #24292e; } /* Name - dark gray */
+  .o { color: #d73a49; } /* Operator - GitHub red */
+  .p { color: #24292e; } /* Punctuation - dark gray */
+
+  /* Comments */
+  .cm { color: #6a737d; } /* Comment.Multiline */
+  .cp { color: #d73a49; } /* Comment.Preproc - red for preprocessor */
+  .c1 { color: #6a737d; } /* Comment.Single */
+  .cs { color: #6a737d; font-weight: bold; } /* Comment.Special */
+
+  /* Keywords */
+  .kc { color: #005cc5; } /* Keyword.Constant - blue */
+  .kd { color: #d73a49; } /* Keyword.Declaration - red */
+  .kn { color: #d73a49; } /* Keyword.Namespace - red */
+  .kp { color: #005cc5; } /* Keyword.Pseudo - blue */
+  .kr { color: #d73a49; } /* Keyword.Reserved - red */
+  .kt { color: #d73a49; } /* Keyword.Type - red */
+
+  /* Literals */
+  .ld { color: #032f62; } /* Literal.Date - dark blue */
+  .m { color: #005cc5; } /* Literal.Number - blue */
+  .s { color: #032f62; } /* Literal.String - dark blue */
+
+  /* Names */
+  .na { color: #e36209; } /* Name.Attribute - orange */
+  .nb { color: #005cc5; } /* Name.Builtin - blue */
+  .nc { color: #6f42c1; } /* Name.Class - purple */
+  .no { color: #005cc5; } /* Name.Constant - blue */
+  .nd { color: #6f42c1; } /* Name.Decorator - purple */
+  .ni { color: #24292e; } /* Name.Entity - dark gray */
+  .ne { color: #6f42c1; } /* Name.Exception - purple */
+  .nf { color: #6f42c1; } /* Name.Function - purple */
+  .nl { color: #24292e; } /* Name.Label - dark gray */
+  .nn { color: #24292e; } /* Name.Namespace - dark gray */
+  .nx { color: #6f42c1; } /* Name.Other - purple */
+  .py { color: #24292e; } /* Name.Property - dark gray */
+  .nt { color: #22863a; } /* Name.Tag - green */
+  .nv { color: #e36209; } /* Name.Variable - orange */
+
+  /* Operators */
+  .ow { color: #d73a49; } /* Operator.Word - red */
+  .w { color: #24292e; } /* Text.Whitespace - dark gray */
+
+  /* Numbers */
+  .mf { color: #005cc5; } /* Literal.Number.Float - blue */
+  .mh { color: #005cc5; } /* Literal.Number.Hex - blue */
+  .mi { color: #005cc5; } /* Literal.Number.Integer - blue */
+  .mo { color: #005cc5; } /* Literal.Number.Oct - blue */
+
+  /* Strings */
+  .sb { color: #032f62; } /* Literal.String.Backtick - dark blue */
+  .sc { color: #032f62; } /* Literal.String.Char - dark blue */
+  .sd { color: #6a737d; } /* Literal.String.Doc - gray */
+  .s2 { color: #032f62; } /* Literal.String.Double - dark blue */
+  .se { color: #e36209; } /* Literal.String.Escape - orange */
+  .sh { color: #032f62; } /* Literal.String.Heredoc - dark blue */
+  .si { color: #e36209; } /* Literal.String.Interpol - orange */
+  .sx { color: #032f62; } /* Literal.String.Other - dark blue */
+  .sr { color: #22863a; } /* Literal.String.Regex - green */
+  .s1 { color: #032f62; } /* Literal.String.Single - dark blue */
+  .ss { color: #005cc5; } /* Literal.String.Symbol - blue */
+
+  /* Variables */
+  .bp { color: #005cc5; } /* Name.Builtin.Pseudo - blue */
+  .vc { color: #e36209; } /* Name.Variable.Class - orange */
+  .vg { color: #e36209; } /* Name.Variable.Global - orange */
+  .vi { color: #e36209; } /* Name.Variable.Instance - orange */
+  .il { color: #005cc5; } /* Literal.Number.Integer.Long - blue */
+
+  /* Diff colors */
+  .gh { color: #24292e; font-weight: bold; } /* Generic Heading */
+  .gu { color: #6a737d; } /* Generic.Subheading */
+  .gd { color: #cb2431; background-color: #ffeaea; } /* Generic.Deleted */
+  .gi { color: #22863a; background-color: #f0fff4; } /* Generic.Inserted */
+}
