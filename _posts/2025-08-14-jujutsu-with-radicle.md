@@ -219,9 +219,9 @@ Working copy  (@) now at: <span style="font-weight:bold;"></span><span style="fo
 Parent commit (@-)      : <span style="font-weight:bold;"></span><span style="font-weight:bold;color:purple;">xsl</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;">qmmsl</span> <span style="font-weight:bold;"></span><span style="font-weight:bold;color:blue;">62</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;">cdaf6d</span> <span style="color:purple;">master@rad</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;"> | </span>deployment: Vercel → Cloudflare Workers
 </pre>
 
-This says that I'm squashing the changes from the change identified by `r` into
-the change `xn`, and I want to keep the description of `xn` and drop the
-description of `r` (the `-u` option).
+This says that I'm squashing the changes from the change identified by `w` into
+the change `qx`, and I want to keep the description of `qx` and drop the
+description of `w` (the `-u` option).
 
 For extra points, `jj` even includes the beautiful `-i` option for _choosing_
 which changes you're taking from the source change – via a TUI. I cannot
