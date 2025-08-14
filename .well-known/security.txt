@@ -1,0 +1,6 @@
+Contact: mailto:security@radicle.xyz
+Expires: 2030-01-01T00:00:00.000Z
+Preferred-Languages: en, de
+Canonical: https://radicle.xyz/.well-known/security.txt
+
+# https://securitytxt.org/
