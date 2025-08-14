@@ -3,7 +3,7 @@ title: "Radicle: the sovereign forge"
 layout: index
 ---
 
-> Radicle Desktop is now available. Read the [announcement](/2025/06/13/radicle-desktop.html). ✨
+> Radicle Desktop is now available. Read the [announcement]({% post_url 2025-06-13-radicle-desktop %}). ✨
 
 # Synopsis
 
@@ -35,7 +35,7 @@ Alternatively, you can build from [source][heartwood].
 
 For now, Radicle only works on Linux, macOS and BSD variants.
 
-<a class="button" href="/guides/user">Follow the guide &rarr;</a>
+<a class="button" href="{% link _guides/user.md %}">Follow the guide &rarr;</a>
 
 ## Radicle Desktop 🖥️
 
@@ -47,7 +47,7 @@ The Radicle protocol leverages cryptographic identities for code and social
 artifacts, utilizes Git for efficient data transfer between peers, and employs
 a custom gossip protocol for exchanging repository metadata.
 
-<a class="button" href="/guides/protocol">Learn more &rarr;</a>
+<a class="button" href="{% link _guides/protocol.md %}">Learn more &rarr;</a>
 
 ## Your Data, Forever and Secure
 
@@ -115,15 +115,15 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
   Subscribe <img src="/assets/images/rss.svg" alt="RSS logo" style="width:15px;"/>
 </a>
 
-- 12.08.2025 [Radicle 1.3.0](/2025/08/12/radicle-1.3.0.html) released. ✨
-- 17.07.2025 [Radicle 1.2.1](/2025/07/17/radicle-1.2.1.html) released. ✨
-- 13.06.2025 [Radicle Desktop](/2025/06/13/radicle-desktop.html) is out. 🖥️
-- 02.06.2025 [Radicle 1.2](/2025/06/02/radicle-1.2.html) released. ✨
-- 05.12.2024 [Radicle 1.1](/2024/12/05/radicle-1.1.html) released. ✨
-- 10.09.2024 [Radicle 1.0](/2024/09/10/radicle-1.0.html) is out.
+- 12.08.2025 [Radicle 1.3.0]({% post_url 2025-08-12-radicle-1.3.0 %}) released. ✨
+- 17.07.2025 [Radicle 1.2.1]({% post_url 2025-07-17-radicle-1.2.1 %}) released. ✨
+- 13.06.2025 [Radicle Desktop]({% post_url 2025-06-13-radicle-desktop %}) is out. 🖥️
+- 02.06.2025 [Radicle 1.2]({% post_url 2025-06-02-radicle-1.2 %}) released. ✨
+- 05.12.2024 [Radicle 1.1]({% post_url 2024-12-05-radicle-1.1 %}) released. ✨
+- 10.09.2024 [Radicle 1.0]({% post_url 2024-09-10-radicle-1.0 %}) is out.
 - 26.03.2024 [Radicle 1.0.0-rc.1][1.0] released.
 - 10.03.2024 New Radicle homepage.
-- 05.03.2024 [Radicle Guides](/guides) launch.
+- 05.03.2024 [Radicle Guides]({% link _pages/guides.md %}) launch.
 - 05.03.2024 [Radicle makes it to the top of Hacker News][hn]!
 - 18.04.2023 [Radicle heartwood is announced](https://x.com/radicle/status/1648336186862194693?s=20).
 
@@ -132,10 +132,10 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
 
 ## Blog
 
-- 14.08.2025 [Jujutsu + Radicle = ❤️](/2025/08/14/jujutsu-with-radicle.html)
-- 12.08.2025 [Canonical References](/2025/08/12/canonical-references.html) released. ✨
-- 23.07.2025 [Using Radicle CI for Development](/2025/07/23/using-radicle-ci-for-development.html)
-- 30.05.2025 [How we used Radicle with GitHub Actions](/2025/05/30/radicle-with-github-actions.html)
+- 14.08.2025 [Jujutsu + Radicle = ❤️]({% post_url 2025-08-14-jujutsu-with-radicle %})
+- 12.08.2025 [Canonical References]({% post_url 2025-08-12-canonical-references %}) released. ✨
+- 23.07.2025 [Using Radicle CI for Development]({% post_url 2025-07-23-using-radicle-ci-for-development %})
+- 30.05.2025 [How we used Radicle with GitHub Actions]({% post_url 2025-05-30-radicle-with-github-actions %})
 
 # Feedback
 
