@@ -19,12 +19,12 @@ Git Merge 2024, and now it's a third Git tool that uses the concept of change
 identifiers, so it's a talking point on the [Git mailing list][git-list-change-id-topic].
 
 So, fast-forward a year or so, and I've been using `jj` for quite some time
-while contributing to and maintaining the `heartwood` repository – the home of
-the Radicle protocol – as well as some others. Did I have to convince my whole
-team that `jj` should be used by all of us and we all switch to this new
-workflow? No. The first piece of "magic" of `jj` is that it is essentially a
-version control system that has a transparent layer on top of Git itself. A
-change in `jj` will always point to a Git commit. The beauty of its
+while contributing to and maintaining the [heartwood repository][heartwood] –
+the home of the Radicle protocol – as well as some others. Did I have to
+convince my whole team that `jj` should be used by all of us and we all switch
+to this new workflow? No. The first piece of "magic" of `jj` is that it is
+essentially a version control system that has a transparent layer on top of Git
+itself. A change in `jj` will always point to a Git commit. The beauty of its
 implementation is that the underlying commit can change as much as it wants,
 while the `jj` change remains the same. This unlocks a lot of nice flows for
 managing changes using `jj`.
@@ -565,6 +565,7 @@ Come help in discussion on our [Zulip], and enjoy being Radicle 🌱👾
 [git-remote-helpers]: https://git-scm.com/docs/gitremote-helpers
 
 <!-- Radicle -->
+[heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 [Zulip]: https://radicle.zulipchat.com
 [download]: https://radicle.xyz/download
 [guide-user-cobs]: https://radicle.xyz/guides/user#2-collaborating-the-radicle-way
