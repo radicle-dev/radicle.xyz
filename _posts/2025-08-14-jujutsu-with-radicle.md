@@ -53,7 +53,7 @@ and fetch from the repository in Radicle [storage][rip-storage]. This means
 that I'll need a remote – this is set up for you when you run `rad init` or `rad
 clone`. This looks like:
 
-```ini
+<pre class="wide">
 [remote "rad"]
 	url = rad://z371PVmDHdjJucejRoRYJcDEvD5pp
 	fetch = +refs/heads/*:refs/remotes/rad/*
@@ -62,7 +62,7 @@ clone`. This looks like:
 [branch "master"]
 	remote = rad
 	merge = refs/heads/master
-```
+</pre>
 
 The `rad://` URL tells `git` which [remote helper][git-remote-helpers] to use
 by trying to find `git-remote-rad`. This will handle fetching/pushing from/to
@@ -151,7 +151,7 @@ Committer: <span style="color:olive;">Fintan Halpenny</span> &lt;<span style="co
 We can see that it looks similar to a Git commit, which we can also inspect
 using:
 
-<pre class="wide">
+<pre>
 $ git show 408133a5e54c80d2398be0c78cccabbd6063902d
 <span style="color:olive;">commit 408133a5e54c80d2398be0c78cccabbd6063902d</span>
 Author: Fintan Halpenny &lt;fintan.halpenny@radicle.xyz&gt;
@@ -166,7 +166,7 @@ the Git repository.
 At any point where I'm looking to separate changes, I can use `jj new` again,
 specifying any change to make a new change after the given change:
 
-<pre class="wide">
+<pre>
 $ jj new qx
 Working copy  (@) now at: <span style="font-weight:bold;"></span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:purple;">w</span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:dimgray;">msmovxx</span><span style="font-weight:bold;"> </span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:blue;">c5</span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:dimgray;">0301c1</span><span style="font-weight:bold;"> </span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:green;">(empty)</span><span style="font-weight:bold;"> </span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:green;">(no description set)</span>
 Parent commit (@-)      : <span style="font-weight:bold;"></span><span style="font-weight:bold;color:purple;">qx</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;">uvyurn</span> <span style="font-weight:bold;"></span><span style="font-weight:bold;color:blue;">40</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;">8133a5</span> blog: Radicle and JJ
@@ -233,7 +233,7 @@ my history clean and linear.
 The final piece of the puzzle, at least for my workflow, is `jj rebase`. I can
 move around changes and put them on top of a destination change:
 
-<pre class="wide">
+<pre>
 $ jj rebase -d qx -r sm
 Working copy  (@) now at: <span style="font-weight:bold;"></span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:purple;">sm</span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:dimgray;">vvuqzo</span><span style="font-weight:bold;"> </span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:blue;">42</span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:dimgray;">0180e8</span> blog: relevant blog material
 Parent commit (@-)      : <span style="font-weight:bold;"></span><span style="font-weight:bold;color:purple;">qx</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;">uvyurn</span> <span style="font-weight:bold;"></span><span style="font-weight:bold;color:blue;">1e</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;">2b0ccc</span> blog: Radicle and JJ
@@ -255,7 +255,7 @@ cribbed it from him.
 Here is my user config, and we'll discuss a couple of the entries, and I'll
 leave the rest as homework.
 
-```toml
+<pre class="wide">
 [aliases]
 dlog = ["log", "-r"]
 l = ["log", "-r", "(trunk()..@):: | (trunk()..@)-"]
@@ -281,7 +281,7 @@ tug = [
     conflicts() | \
     (empty() ~ merges()) | \
     description('substring-i:\"DO NOT MAIL\"')"
-```
+</pre>
 
 - `fresh`: this allows me to have an alias for `jj new master@rad` and use `jj
   fresh`.
@@ -363,7 +363,7 @@ that I should integrate into the patch.
 
 From here, I can find the patch using `rad patch`:
 
-<pre class="wide">
+<pre>
 $ rad patch
 <span style="color:#2a2a2a;">╭</span><span style="color:#2a2a2a;">───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">╮</span>
 <span style="color:#2a2a2a;">│ </span>●  <span style="font-weight:bold;">ID</span>       <span style="font-weight:bold;">Title</span>                                                  <span style="font-weight:bold;">Author</span>                          <span style="font-weight:bold;">Reviews</span>    <span style="font-weight:bold;">Head</span>     <span style="font-weight:bold;">+</span>      <span style="font-weight:bold;">-</span>      <span style="font-weight:bold;">Updated</span>     <span style="color:#2a2a2a;"> │</span>
@@ -388,68 +388,69 @@ Let's say I received feedback on my `Canonical References` patch, I can use its
 
 <pre class="wide">
 $ rad patch show c54883e
-<span style="color:#2a2a2a;">╭</span><span style="color:#2a2a2a;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">╮</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Title</span>     <span style="font-weight:bold;">Canonical References</span>                                                                                                                  <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Patch</span>     c54883e5ffb1f8a99f432e3ac79c0b728cd0dab3                                                                                              <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Author</span>    <span style="color:purple;">fintohaps</span> <span style="color:purple;">z6Mkire…SQZ3voM</span>                                                                                                             <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Head</span>      <span style="color:blue;">34014a67b0ddc859d95e17ffc71c1ae61aff5758</span>                                                                                              <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Branches</span>  <span style="color:olive;">patch/c54883e, sync-goal</span>                                                                                                              <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Commits</span>   ahead <span style="color:green;">6</span>, behind <span style="color:red;">49</span>                                                                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Status</span>    <span style="color:green;">open</span>                                                                                                                                  <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>                                                                                                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>See RIP-0004[^0] for the specification.                                                                                                         <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>                                                                                                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>This patch is an implementation of RIP-0004. It implements the rules mechanism                                                                  <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>within the `rules` module. This is interplays with the existing `canonical`                                                                     <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>mechanisms, already defined (but slightly refactored).                                                                                          <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>                                                                                                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>The `rules` are then used in pushing and fetching references. A test is added to                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>illustrate the canonical references in action via tags.                                                                                         <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>                                                                                                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>There were some incidental changes that were made to ensure the tags use case is                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>easy for users. The first change was to add a tags refspec to remotes in order                                                                  <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>to easily fetch tags from peers -- as well ensuring those tags do not pollute                                                                   <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>the `refs/tags` namespace in the working copy.                                                                                                  <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>                                                                                                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>This had a knock on change where there was a bug `libgit2` that didn't allow for                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>deleting `multivar` entries, which the new remote setup fell under. This was                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>fixed and so we update to `git2-0.19`.                                                                                                          <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>                                                                                                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>As well this, the `rad id update` command would error if the payload identifier                                                                 <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>was not the project identifier. This would stop adding new payloads to extend                                                                   <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>the identity -- which was needed for introducing canonical references.                                                                          <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>                                                                                                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>[^0]:                                                                                                                                           <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/patches/1d1ce874f7c39ecdcd8c318bbae46ffd02fe1ea8?tab=changes<span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">├</span><span style="color:#2a2a2a;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">┤</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:blue;">34014a6</span> radicle: refactor rule matching                                                                                                         <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:blue;">0e0b77e</span> radicle: add canonical refs to identity                                                                                                 <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:blue;">bbe019c</span> radicle: canonical reference rules                                                                                                      <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:blue;">b3ad6f2</span> radicle: refactor Canonical                                                                                                             <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:blue;">04277b4</span> radicle: store threshold in Canonical                                                                                                   <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:blue;">312c6a4</span> meta: relax radicle-git dependencies                                                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">├</span><span style="color:#2a2a2a;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">┤</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:green;">●</span> opened by <span style="color:purple;">fintohaps</span> <span style="color:purple;">z6Mkire…SQZ3voM</span> <span style="color:blue;">(3e97837)</span> 10 months ago                                                                                   <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to c1a2cc5787f44c0a835c1deae375be04c399dd7e <span style="color:blue;">(58e932c)</span> 9 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to c55494efc2e780cd6c91a1f90efdae8a3eb1c7ef <span style="color:blue;">(1b07774)</span> 8 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 583e6b3366c36cc7e67910c29a66750397a60484 <span style="color:blue;">(fdd5277)</span> 7 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to d54ddef216909bdd3e54e33e4f82c45df79c00d3 <span style="color:blue;">(f24f9d8)</span> 7 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to ac48ae6e75d4eaa13daed657eed24dfeabb9be94 <span style="color:blue;">(7d8e461)</span> 7 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 2b31e460db7451376dc3e346ee02b5fd597fa5c6 <span style="color:blue;">(040cfb7)</span> 7 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to e1c360a1311a0a215bed6eb42e4b0c8c5c44e611 <span style="color:blue;">(f0dec88)</span> 6 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 492cfbafd31e4bac85ee73af519ddc6254b47f82 <span style="color:blue;">(f9cb27f)</span> 4 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to fbdf18d7683bdac7a76149777eed5cf9bbbf5bd5 <span style="color:blue;">(2a64755)</span> 4 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 4baf32afd65f2c4b374d8f21fed6877aa804a003 <span style="color:blue;">(0cecae6)</span> 4 months ago                                                                    <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>  └─ ⋄ reviewed by <span style="color:purple;">self</span> <span style="font-style:italic;color:purple;">(you)</span> 1 month ago                                                                                                       <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to d2ebc70caca54a8ba508d72862c1e1c79d718129 <span style="color:blue;">(4515d45)</span> 1 month ago                                                                     <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 13e9ba641c624db26b6bfe85870daf064f90e9ab <span style="color:blue;">(045e465)</span> 1 month ago                                                                     <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 47495c408ccf5eec49b61c7bdb339e5f2d695a30 <span style="color:blue;">(a6be355)</span> 1 month ago                                                                     <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to e3bdb65d3adb94360dd3449744792f6ecb1f451f <span style="color:blue;">(8d08215)</span> 1 month ago                                                                     <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>  └─ ⋄ reviewed by <span style="color:purple;">erikli</span> <span style="color:purple;">z6MkgFq…FGAnBGz</span> 1 month ago                                                                                           <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 9f779028704b4c022cbe25c0e4a9bb46dc8463ba <span style="color:blue;">(49fcea7)</span> 1 month ago                                                                     <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 86ebfcaaf986edba5e77ede1be4d3c4ce33bd27c <span style="color:blue;">(2df7cd9)</span> 1 month ago                                                                     <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to fa9bdff35d76903f72cf24f1cccca812ae26e98c <span style="color:blue;">(34014a6)</span> 1 month ago                                                                     <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">╰</span><span style="color:#2a2a2a;">──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">╯</span>
+<span style="color:#2a2a2a;">╭</span><span style="color:#2a2a2a;">───────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">╮</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Title</span>     <span style="font-weight:bold;">Canonical References</span>                                                       <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Patch</span>     c54883e5ffb1f8a99f432e3ac79c0b728cd0dab3                                   <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Author</span>    <span style="color:purple;">fintohaps</span> <span style="color:purple;">z6Mkire…SQZ3voM</span>                                                  <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Head</span>      <span style="color:blue;">34014a67b0ddc859d95e17ffc71c1ae61aff5758</span>                                   <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Branches</span>  <span style="color:olive;">patch/c54883e, sync-goal</span>                                                   <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Commits</span>   ahead <span style="color:green;">6</span>, behind <span style="color:red;">49</span>                                                         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">Status</span>    <span style="color:green;">open</span>                                                                       <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>                                                                                     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>See RIP-0004[^0] for the specification.                                              <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>                                                                                     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>This patch is an implementation of RIP-0004. It implements the rules mechanism       <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>within the `rules` module. This is interplays with the existing `canonical`          <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>mechanisms, already defined (but slightly refactored).                               <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>                                                                                     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>The `rules` are then used in pushing and fetching references. A test is added to     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>illustrate the canonical references in action via tags.                              <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>                                                                                     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>There were some incidental changes that were made to ensure the tags use case is     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>easy for users. The first change was to add a tags refspec to remotes in order       <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>to easily fetch tags from peers -- as well ensuring those tags do not pollute        <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>the `refs/tags` namespace in the working copy.                                       <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>                                                                                     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>This had a knock on change where there was a bug `libgit2` that didn't allow for     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>deleting `multivar` entries, which the new remote setup fell under. This was         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>fixed and so we update to `git2-0.19`.                                               <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>                                                                                     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>As well this, the `rad id update` command would error if the payload identifier      <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>was not the project identifier. This would stop adding new payloads to extend        <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>the identity -- which was needed for introducing canonical references.               <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>                                                                                     <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>[^0]:                                                                                <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/ <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>patches/1d1ce874f7c39ecdcd8c318bbae46ffd02fe1ea8?tab=changes                         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">├</span><span style="color:#2a2a2a;">───────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">┤</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:blue;">34014a6</span> radicle: refactor rule matching                                              <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:blue;">0e0b77e</span> radicle: add canonical refs to identity                                      <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:blue;">bbe019c</span> radicle: canonical reference rules                                           <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:blue;">b3ad6f2</span> radicle: refactor Canonical                                                  <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:blue;">04277b4</span> radicle: store threshold in Canonical                                        <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:blue;">312c6a4</span> meta: relax radicle-git dependencies                                         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">├</span><span style="color:#2a2a2a;">───────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">┤</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:green;">●</span> opened by <span style="color:purple;">fintohaps</span> <span style="color:purple;">z6Mkire…SQZ3voM</span> <span style="color:blue;">(3e97837)</span> 10 months ago                        <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to c1a2cc5787f44c0a835c1deae375be04c399dd7e <span style="color:blue;">(58e932c)</span> 9 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to c55494efc2e780cd6c91a1f90efdae8a3eb1c7ef <span style="color:blue;">(1b07774)</span> 8 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 583e6b3366c36cc7e67910c29a66750397a60484 <span style="color:blue;">(fdd5277)</span> 7 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to d54ddef216909bdd3e54e33e4f82c45df79c00d3 <span style="color:blue;">(f24f9d8)</span> 7 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to ac48ae6e75d4eaa13daed657eed24dfeabb9be94 <span style="color:blue;">(7d8e461)</span> 7 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 2b31e460db7451376dc3e346ee02b5fd597fa5c6 <span style="color:blue;">(040cfb7)</span> 7 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to e1c360a1311a0a215bed6eb42e4b0c8c5c44e611 <span style="color:blue;">(f0dec88)</span> 6 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 492cfbafd31e4bac85ee73af519ddc6254b47f82 <span style="color:blue;">(f9cb27f)</span> 4 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to fbdf18d7683bdac7a76149777eed5cf9bbbf5bd5 <span style="color:blue;">(2a64755)</span> 4 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 4baf32afd65f2c4b374d8f21fed6877aa804a003 <span style="color:blue;">(0cecae6)</span> 4 months ago         <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>  └─ ⋄ reviewed by <span style="color:purple;">self</span> <span style="font-style:italic;color:purple;">(you)</span> 1 month ago                                            <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to d2ebc70caca54a8ba508d72862c1e1c79d718129 <span style="color:blue;">(4515d45)</span> 1 month ago          <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 13e9ba641c624db26b6bfe85870daf064f90e9ab <span style="color:blue;">(045e465)</span> 1 month ago          <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 47495c408ccf5eec49b61c7bdb339e5f2d695a30 <span style="color:blue;">(a6be355)</span> 1 month ago          <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to e3bdb65d3adb94360dd3449744792f6ecb1f451f <span style="color:blue;">(8d08215)</span> 1 month ago          <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>  └─ ⋄ reviewed by <span style="color:purple;">erikli</span> <span style="color:purple;">z6MkgFq…FGAnBGz</span> 1 month ago                                <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 9f779028704b4c022cbe25c0e4a9bb46dc8463ba <span style="color:blue;">(49fcea7)</span> 1 month ago          <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to 86ebfcaaf986edba5e77ede1be4d3c4ce33bd27c <span style="color:blue;">(2df7cd9)</span> 1 month ago          <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span><span style="color:teal;">↑</span> updated to fa9bdff35d76903f72cf24f1cccca812ae26e98c <span style="color:blue;">(34014a6)</span> 1 month ago          <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">╰</span><span style="color:#2a2a2a;">───────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">╯</span>
 </pre>
 
 You can see here how non-perfect my changes are, I'm being vulnerable here.
@@ -495,7 +496,7 @@ $ jj new 7322e3ac61669ba6dbde16bb0f7d30edf1ee85ce
 The way to do this instead, is to use the remote syntax and the special
 `patches` reference:
 
-<pre class="wide">
+<pre>
 $ jj new patches/3219ef871dd44c7ef51693f4aeba4c2c5c0c5c7b@rad
 Working copy  (@) now at: <span style="font-weight:bold;"></span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:purple;">oo</span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:dimgray;">xzsqoy</span><span style="font-weight:bold;"> </span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:blue;">eb</span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:dimgray;">9e0803</span><span style="font-weight:bold;"> </span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:green;">(empty)</span><span style="font-weight:bold;"> </span><span style="font-weight:bold;filter: contrast(70%) brightness(190%);color:green;">(no description set)</span>
 Parent commit (@-)      : <span style="font-weight:bold;"></span><span style="font-weight:bold;color:purple;">s</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;">wpyssrk</span> <span style="font-weight:bold;"></span><span style="font-weight:bold;color:blue;">73</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;">22e3ac</span> <span style="color:purple;">patches/3219ef871dd44c7ef51693f4aeba4c2c5c0c5c7b patches/3219ef871dd44c7ef51693f4aeba4c2c5c0c5c7b@rad</span><span style="filter: contrast(70%) brightness(190%);color:dimgray;"> | </span>node, cli: remove predefined bootstrap nodes
