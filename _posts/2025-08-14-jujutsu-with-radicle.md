@@ -31,7 +31,7 @@ managing changes using `jj`.
 
 So, you must be wondering by now, "How do I blend Radicle with `jj`?" Well,
 let's dance between the three worlds of `jj`, Git, and Radicle, to see how they
-have melted together to form a beautiful (_almost_) branch-less workflow.
+have melted together to form a beautiful _(almost)_ branch-less workflow.
 
 ### Radicle and Git
 
@@ -70,11 +70,11 @@ the repository identified by `z371PVmDHdjJucejRoRYJcDEvD5pp`. The string
 `z6MkireRatUThvd3qzfKht1S44wpm4FEWSSa4PRMTSQZ3voM` is my Node ID, and
 identifies my machine
 which makes sure that when I push, my references get stored under that
-[namespace][rip-storage-namespace]. Then when have the usual upstream branch setup
-for `master` for the `rad` remote – you may be familiar with this Git config entry
-when you have your `origin` set up for another Git forge.
+[namespace][rip-storage-namespace]. Finally, we have the usual upstream branch
+setup, for `master`, and the `rad` remote – you may be familiar with this Git
+config entry when you have your `origin` set up for another Git forge.
 
-There's one last piece of the puzzle in config that is an alias for easily
+There's one last puzzle piece in the configuration — an alias that simplifies
 creating a Radicle [patch][guide-user-patch].
 
 ```ini
@@ -309,7 +309,7 @@ write-change-id-header = true
 
 We want to change the `trunk()` alias from its default in `jj` so that it points
 to `master@rad`, the default branch in this particular Radicle repository. The
-`trunk()` revset is used in a few place, for example, we saw it above in
+`trunk()` revset is used in a few places, for example, we saw it above in
 `fresh`, but it is also in the next revset alias.
 
 Some changes in `jj` will be marked as [immutable][jj-immutables-heads]. `jj`
@@ -317,15 +317,15 @@ will prevent you from changing certain changes if they are marked as immutable,
 and its default value for this can be very restrictive, so instead we change it
 here. First we mark changes that are `present` in `trunk()` or `tags()` as
 immutable. Then we have untracked remote bookmarks with the set difference
-operator `~`. What are not marking as immutable are bookmarks that are in `rad`
-or that `patch`/`patches`. That is, if the changes are ours or from patches,
-then they're safe to edit. You might think, "Why are patches safe?"" Well, let's
-finally get into Radicle and Jujutsu.
+operator `~`. What we are not marking as immutable are bookmarks that are in
+`rad` or that `patch`/`patches`. That is, if the changes are ours or from
+patches, then they're safe to edit. You might think, "Why are patches safe?"
+Well, let's finally get into Radicle and Jujutsu.
 
 ### Radicle and Jujutsu
 
 So here we are, a lot of build up to get to the point where I can describe how I
-can avoid using branches (as much as possible).
+can avoid using branches as much as possible.
 
 #### Contributing Patches
 
@@ -505,7 +505,7 @@ Parent commit (@-)      : <span style="font-weight:bold;"></span><span style="fo
 At this point, I can also look at what commits are in the patch via `rad patch
 show`, or by using `jj log -r ::@`. If they're already on top `master@rad`, then
 to merge the patch I can simply `git push rad master` – and the remote helper
-marks the patch as merged if the canonical reference of `master` is update (a
+marks the patch as merged if the canonical reference of `master` is updated (a
 topic for another time).
 
 If the patch isn't on top of `master@rad` then I can rebase the changes using
@@ -534,11 +534,11 @@ update the canonical reference and have the patch marked as merged.
 
 And our adventure ends here. We dived into how Radicle works with Git, how
 Jujutsu works Git, and how I use Jujutsu to have a branch-less flow in Radicle.
-This is has been a dream to work with. This type of tooling feels like it
-enables me a lot more when managing my changes and keeping a clean history. I
-was *able* to do this with `git rebase`, but it felt like it got in the way more
-than it enabled me – and I haven't even touched on how [conflicts][jj-conflicts]
-are easy in Jujutsu!
+This has been a dream to work with. This type of tooling feels like it enables
+me a lot more when managing my changes and keeping a clean history. I was *able*
+to do this with `git rebase`, but it felt like it got in the way more than it
+enabled me – and I haven't even touched on how [conflicts][jj-conflicts] are
+easy in Jujutsu!
 
 There is plenty of room for improvements here, some things on my list are:
 - Keeping track of Jujutsu change IDs in Radicle data, which is already being
