@@ -325,7 +325,7 @@ an address book.
 
 Radicle's reference implementation is pre-configured with two [bootstrap
 nodes][bootstrap] that are connected to if the address book is empty:
-[seed.radicle.garden][] and [seed.radicle.xyz][]. These are nodes run by the
+[iris.radicle.xyz][] and [rosa.radicle.xyz][]. These are nodes run by the
 Radicle team and have large address books that are shared with connecting
 peers.
 
@@ -823,7 +823,8 @@ collaboration.
 [git-v2]: https://git-scm.com/docs/protocol-v2
 [Tor]: https://torproject.org/
 [Ed25519]: https://ed25519.cr.yp.to/
-[seed.radicle.garden]: https://app.radicle.xyz/nodes/seed.radicle.garden
+[iris.radicle.xyz]: https://app.radicle.xyz/nodes/iris.radicle.xyz
+[rosa.radicle.xyz]: https://app.radicle.xyz/nodes/rosa.radicle.xyz
 [seed.radicle.xyz]: https://app.radicle.xyz/nodes/seed.radicle.xyz
 [reverse-dns]: https://en.wikipedia.org/wiki/Reverse_domain_name_notation
 [tuf]: https://theupdateframework.github.io/specification/latest/

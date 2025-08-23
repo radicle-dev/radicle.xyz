@@ -230,7 +230,7 @@ A *permissive* or "open" policy is said to be *fully-replicating*, meaning your
 seed will try to have a full copy of all repository data available on the
 network.
 
-An example of a node with this policy is `seed.radicle.garden`, a node operated
+An example of a node with this policy is `iris.radicle.xyz`, a node operated
 by the Radicle team, for the Radicle community.
 
 This is a good default for seeders who want to support the network without
