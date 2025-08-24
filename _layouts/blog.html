@@ -1,3 +1,4 @@
+{% assign author = site.data.author[page.author] %}
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
   <head>
@@ -19,7 +20,13 @@
     <main>
       <h1>{{ page.title }}</h1>
       <p class="subtitle">{{ page.subtitle }}</p>
-      <span class="author">Published by <a href="{{page.authorUrl}}">{{page.author}}</a> on {{ page.date | date: "%d.%m.%Y" }}</span>
+      <span class="author">
+	      Published by <a href="https://app.radicle.xyz/nodes/{{author.radicle.node | default: site.node }}/users/{{author.radicle.did}}">{{author.name}}</a>
+	{% if author.atproto %}<a href="{{ author.atproto | remove_first: "@" | prepend: "https://bsky.app/profile/" }}">🦋</a>{% endif %}
+	{% if author.fedi %}<a href="{{ author.fedi | remove_first: "@" | split: "@" | reverse | join: "/@" | prepend: "https://" }}">🐘</a>{% endif %}
+	{% if author.web %}<a href="https://{{ author.web }}">🌐</a>{% endif %}
+        on {{ page.date | date: "%d.%m.%Y" }}
+      </span>
       {% include toc.html html=content class="toc" item_class="toc-h%level%" %}
       {{ content }}
     </main>

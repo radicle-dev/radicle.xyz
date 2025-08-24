@@ -1,9 +1,8 @@
 ---
 title: "Using Radicle CI for Development"
 subtitle: "In this blog post I show how I use Radicle and its CI support for my own software development."
-author: "lars"
-authorUrl: "https://liw.fi/"
-layout: "blog"
+author: lars
+layout: blog
 ---
 
 In this blog post I show how I use Radicle and its CI support for my

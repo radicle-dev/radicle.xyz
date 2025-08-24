@@ -1,9 +1,8 @@
 ---
 title: "How we used Radicle with GitHub Actions"
 subtitle: "Quick guide to trying Radicle without dropping GitHub or whatever CI you’re using."
-author: "rudolfs"
-authorUrl: "https://app.radicle.xyz/nodes/seed.radicle.garden/users/did:key:z6MkwPUeUS2fJMfc2HZN1RQTQcTTuhw4HhPySB8JeUg2mVvx"
-layout: "blog"
+author: rudolfs
+layout: blog
 ---
 
 A chat with [burrito](https://app.radicle.xyz/nodes/seed.radicle.garden/users/did:key:z6MkrubmdTJKR42YZd7yDYysyx4JRez1wmvxjpmhzhTMKxsr) aka [Dietrich Ayala](https://metafluff.com) today sparked the idea to write down how we started dogfooding Radicle before we had our native Radicle CI going. He also encouraged me to just set a deadline for writing blog posts in general, so this had to be written and published by the end of today.

@@ -1,22 +1,23 @@
-<title>
-  {% if page.title %}
-    {{ page.title }}
-  {% else %}
-    {{ site.title }}
-  {% endif %}
-</title>
-<link rel="shortcut icon" href="/assets/images/radicle.svg"/>
-<link rel="canonical" href="https://radicle.xyz"/>
+{% assign author = site.data.author[page.author] %}
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<meta name="description" content="Radicle is a decentralized platform for code collaboration, offering secure and sovereign infrastructure for developers.">
+
+<title>{{ page.title | default: site.title }}</title>
+<link rel="shortcut icon" href="/assets/images/radicle.svg"/>
+<link rel="canonical" href="{{ site.url }}"/>
+<meta name="description" content="{{ page.description | default: site.description }}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:image" content="https://radicle.xyz/assets/images/og-card.png"/>
 <meta name="twitter:site" content="@radicle"/>
 <meta name="twitter:creator" content="@radicle"/>
+
+<meta property="og:title" content="{{ page.title | default: site.title }}"/>
+<meta property="og:description" content="Sovereign code infrastructure."/>
 <meta property="og:image" content="https://radicle.xyz/assets/images/og-card.png"/>
 <meta property="og:url" content="https://radicle.xyz{{ page.url }}"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="Radicle"/>
-<meta property="og:description" content="Sovereign code infrastructure."/>
+
+<meta name="fediverse:creator" content="{{ author.fedi | default: site.fedi }}" />
+
 <script defer data-domain="radicle.xyz" src="https://plausible.io/js/script.js"></script>

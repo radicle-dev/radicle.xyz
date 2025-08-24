@@ -1,12 +1,9 @@
 url: "https://radicle.xyz"
 baseurl: "/"
-title: "Radicle: the sovereign forge"
-highlighter: rouge
-markdown: kramdown
-kramdown:
-  syntax_highlighter: rouge
+
 plugins:
   - jekyll-feed
+
 collections:
   guides:
     output: true
@@ -14,11 +11,13 @@ collections:
   pages:
     output: true
     permalink: /:path/
-# jekyll-feed configuration
-feed:
-  title: "Radicle: the sovereign forge"
-  description: "The Radicle forge is an open source, peer-to-peer code collaboration stack built on Git."
-  icon: /assets/images/logo-small.svg
+
+
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+
 exclude:
   - Makefile
   - LICENSE
@@ -27,3 +26,14 @@ exclude:
 include:
   - _redirects
   - .well-known
+
+# Metadata
+title: "Radicle: the sovereign forge"
+description: "The Radicle forge is an open source, peer-to-peer code collaboration stack built on Git."
+fedi: "@radicle@toot.radicle.xyz"
+node: "seed.radicle.xyz"
+
+# jekyll-feed configuration
+feed:
+  icon: /assets/images/logo-small.svg
+

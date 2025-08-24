@@ -1,9 +1,8 @@
 ---
 title: "Jujutsu + Radicle = ❤️"
 subtitle: "How I use Jujutsu in tandem with Radicle"
-author: "fintohaps"
-authorUrl: "https://app.radicle.xyz/nodes/seed.radicle.garden/users/did:key:z6MkireRatUThvd3qzfKht1S44wpm4FEWSSa4PRMTSQZ3voM"
-layout: "blog"
+author: fintan
+layout: blog
 ---
 
 Roughly a year ago at the first ever [Local First Conference], a friend and

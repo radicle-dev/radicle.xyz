@@ -1,9 +1,7 @@
 ---
+layout: blog
 title: "Canonical References"
-author: "fintohaps"
-layout: post
-authorUrl: "https://app.radicle.xyz/nodes/iris.radicle.xyz/users/did:key:z6MkireRatUThvd3qzfKht1S44wpm4FEWSSa4PRMTSQZ3voM"
-layout: "blog"
+author: fintan
 ---
 
 ## Canonical what?
