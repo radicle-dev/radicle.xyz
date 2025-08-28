@@ -37,3 +37,16 @@ node: "seed.radicle.xyz"
 feed:
   icon: /assets/images/logo-small.svg
 
+defaults:
+  - scope:
+      path: _guides
+    values:
+      layout: guide
+  - scope:
+      path: _pages
+    values:
+      layout: page
+  - scope:
+      path: _posts
+    values:
+      layout: post

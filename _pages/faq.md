@@ -1,6 +1,5 @@
 ---
 title: FAQ
-layout: page
 ---
 
 Welcome to Radicle's <strong class="highlight">FAQ</strong>. If you can't find

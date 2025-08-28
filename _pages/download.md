@@ -1,7 +1,6 @@
 ---
 title: Download Radicle
 subtitle: Download a Radicle release
-layout: page
 variant: wide
 ---
 This is Radicle's <strong class="highlight">download</strong> page.

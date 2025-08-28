@@ -1,6 +1,5 @@
 ---
 title: "Radicle Desktop 🖥️"
-layout: post
 image: radicle-1.png
 ---
 

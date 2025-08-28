@@ -1,6 +1,5 @@
 ---
 title: Radicle's History
-layout: page
 ---
 
 A brief <strong class="highlight">history</strong> of the Radicle project, in

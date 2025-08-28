@@ -1,7 +1,6 @@
 ---
 title: Radicle Guides
 subtitle: Everything you ever wanted to know
-layout: page
 ---
 
 Welcome to the Radicle <strong class="highlight">Guides</strong>. Make sure to

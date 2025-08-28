@@ -2,7 +2,6 @@
 title: Radicle User Guide
 subtitle: A fantastic journey through the Radicle universe
 banner: 16.medium.png
-layout: guide
 ---
 
 Software is *the* fundamental way in which we interface with data that

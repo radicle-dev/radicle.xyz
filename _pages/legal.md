@@ -1,6 +1,5 @@
 ---
 title: A Legal Resource for Node Operators
-layout: page
 ---
 
 # A Legal Resource for Node Operators
