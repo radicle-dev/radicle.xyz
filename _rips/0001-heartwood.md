@@ -7,8 +7,6 @@ Created: 2022-09-06
 License: CC0-1.0
 ---
 
-RIP #1: Heartwood
-=================
 In this RIP, we define a major iteration of the Radicle network protocol and
 the various related sub-systems. We call it "Heartwood".
 

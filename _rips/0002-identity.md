@@ -7,8 +7,6 @@ Created: 2022-12-06
 License: CC0-1.0
 ---
 
-RIP #2: Identity
-================
 In RIP #1, we discussed *repository identity*, and the *identity document*.
 We said that to make it possible for repositories to be hosted in a peer-to-peer
 network, Git repositories on their own are not enough: we need a secure way to

@@ -7,8 +7,6 @@ Created: 2022-10-27
 License: CC0-1.0
 ---
 
-RIP #3: Storage Layout
-======================
 The storage layer is a crucial component of the Radicle network, and it is
 designed with a local-first approach. This means that it can accommodate not
 only the local operator's view of a repository, but also the views of peers in
