@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    {% include meta.html %}
+    <link rel="stylesheet" type="text/css" href="{{ "/assets/css/guide.css" | relative_url }}"/>
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <a href="/guides">
+          <img src="{{ "/assets/images/radicle.svg" | relative_url }}" alt="" />
+          <span>Guides</span>
+        </a>
+      </div>
+      <nav>
+      </nav>
+      <button class="toggle" id="toggle-theme"><!-- Set by script --></button>
+    </header>
+    <main>
+      <h1>{{ page.title }}</h1>
+      <p class="subtitle">{{ page.subtitle }}</p>
+      <img class="banner" src="/assets/images/banners/{{ page.banner }}" />
+      {% include toc.html html=content class="toc" item_class="toc-h%level%" %}
+      <hr />
+      {{ content }}
+    </main>
+    <footer>
+      <p>&copy; The Radicle Team</p>
+    </footer>
+    <script src="{{ "/assets/js/toggle-theme.js" | relative_url }}"></script>
+  </body>
+</html>
