@@ -11,6 +11,9 @@ collections:
   pages:
     output: true
     permalink: /:path/
+  rips:
+    output: true
+    permalink: /rip/:path/
 
 
 highlighter: rouge
@@ -51,3 +54,7 @@ defaults:
       path: _posts
     values:
       layout: post
+  - scope:
+      path: _rips
+    values:
+      layout: rip
