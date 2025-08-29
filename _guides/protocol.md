@@ -5,9 +5,9 @@ banner: 23.medium.png
 layout: guide
 ---
 
-Heartwood, the latest generation of the [Radicle][] protocol establishes a
+Heartwood, the latest generation of the [Radicle] protocol establishes a
 sovereign data network for code collaboration and publishing, built on top of
-[Git][]. In Radicle, users maintain local copies of their repositories of
+[Git]. In Radicle, users maintain local copies of their repositories of
 interest and related social artifacts such as issues and patches. Instead
 of depending on a centralized service like GitHub, each participant in Radicle
 operates a node that is capable of running on a personal computer, and is
@@ -21,7 +21,7 @@ published to the network, provided at least one other peer seeding the
 repository is online. Since Radicle is built on Git, it can easily interoperate
 with existing tools and workflows.
 
-Radicle's architecture is [local-first][], ensuring continuous access to one's
+Radicle's architecture is [local-first], ensuring continuous access to one's
 repositories directly from their device, regardless of internet connectivity.
 Repositories have unique identifiers and are self-certifying, meaning all
 actions, from committing code to adding a comment to an issue, are performed
@@ -43,13 +43,13 @@ maintain and modify personal copies of data repositories, commonly for source
 code control. Its structure for direct user-to-user collaboration, while
 feasible, is often cumbersome since Git primarily focuses on version control
 rather than collaboration. As a result, users frequently opt for centralized
-[forges][] like GitHub or GitLab, which offer enhanced interfaces and
+[forges] like GitHub or GitLab, which offer enhanced interfaces and
 collaborative tools on top of Git, such as project management and code review.
 This dependency, however, can result in vendor lock-in since it places a
 project's social artifacts (e.g. issues, comments, pull requests) out of user
 control, potentially compromising data sovereignty and other user freedoms.
 
-Traditional self-hosted forges like [Gitea][] or [Forgejo][] provide more
+Traditional self-hosted forges like [Gitea] or [Forgejo] provide more
 sovereignty but often lead to fragmented collaboration environments, as users
 must create separate profiles for each hosted instance. This simultaneously
 limits a project's exposure to the wider open source community, a key advantage
@@ -61,7 +61,7 @@ The Radicle protocol, in contrast, extends Git's capabilities with a
 decentralized identity system, novel gossip protocol, and integrated social
 artifacts, forming a *self-hosted network for code collaboration*. Radicle
 locates, serves, and replicates Git repositories -- including artifacts --
-across a [peer-to-peer][] network while maintaining data authenticity via
+across a [peer-to-peer] network while maintaining data authenticity via
 cryptographic signatures, so peers can directly exchange data without the need
 for a trusted third party. This enables communities to both self-host and share
 their repositories across a distributed protocol, contributing to the emergence
@@ -69,10 +69,10 @@ of a new sovereign network for code collaboration and more.
 
 ## Nodes
 
-Radicle is a [peer-to-peer][] system, which means that there is no traditional
+Radicle is a [peer-to-peer] system, which means that there is no traditional
 client-server model. Peers on the Radicle network are referred to as *nodes*,
 and are indistinguishable from users at the protocol level. Nodes, identified
-by their [Node ID](#node-identifier-nid) (NID) -- an [Ed25519][] public
+by their [Node ID](#node-identifier-nid) (NID) -- an [Ed25519] public
 key -- are responsible for seeding Git repositories, each identified by a unique
 [Repository ID](#repository-identifier-rid) (RID). The seeding process involves
 both hosting the repository data and synchronizing changes with other nodes.
@@ -114,7 +114,7 @@ Radicle node identity is based on [public-key cryptography][pkc], which makes
 it easy to verify the authenticity of messages within the network through
 [digital signatures][signing]. This also allows for consistent identification
 even as a user's physical address varies. When setting up a node, users
-generate their unique key pair, an [Ed25519][] public and private key, the
+generate their unique key pair, an [Ed25519] public and private key, the
 public part of which is encoded and shared as a [Decentralized Identifier][did]
 (DID). Creating a node identity requires no permission or coordination: the key
 pair can be created while offline without providing an email address or any
@@ -143,7 +143,7 @@ Key" all refer to the same thing and can be used interchangeably. </aside>
 
 To run a node and connect to the network, users install Radicle client software
 that is lightweight and suitable for use on both end-user devices and seed
-nodes. The reference implementation can be found in the Radicle [Heartwood][]
+nodes. The reference implementation can be found in the Radicle [Heartwood]
 repository, and is actively maintained by a small team of engineers.
 
 <aside> Radicle's reference implementation is written in <a
@@ -283,7 +283,7 @@ After the handshake phase is completed, all data exchanged between peers is
 fully encrypted and benefits from strong [forward secrecy][fs], ensuring
 secure and private communications across the network.
 
-> **Tip**: Radicle also supports [Tor][] addresses. Users can leverage Tor to
+> **Tip**: Radicle also supports [Tor] addresses. Users can leverage Tor to
 > hide their IP address from peers, and connect to `.onion` addresses on the
 > Tor network.
 
@@ -300,7 +300,7 @@ negotiating which objects should be sent or skipped by the remote node. The
 objects are then downloaded into the node's storage, making them accessible to
 other nodes via the same process.
 
-Since Radicle uses a [framing][] protocol for all its sessions, the fetch
+Since Radicle uses a [framing] protocol for all its sessions, the fetch
 protocol is able to take place over the same physical connection between nodes
 as the gossip protocol. This allows for a more efficient use of resources
 and avoids certain problems with [NATs][nat]. Although Git's protocols are
@@ -325,7 +325,7 @@ an address book.
 
 Radicle's reference implementation is pre-configured with two [bootstrap
 nodes][bootstrap] that are connected to if the address book is empty:
-[iris.radicle.xyz][] and [rosa.radicle.xyz][]. These are nodes run by the
+[iris.radicle.xyz] and [rosa.radicle.xyz]. These are nodes run by the
 Radicle team and have large address books that are shared with connecting
 peers.
 
@@ -412,7 +412,7 @@ form standardizes JSON encoding to ensure identical byte representation for the
 same data structures, making it particularly useful for cryptographic
 operations like hashing. </aside>
 
-Here's an example of the identity document for the [heartwood][] repository:
+Here's an example of the identity document for the [heartwood] repository:
 
 ```json
 {

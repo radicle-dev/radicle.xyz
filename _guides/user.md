@@ -131,7 +131,7 @@ This command runs an installer script that automates the setup process, by:
 > `--prefix=/usr/local`.
 >
 > Note that if you don't want to use the installer script, you can also always
-> compile from the [source code][heartwood] or get the [binaries][] if you
+> compile from the [source code][heartwood] or get the [binaries] if you
 > prefer.
 
 [heartwood]: https://app.radicle.xyz/seeds/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5

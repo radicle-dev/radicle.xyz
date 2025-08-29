@@ -521,7 +521,7 @@ HTTP JSON API. For seed nodes, the HTTP Daemon is always configured as a
 
 ### Installation
 
-Head over to the [download][] page, and follow the instructions there. The
+Head over to the [download] page, and follow the instructions there. The
 process is the same as for the Radicle Node. You will have to download, verify
 and extract the binary (`radicle-httpd`) and manuals to your preferred
 location.

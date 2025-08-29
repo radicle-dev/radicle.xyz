@@ -27,7 +27,7 @@ decentralized manner, and users are in full control of their data and workflow.
 {% include latest-release.html %}
 
 To install Radicle, simply run the command below from your shell, or go to the
-[download][] page.
+[download] page.
 
 {% include install.html %}
 
@@ -63,7 +63,7 @@ third-parties.
 
 ## Local-first
 
-Radicle is [local-first][], providing always-available functionality even
+Radicle is [local-first], providing always-available functionality even
 without internet access. Users own their data, making migration, backup, and
 access easy both online and offline.
 
