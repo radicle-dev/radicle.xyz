@@ -19,6 +19,7 @@ kramdown:
   syntax_highlighter: rouge
 
 exclude:
+  - .jj
   - Makefile
   - LICENSE
   - flake.*
