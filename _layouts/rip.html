@@ -9,7 +9,7 @@
       <div class="title">
         <a href="/guides">
           <img src="{{ "/assets/images/radicle.svg" | relative_url }}" alt="" />
-          <span>Guides</span>
+          <span>Radicle Improvement Proposals</span>
         </a>
       </div>
       <nav>
@@ -17,9 +17,7 @@
       <button class="toggle" id="toggle-theme"><!-- Set by script --></button>
     </header>
     <main>
-      <h1>{{ page.title }}</h1>
-      <p class="subtitle">{{ page.subtitle }}</p>
-      <img class="banner" src="/assets/images/banners/{{ page.banner }}" />
+	    <h1>RIP {{ page.RIP}}: {{ page.Title }}</h1>
       {% include toc.html html=content class="toc" item_class="toc-h%level%" %}
       <hr />
       {{ content }}
