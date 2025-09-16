@@ -115,6 +115,7 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
   Subscribe <img src="/assets/images/rss.svg" alt="RSS logo" style="width:15px;"/>
 </a>
 
+- 16.09.2025 [End of Year Roadmap]({% post_url 2025-09-16-roadmap %})
 - 12.08.2025 [Radicle 1.4.0]({% post_url 2025-09-04-radicle-1.4.0 %}) released. ✨
 - 12.08.2025 [Radicle 1.3.0]({% post_url 2025-08-12-radicle-1.3.0 %}) released. ✨
 - 17.07.2025 [Radicle 1.2.1]({% post_url 2025-07-17-radicle-1.2.1 %}) released.
