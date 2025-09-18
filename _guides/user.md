@@ -444,7 +444,7 @@ Note that your new repository will only be replicated by nodes that you are
 connected to and either have an open seeding policy, or follow you. Seeding
 involves both hosting the repository and synchronizing changes with other
 nodes. In the early stages of the Radicle network, all public repositories are
-automatically seeded by `iris.radicle.garden` and `rosa.radicle.garden` which
+automatically seeded by `iris.radicle.xyz` and `rosa.radicle.xyz` which
 are *public seed nodes* run by the core team.
 
 <!-- TODO: Talk about seeding policies and following -->
