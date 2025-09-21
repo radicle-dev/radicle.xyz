@@ -1,0 +1,11 @@
+# Use `age` with `--recipients-file`.
+# See also:
+#  - <https://age-encryption.org>
+#  - <https://mankier.com/1/age>
+{% for recipient in page.recipients -%}
+{% assign author = site.data.author[recipient] -%}
+#
+# {{ author.name }}
+# {{ author.radicle.did }}
+{{ author.radicle.age }}
+{% endfor -%}
