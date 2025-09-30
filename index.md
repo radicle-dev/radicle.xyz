@@ -116,6 +116,7 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
 </a>
 
 - 12.08.2025 [Radicle 1.4.0]({% post_url 2025-09-04-radicle-1.4.0 %}) released. ✨
+- 04.09.2025 [Radicle 1.4.0]({% post_url 2025-09-04-radicle-1.4.0 %}) released. ✨
 - 12.08.2025 [Radicle 1.3.0]({% post_url 2025-08-12-radicle-1.3.0 %}) released. ✨
 - 17.07.2025 [Radicle 1.2.1]({% post_url 2025-07-17-radicle-1.2.1 %}) released.
 - 13.06.2025 [Radicle Desktop]({% post_url 2025-06-13-radicle-desktop %}) is out. 🖥️
