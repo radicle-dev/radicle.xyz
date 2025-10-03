@@ -3,7 +3,43 @@ title: Download Radicle
 subtitle: Download a Radicle release
 variant: wide
 ---
-This is Radicle's <strong class="highlight">download</strong> page.
+This is Radicle's <strong class="highlight">download</strong> page,
+which references various ways of downloading Radicle to your machine.
+
+# Package Manager
+
+Note that all packages are maintained on a best-effort basis,
+it might take some time for them to catch up after a release.
+Thanks to all community members that help distributing Radicle!
+
+## Advanced Package Tool (and compatible)
+
+To use our repository at <https://radicle.xyz/apt>,
+first install the signing key:
+```
+curl -LO https://radicle.xyz/apt/radicle-archive-keyring.deb
+chmod a+r radicle-archive-keyring.deb
+sudo apt install ./radicle-archive-keyring.deb
+```
+Then add the URL to your `/etc/apt/sources.list`:
+```
+echo "deb [signed-by=/usr/share/radicle/radicle-archive-keyring.asc] https://radicle.xyz/apt release main" | sudo tee -a  "/etc/apt/sources.list"
+```
+Now install `radicle`, e.g.:
+```
+sudo apt-get install radicle
+```
+
+## Pacman
+
+Install [`radicle-bin`](https://aur.archlinux.org/packages?O=0&K=radicle) from AUR.
+
+## Nix
+
+Install [`radicle-node`](https://search.nixos.org/packages?show=radicle-node&query=radicle) from Nixpkgs.
+
+# Reproducible Binary
+
 Radicle uses a [reproducible build][rb] pipeline to ensure that anyone can
 reproduce the binaries on this page from source.
 
