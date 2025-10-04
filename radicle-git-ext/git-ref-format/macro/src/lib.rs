@@ -32,7 +32,7 @@ pub fn refname(input: TokenStream) -> TokenStream {
             let expand = quote! {
                 unsafe {
                     use ::std::mem::transmute;
-                    use ::radicle_git_ext::ref_format::RefString;
+                    use ::git_ref_format::RefString;
 
                     transmute::<_, RefString>(#safe.to_owned())
                 }
