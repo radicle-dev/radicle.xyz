@@ -7,15 +7,15 @@ reverse-chronological order.
 
 ### June, 2025
 
-Radicle 1.2 is released.
+Radicle 1.2.0 is released.
 
 ### December, 2024
 
-Radicle 1.1 is released.
+Radicle 1.1.0 is released.
 
 ### September, 2024
 
-Radicle 1.0 is released.
+Radicle 1.0.0 is released.
 
 ### March, 2024
 

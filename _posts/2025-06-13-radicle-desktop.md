@@ -7,7 +7,7 @@ Today, we're excited to officially introduce Radicle Desktop - a simple, intuiti
 
 ![Radicle Desktop](/assets/images/blog/radicle-desktop-repo-home.png)
 
-Since Radicle reached version 1.0 in September last year, we’ve been focused on improving the overall user experience. We believe the Radicle network becomes more valuable the more people participate - and Radicle Desktop is a step toward making that participation more accessible, without making any compromises.
+Since Radicle reached version 1.0.0 in September last year, we’ve been focused on improving the overall user experience. We believe the Radicle network becomes more valuable the more people participate - and Radicle Desktop is a step toward making that participation more accessible, without making any compromises.
 
 ## Try it out! 🪄
 
