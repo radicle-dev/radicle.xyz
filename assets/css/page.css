@@ -18,7 +18,7 @@ h1, h2 {
   color: var(--color-fg-highlight-tertiary);
 }
 
-h3 {
+h4 {
   font-weight: normal;
   text-decoration: underline;
 }
@@ -35,6 +35,11 @@ h2 {
 
 h3 {
   margin-left: 2rem;
+  color: var(--color-fg-highlight-secondary);
+}
+
+h4 {
+  margin-left: 3rem;
 }
 
 h2::after {
