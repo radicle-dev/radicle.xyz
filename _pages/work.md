@@ -26,6 +26,8 @@ Note that we currently are:
 
 The application process is the same for all roles listed below:
 
+1. After contacting us, please allow for seven to ten days for us to get back to you.
+   We review applications once per week, and do so manually and thoroughly.
 1. We invite you to an initial chat about your previous experience, allowing for discussions of questions.
 2. The chat might conclude with us posing a collaborative task to you, especially if you have not contributed to Radicle prior to your application.
    For details on what this task might be, refer to the description of position you are applying for.
