@@ -32,7 +32,7 @@ The application process is the same for all roles listed below:
    In all cases it will be a predefined task, which will be explained by us to set you up for success.
    Of course we will answer your questions for clarification.
    We will provide payment for up to 10 hours of work spent on this task.
-   However, at a reduced rate of 50 € per hour.
+   However, at a reduced rate of 50 EUR per hour.
 3. If you have been posed with the task, the intent is that you work on it, and report back to us.
    Often times this will mean more interaction, for example getting a patch merged to one of our Git repositories.
 4. We invite you to a final chat, which concludes the application process.
@@ -40,6 +40,12 @@ The application process is the same for all roles listed below:
 ## Contractual Counter-Party
 
 For compensation payment, your contractual counter-party is the [Better Internet Foundation](https://betterinternet.foundation/).
+Your compensated can be paid in
+CHF,
+EUR (compensation is quoted in this currency),
+GPB,
+USDC (on Ethereum).
+Please note that payment in USD is not possible.
 Refer to [these notes](https://radworkscommunity.notion.site/95a8ddedf47c4575b0c323ab66775f58) on how to invoice.
 This applies after a successful application as well for the work completed on the interview task during the application process (if the task was posed).
 
@@ -72,7 +78,7 @@ We will provide you with a predefined task description (potentially multiple for
 
 #### Compensation
 
-The compensation starts at 85 € per hour, with an expected 20-40 hours per week and can be discussed based on your experience and location.
+The compensation starts at 85 EUR per hour, with an expected 20-40 hours per week and can be discussed based on your experience and location.
 
 ### UX/DX Developer
 
@@ -101,4 +107,4 @@ We will provide you with a predefined task description (potentially multiple for
 
 #### Compensation
 
-The compensation starts at 85 € per hour, with an expected 20-40 hours per week and can be discussed based on your experience and location.
+The compensation starts at 85 EUR per hour, with an expected 20-40 hours per week and can be discussed based on your experience and location.
