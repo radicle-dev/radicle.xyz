@@ -42,7 +42,7 @@ The application process is the same for all roles listed below:
 ## Contractual Counter-Party
 
 For compensation payment, your contractual counter-party is the [Better Internet Foundation](https://betterinternet.foundation/).
-Your compensated can be paid in
+Your compensation can be paid in
 CHF,
 EUR (compensation is quoted in this currency),
 GPB,
