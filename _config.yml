@@ -3,6 +3,7 @@ baseurl: "/"
 
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 
 collections:
   guides:
