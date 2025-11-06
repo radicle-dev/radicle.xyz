@@ -34,6 +34,7 @@ title: "Radicle: the sovereign forge"
 description: "The Radicle forge is an open source, peer-to-peer code collaboration stack built on Git."
 fedi: "@radicle@toot.radicle.xyz"
 node: "seed.radicle.xyz"
+atproto: radicle.xyz
 
 # jekyll-feed configuration
 feed:

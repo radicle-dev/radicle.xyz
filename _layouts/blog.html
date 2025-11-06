@@ -22,8 +22,8 @@
       <p class="subtitle">{{ page.subtitle }}</p>
       <span class="author">
 	      Published by <a href="https://app.radicle.xyz/nodes/{{author.radicle.node | default: site.node }}/users/{{author.radicle.did}}">{{author.name}}</a>
-	{% if author.atproto %}<a href="{{ author.atproto | remove_first: "@" | prepend: "https://bsky.app/profile/" }}">🦋</a>{% endif %}
 	{% if author.fedi %}<a href="{{ author.fedi | remove_first: "@" | split: "@" | reverse | join: "/@" | prepend: "https://" }}">🐘</a>{% endif %}
+	{% if author.atproto %}<a href="{{ author.atproto | prepend: "https://bsky.app/profile/" }}">🦋</a>{% endif %}
 	{% if author.web %}<a href="https://{{ author.web }}">🌐</a>{% endif %}
         on {{ page.date | date: "%d.%m.%Y" }}
       </span>

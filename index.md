@@ -165,8 +165,8 @@ channel on Zulip.
 
 [install-script]: /install
 [twitter]: https://twitter.com/radicle
-[bsky]: https://bsky.app/profile/radicle.xyz
 [mast]: https://toot.radicle.xyz/@radicle
+[bsky]: https://bsky.app/profile/{{ site.atproto }}
 [zulip]: https://radicle.zulipchat.com
 [heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 [desktop]: /desktop
