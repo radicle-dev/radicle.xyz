@@ -586,7 +586,7 @@ Finally, edit or create the `Caddyfile` at `/etc/caddy/Caddyfile`, and *replace*
 its contents with the following configuration, using the correct domain name
 for your seed:
 
-    seed.radicle.garden {
+    seed.radicle.example {
         reverse_proxy 127.0.0.1:8080
     }
 
@@ -602,13 +602,13 @@ If you encounter issues setting up Caddy, you can try following their
 [guide][caddy-guide] instead.
 
 If everything worked, you should now have HTTPS support for your daemon. To
-check, run the following command, replacing `seed.radicle.garden` with your
+check, run the following command, replacing `seed.radicle.example` with your
 seed's domain:
 
-    curl https://seed.radicle.garden/api/v1
+    curl https://seed.radicle.example/api/v1
 
 You should now be able to visit your seed node via any Radicle web frontend as
-well. For example, <https://app.radicle.xyz/nodes/seed.radicle.garden>.
+well. For example, <https://app.radicle.xyz/nodes/seed.radicle.example>.
 
 > On some distributions, installing `caddy` will start the system service
 > automatically. If you're not able to connect to your HTTP daemon from the

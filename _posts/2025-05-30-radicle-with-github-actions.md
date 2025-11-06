@@ -5,7 +5,7 @@ author: rudolfs
 layout: blog
 ---
 
-A chat with [burrito](https://app.radicle.xyz/nodes/seed.radicle.garden/users/did:key:z6MkrubmdTJKR42YZd7yDYysyx4JRez1wmvxjpmhzhTMKxsr) aka [Dietrich Ayala](https://metafluff.com) today sparked the idea to write down how we started dogfooding Radicle before we had our native Radicle CI going. He also encouraged me to just set a deadline for writing blog posts in general, so this had to be written and published by the end of today.
+A chat with [burrito](https://app.radicle.xyz/nodes/iris.radicle.xyz/users/did:key:z6MkrubmdTJKR42YZd7yDYysyx4JRez1wmvxjpmhzhTMKxsr) aka [Dietrich Ayala](https://metafluff.com) today sparked the idea to write down how we started dogfooding Radicle before we had our native Radicle CI going. He also encouraged me to just set a deadline for writing blog posts in general, so this had to be written and published by the end of today.
 
 We wanted to dogfood Radicle as soon as possible, but there was one caveat: we didn't have a solution for CI at the time. So what we did was just reuse our existing GitHub actions and push both to Radicle and GitHub. The code review would happen in Radicle, and GitHub would run our tests. For easy visual indication, we used workflow status badges generated for each branch pushed to GitHub.
 
@@ -56,4 +56,4 @@ sed -e "s|<branchName>|$branchName|g" \
 EOF
 ```
 
-This is how we used to run tests and builds. Now, we're dogfooding [our own CI solution](https://app.radicle.xyz/nodes/ash.radicle.garden/rad:zwTxygwuz5LDGBq255RA2CbNGrz8) together with [Woodpecker](https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z39Cf1XzrvCLRZZJRUZnx9D1fj5ws). If you want to learn more about CI in Radicle, check out the conversations on [Zulip](https://radicle.zulipchat.com/#narrow/channel/452370-radicle-ci).
+This is how we used to run tests and builds. Now, we're dogfooding [our own CI solution](https://app.radicle.xyz/nodes/rosa.radicle.xyz/rad:zwTxygwuz5LDGBq255RA2CbNGrz8) together with [Woodpecker](https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z39Cf1XzrvCLRZZJRUZnx9D1fj5ws). If you want to learn more about CI in Radicle, check out the conversations on [Zulip](https://radicle.zulipchat.com/#narrow/channel/452370-radicle-ci).

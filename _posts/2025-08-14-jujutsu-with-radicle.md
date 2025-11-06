@@ -419,7 +419,7 @@ $ rad patch show c54883e
 <span style="color:#2a2a2a;">│ </span>the identity -- which was needed for introducing canonical references.               <span style="color:#2a2a2a;"> │</span>
 <span style="color:#2a2a2a;">│ </span>                                                                                     <span style="color:#2a2a2a;"> │</span>
 <span style="color:#2a2a2a;">│ </span>[^0]:                                                                                <span style="color:#2a2a2a;"> │</span>
-<span style="color:#2a2a2a;">│ </span>https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/ <span style="color:#2a2a2a;"> │</span>
+<span style="color:#2a2a2a;">│ </span>https://app.radicle.xyz/nodes/iris.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/ <span style="color:#2a2a2a;"> │</span>
 <span style="color:#2a2a2a;">│ </span>patches/1d1ce874f7c39ecdcd8c318bbae46ffd02fe1ea8?tab=changes                         <span style="color:#2a2a2a;"> │</span>
 <span style="color:#2a2a2a;">├</span><span style="color:#2a2a2a;">───────────────────────────────────────────────────────────────────────────────────────</span><span style="color:#2a2a2a;">┤</span>
 <span style="color:#2a2a2a;">│ </span><span style="color:blue;">34014a6</span> radicle: refactor rule matching                                              <span style="color:#2a2a2a;"> │</span>
@@ -571,5 +571,5 @@ Come help in discussion on our [Zulip], and enjoy being Radicle 🌱👾
 [guide-user-cobs]: https://radicle.xyz/guides/user#2-collaborating-the-radicle-way
 [guide-user-patch]: https://radicle.xyz/guides/user#working-with-patches
 [guides]: https://radicle.xyz/guides
-[rip-storage]: https://app.radicle.xyz/nodes/ash.radicle.garden/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md
-[rip-storage-namespace]: https://app.radicle.xyz/nodes/ash.radicle.garden/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md#layout
+[rip-storage]: https://app.radicle.xyz/nodes/rosa.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md
+[rip-storage-namespace]: https://app.radicle.xyz/nodes/rosa.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md#layout
