@@ -1,8 +1,0 @@
-flake.*
-LICENSE
-.direnv
-.jj
-*~undo-tree~
-**/.\#*
-Makefile
-README.md
