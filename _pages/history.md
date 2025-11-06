@@ -73,8 +73,8 @@ developer stack.
 
 [radworks]: https://radworks.org
 [ipfs]: https://ipfs.tech/
-[heartwood]: https://app.radicle.xyz/seeds/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
-[web]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z4V1sjrXqjvFdnCUbxPFqd5p4DtH5
+[heartwood]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}
+[web]: {{ "rad:z4V1sjrXqjvFdnCUbxPFqd5p4DtH5" | explore }}
 [689]: https://github.com/radicle-dev/radicle-alpha/issues/689
 [as]: https://cloudhead.io
 [ed]: https://eleftherios.io/

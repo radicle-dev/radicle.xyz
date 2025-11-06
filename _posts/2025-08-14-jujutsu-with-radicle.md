@@ -565,11 +565,11 @@ Come help in discussion on our [Zulip], and enjoy being Radicle 🌱👾
 [git-remote-helpers]: https://git-scm.com/docs/gitremote-helpers
 
 <!-- Radicle -->
-[heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+[heartwood]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}
 [Zulip]: https://radicle.zulipchat.com
 [download]: /download
 [guide-user-cobs]: /guides/user#2-collaborating-the-radicle-way
 [guide-user-patch]: /guides/user#working-with-patches
 [guides]: /guides
-[rip-storage]: https://app.radicle.xyz/nodes/rosa.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md
-[rip-storage-namespace]: https://app.radicle.xyz/nodes/rosa.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md#layout
+[rip-storage]: {{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md" | explore }}
+[rip-storage-namespace]: {{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md#layout" | explore }}

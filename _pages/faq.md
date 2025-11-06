@@ -37,7 +37,7 @@ the problem for over 4 years in total. Previous iterations of Radicle can be
 found online, but are considered deprecated in favor of [Heartwood][heartwood],
 the latest generation of the protocol.
 
-[heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+[heartwood]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}
 
 # Technical Questions
 
@@ -85,7 +85,7 @@ Radicle checks this automatically, by verifying changes to the maintainer set
 through the repository identity document. All you need to know is that you have
 the correct Repository ID (RID). See [RIP-2][rip-2] for more information.
 
-[rip-2]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0002-identity.md
+[rip-2]: {{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0002-identity.md" | explore }}
 
 ## Isn't SHA-1 broken? How do you handle hash collisions?
 

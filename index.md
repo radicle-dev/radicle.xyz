@@ -12,7 +12,7 @@ Unlike centralized code hosting platforms, there is no single entity
 controlling the network. Repositories are replicated across peers in a
 decentralized manner, and users are in full control of their data and workflow.
 
-<a class="screenshot" href="https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" target="_blank" title="Heartwood is the latest generation of the Radicle protocol">
+<a class="screenshot" href="{{ 'rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5' | explore }}" target="_blank" title="Heartwood is the latest generation of the Radicle protocol">
   <img class="screenshot" src="/assets/images/web-app-screenshot.png"/>
 </a>
 <small class="caption">
@@ -99,14 +99,14 @@ and other clients can be developed.
 └────────────────┘└─────────────────┘
 </pre>
 
-<a class="button" href="https://app.radicle.xyz/nodes/seed.radicle.xyz">Browse our repositories ↗</a>
+<a class="button" href="{{ '' | explore }}">Browse our repositories ↗</a>
 
 # Contributing
 
 Radicle is *free and open source* software under the MIT and Apache 2.0
 licenses. Get involved by [contributing code][contribute].
 
-[contribute]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/tree/CONTRIBUTING.md
+[contribute]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/tree/CONTRIBUTING.md" | explore }}
 
 # Updates
 
@@ -168,7 +168,7 @@ channel on Zulip.
 [bsky]: https://bsky.app/profile/{{ site.atproto }}
 [mast]: {{ site.fedi | fedi_to_https }}
 [zulip]: https://radicle.zulipchat.com
-[heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+[heartwood]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}
 [desktop]: /desktop
 [cobs]: /guides/protocol#collaborative-objects
 [local-first]: https://www.inkandswitch.com/local-first/

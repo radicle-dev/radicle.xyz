@@ -822,9 +822,8 @@ collaboration.
 [git-v2]: https://git-scm.com/docs/protocol-v2
 [Tor]: https://torproject.org/
 [Ed25519]: https://ed25519.cr.yp.to/
-[iris.radicle.xyz]: https://app.radicle.xyz/nodes/iris.radicle.xyz
-[rosa.radicle.xyz]: https://app.radicle.xyz/nodes/rosa.radicle.xyz
-[seed.radicle.xyz]: https://app.radicle.xyz/nodes/seed.radicle.xyz
+[iris.radicle.xyz]: {{ "iris.radicle.xyz " | explore }}
+[rosa.radicle.xyz]: {{ "rosa.radicle.xyz " | explore }}
 [reverse-dns]: https://en.wikipedia.org/wiki/Reverse_domain_name_notation
 [tuf]: https://theupdateframework.github.io/specification/latest/
 [noise]: http://www.noiseprotocol.org/noise.html
@@ -835,15 +834,15 @@ collaboration.
 [causality]: https://en.wikipedia.org/wiki/Causal_consistency
 [dag]: https://en.wikipedia.org/wiki/Directed_acyclic_graph
 [topo]: https://en.wikipedia.org/wiki/Topological_sorting
-[rip-1]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0001-heartwood.md
-[rip-2]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0002-identity.md
-[rip-3]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md
+[rip-1]: {{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0001-heartwood.md" | explore }}
+[rip-2]: {{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0002-identity.md" | explore }}
+[rip-3]: {{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md" | explore }}
 [nat]: https://en.wikipedia.org/wiki/Network_address_translation
 [framing]: https://en.wikipedia.org/wiki/Frame_(networking)
 [fs]: https://en.wikipedia.org/wiki/Forward_secrecy
 [ecdh]: https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange
-[rips]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82
-[heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+[rips]: {{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82" | explore }}
+[heartwood]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}
 [did]: https://www.w3.org/TR/did-core/
 [seed]: /guides/seeder/
 [peer-to-peer]: https://en.wikipedia.org/wiki/Peer-to-peer

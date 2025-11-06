@@ -47,7 +47,7 @@ I have written a CI engine for myself,
 There are adapters for running CI locally on the host or in a
 container, GitHub actions, Woodpecker, and several others. See [`CI
 broker
-README.md`](https://app.radicle.xyz/nodes/radicle.liw.fi/rad:zwTxygwuz5LDGBq255RA2CbNGrz8/tree/README.md)
+README.md`]({{ "radicle.liw.fi rad:zwTxygwuz5LDGBq255RA2CbNGrz8/tree/README.md" | explore }})
 and [integration
 documentation](https://explorer.radicle.gr/nodes/seed.radicle.gr/rad:z4Uh671FzoooaHjLvmtW9BtGMF9qm)
 for a more complete list. The adapter interface is intentionally easy
@@ -182,7 +182,7 @@ To push changes, run `git push`.
 There you go. I now have a Radicle repository to play with. As of
 publishing this blog post, the repository is alive on the Radicle
 network, if you want to [look at
-it](https://app.radicle.xyz/nodes/radicle.liw.fi/rad:z3dhWQMH8J6nX3Qo97o5oSFMTfgyr)
+it]({{ "radicle.liw.fi rad:z3dhWQMH8J6nX3Qo97o5oSFMTfgyr" | explore }})
 or clone it.
 
 # CI configuration in the repository
@@ -212,7 +212,7 @@ I find the most frustrating part of using CI to be to wait for a CI
 run to finish on a server and then try to deduce from the run log what
 went wrong. I've alleviated this by writing an extension to `rad` to
 run CI locally:
-[`rad-ci`](https://app.radicle.xyz/nodes/radicle.liw.fi/rad%3Az6QuhJTtgFCZGyQZhRMZmZKJ3SVG).
+[`rad-ci`]({{ "radicle.liw.fi rad:z6QuhJTtgFCZGyQZhRMZmZKJ3SVG" | explore }}).
 It can produce a huge amount of output, so I've abbreviated that
 below.
 
@@ -481,7 +481,7 @@ but not other systems, since I only use Debian. I would very much
 appreciate help with expanding that documentation.
 
 It's probably easiest to install
-[`rad-ci`](https://app.radicle.xyz/nodes/radicle.liw.fi/rad:z6QuhJTtgFCZGyQZhRMZmZKJ3SVG)
+[`rad-ci`]({{ "radicle.liw.fi rad:z6QuhJTtgFCZGyQZhRMZmZKJ3SVG" | explore }})
 from source code or with `cargo install`, but I have a `deb` package
 for those using Debian or derivatives in my [APT
 repository](http://apt.liw.fi/).

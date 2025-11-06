@@ -2,8 +2,8 @@
 title: Work for Radicle
 subtitle: Everything you ever wanted to know
 ---
-[heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
-[rips]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82
+[heartwood]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}
+[rips]: {{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82" | explore }}
 [zulip]: https://radicle.zulipchat.com
 
 # Work for Radicle
@@ -61,7 +61,7 @@ We are looking for a protocol developer to push the Radicle protocol forward.
 
 - Design [Radicle Improvement Proposals][rips] to help define the future of Radicle.
 - Integrate design decisions into the existing implementation in the [`heartwood`][heartwood] repository.
-- [Collaborate](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches?status=merged) with external contributors to help maintain the project.
+- [Collaborate]({{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches?status=merged" | explore }}) with external contributors to help maintain the project.
 - Improve and debug the existing implementation of the protocol.
 
 #### Experience
@@ -88,7 +88,7 @@ We are looking for a developer, who is interested in UX/DX, to push Radicle tool
 
 #### Key Responsibilities
 
-- Provide new changes into the [`heartwood`](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5) repository.
+- Provide new changes into the [`heartwood`]({{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}) repository.
 - Improve `rad`, the Radicle CLI.
 - Improving the workflows of other developers using Radicle.
 - Collaborate with external contributors to help maintain the project.

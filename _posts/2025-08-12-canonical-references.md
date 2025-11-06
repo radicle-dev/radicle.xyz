@@ -184,10 +184,10 @@ your hearts content ❤️🌱
 
 [^1]: Here we are using the term in the sense that some content made may not be considered part of the canon of some story or universe. For example, some Star Wars content may be considered as canon by George Lucas, but some may not be.
 
-[^2]: [RIP-4 Canonical References](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/patches/1d1ce874f7c39ecdcd8c318bbae46ffd02fe1ea8?tab=changes)
+[^2]: [RIP-4 Canonical References]({{ "rad:z3trNYnLWS11cJWC6BbxDs5niGo82/patches/1d1ce874f7c39ecdcd8c318bbae46ffd02fe1ea8?tab=changes" | explore }})
 
-[^3]: [First patch attempting to implement canonical references](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches/c54883e5ffb1f8a99f432e3ac79c0b728cd0dab3)
+[^3]: [First patch attempting to implement canonical references]({{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches/c54883e5ffb1f8a99f432e3ac79c0b728cd0dab3" | explore }})
 
-[^4]: [Second patch implementing canonical references using the identity payload](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches/bea09df15505cfcebc72ad40f629747d2e82f670)
+[^4]: [Second patch implementing canonical references using the identity payload]({{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5/patches/bea09df15505cfcebc72ad40f629747d2e82f670" | explore }})
 
 [^5]: [Git ref format and reference patterns](https://git-scm.com/docs/git-check-ref-format)

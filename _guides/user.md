@@ -133,7 +133,7 @@ This command runs an installer script that automates the setup process, by:
 > compile from the [source code][heartwood] or get the [binaries] if you
 > prefer.
 
-[heartwood]: https://app.radicle.xyz/seeds/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+[heartwood]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}
 [binaries]: {{ site.url }}/download
 
 Once you've installed Radicle, you can make sure that it was successful by
@@ -2087,7 +2087,7 @@ to resolve `.onion` addresses.
 [tor]: https://www.torproject.org
 [install-tor]: https://community.torproject.org/onion-services/setup/install/
 [cyph-man]: https://www.activism.net/cypherpunk/manifesto.html
-[heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
+[heartwood]: {{ "rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5" | explore }}
 [cobs]: /guides/protocol/#collaborative-objects
 [ch1]: /guides/user/#1-getting-started
 [ch2]: /guides/user/#2-collaborating-the-radicle-way
