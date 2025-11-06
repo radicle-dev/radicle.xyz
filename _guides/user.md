@@ -111,7 +111,7 @@ used for source code and collaborative programming. </aside>
 The easiest way to install Radicle is by firing up your terminal and running
 the following command:
 
-    $ curl -sSf https://radicle.xyz/install | sh
+    $ curl -sSf {{ site.url }}/install | sh
 
 This command runs an installer script that automates the setup process, by:
 
@@ -134,7 +134,7 @@ This command runs an installer script that automates the setup process, by:
 > prefer.
 
 [heartwood]: https://app.radicle.xyz/seeds/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
-[binaries]: https://radicle.xyz/download
+[binaries]: {{ site.url }}/download
 
 Once you've installed Radicle, you can make sure that it was successful by
 running:
@@ -560,7 +560,7 @@ how to clone the repository on Radicle:
 
     +## Radicle
     +
-    +To clone this repository on [Radicle](https://radicle.xyz), simply run:
+    +To clone this repository on Radicle, simply run:
     +
     +    rad clone rad:z31hE1wco9132nedN3mm5qJjyotna
     +

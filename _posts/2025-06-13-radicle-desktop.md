@@ -11,7 +11,7 @@ Since Radicle reached version 1.0.0 in September last year, we’ve been focused
 
 ## Try it out! 🪄
 
-Head over to [radicle.xyz/desktop][desktop] to find the install instructions including packaged versions for major distributions.
+Head over to [{{ site.url }}/desktop][desktop] to find the install instructions including packaged versions for major distributions.
 
 ## What is Radicle Desktop?
 
@@ -28,4 +28,4 @@ Radicle Desktop is not trying to replace your terminal, IDE, or code editor - yo
 Radicle Desktop marks the latest addition to the growing Radicle ecosystem. A lot of work has gone into this release, and we’re happily using Radicle Desktop ourselves for some time now. We also want to extend a big thank you to everyone who tried the earlier versions - the feedback has been immensely valuable. Even some of the CLI fans admit that certain workflows are better in the app.
 
 
-[desktop]: https://radicle.xyz/desktop
+[desktop]: /desktop

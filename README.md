@@ -1,6 +1,4 @@
-# radicle.xyz
-
-> Visit <https://radicle.xyz>
+# The Radicle Website
 
 This is the Radicle homepage and documentation repository.
 

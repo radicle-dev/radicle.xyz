@@ -314,9 +314,8 @@ is so easy, I never bother to make note of it when creating a repository.
 # Reporting an issue
 
 The `rad` tool can open issues from the command line, but for issue
-management I've moved to using [the desktop
-application](https://radicle.xyz/desktop). In the screenshot below I
-open an issue about the default greeting.
+management I've moved to using [the desktop application](/desktop).
+In the screenshot below I open an issue about the default greeting.
 
 <img src="/assets/images/blog/radicle-desktop-new-issue-scaled.png" class="screenshot"/>
 
@@ -472,11 +471,9 @@ been programming for decades.
 
 # Installing
 
-To install Radicle itself, the [official
-instructions](https://radicle.xyz/#get-started) will get you `rad` and
-`radicle-node`. The [Radicle desktop
-application](https://radicle.xyz/desktop) has it's own installation
-instructions.
+To install Radicle itself, the [official instructions](/#get-started)
+will get you `rad` and `radicle-node`. The [Radicle desktop application](/desktop)
+has its own installation instructions.
 
 There are instructions for installing [Radicle CI (for
 Debian)](https://radicle-ci.liw.fi/radicle-ci-broker/userguide.html#installing-radicle-ci-with-ambient-on-debian),

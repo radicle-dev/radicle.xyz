@@ -14,16 +14,16 @@ Thanks to all community members that help distributing Radicle!
 
 ## Advanced Package Tool (and compatible)
 
-To use our repository at <https://radicle.xyz/apt>,
+To use our repository at <{{ site.url }}/apt>,
 first install the signing key:
 ```
-curl -LO https://radicle.xyz/apt/radicle-archive-keyring.deb
+curl -LO {{ site.url }}/apt/radicle-archive-keyring.deb
 chmod a+r radicle-archive-keyring.deb
 sudo apt install ./radicle-archive-keyring.deb
 ```
 Then add the URL to your `/etc/apt/sources.list`:
 ```
-echo "deb [signed-by=/usr/share/radicle/radicle-archive-keyring.asc] https://radicle.xyz/apt release main" | sudo tee -a  "/etc/apt/sources.list"
+echo "deb [signed-by=/usr/share/radicle/radicle-archive-keyring.asc] {{ site.url }}/apt release main" | sudo tee -a  "/etc/apt/sources.list"
 ```
 Now install `radicle`, e.g.:
 ```

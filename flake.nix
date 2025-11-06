@@ -1,5 +1,5 @@
 {
-  description = "radicle.xyz";
+  description = "The Radicle Website";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-25.05";

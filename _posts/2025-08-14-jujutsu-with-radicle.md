@@ -567,9 +567,9 @@ Come help in discussion on our [Zulip], and enjoy being Radicle 🌱👾
 <!-- Radicle -->
 [heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 [Zulip]: https://radicle.zulipchat.com
-[download]: https://radicle.xyz/download
-[guide-user-cobs]: https://radicle.xyz/guides/user#2-collaborating-the-radicle-way
-[guide-user-patch]: https://radicle.xyz/guides/user#working-with-patches
-[guides]: https://radicle.xyz/guides
+[download]: /download
+[guide-user-cobs]: /guides/user#2-collaborating-the-radicle-way
+[guide-user-patch]: /guides/user#working-with-patches
+[guides]: /guides
 [rip-storage]: https://app.radicle.xyz/nodes/rosa.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md
 [rip-storage-namespace]: https://app.radicle.xyz/nodes/rosa.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82/tree/0003-storage-layout.md#layout

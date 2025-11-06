@@ -101,7 +101,7 @@ that openly seed all repositories to *community seed nodes* that selectively
 seed repositories from a group of trusted peers.
 
 <aside> For more details on how to run a seed node, refer to the <a
-href="https://radicle.xyz/guides/seeder">Radicle Seeder's Guide</a>
+href="/guides/seeder">Radicle Seeder's Guide</a>
 </aside>
 
 ### Node Identifiers (NIDs)
@@ -813,7 +813,7 @@ collaboration.
 
 [Gitea]: https://about.gitea.com/
 [Forgejo]: https://forgejo.org/
-[Radicle]: https://radicle.xyz/
+[Radicle]: /
 [Git]: https://git-scm.com/
 [gns]: https://git-scm.com/docs/gitnamespaces
 [grh]: https://git-scm.com/docs/gitremote-helpers
@@ -845,7 +845,7 @@ collaboration.
 [rips]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3trNYnLWS11cJWC6BbxDs5niGo82
 [heartwood]: https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5
 [did]: https://www.w3.org/TR/did-core/
-[seed]: https://radicle.xyz/guides/seeder/
+[seed]: /guides/seeder/
 [peer-to-peer]: https://en.wikipedia.org/wiki/Peer-to-peer
 [forges]: https://en.wikipedia.org/wiki/Forge_(software)
 [local-first]: https://www.inkandswitch.com/local-first/

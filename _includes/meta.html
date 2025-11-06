@@ -8,14 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:image" content="https://radicle.xyz/assets/images/og-card.png"/>
+<meta name="twitter:image" content="{{ site.url }}/assets/images/og-card.png"/>
 <meta name="twitter:site" content="@radicle"/>
 <meta name="twitter:creator" content="@radicle"/>
 
 <meta property="og:title" content="{{ page.title | default: site.title }}"/>
 <meta property="og:description" content="Sovereign code infrastructure."/>
-<meta property="og:image" content="https://radicle.xyz/assets/images/og-card.png"/>
-<meta property="og:url" content="https://radicle.xyz{{ page.url }}"/>
+<meta property="og:image" content="{{ site.url }}/assets/images/og-card.png"/>
+<meta property="og:url" content="{{site.url}}/{{ page.url }}"/>
 <meta property="og:type" content="website"/>
 
 <meta name="fediverse:creator" content="{{ author.fedi | default: site.fedi }}" />
