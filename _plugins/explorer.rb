@@ -1,7 +1,7 @@
 module Jekyll
   module Explorer
     def explore(input)
-      base = "https://app.radicle.xyz/nodes"
+      base = "https://radicle.network/nodes"
       if input.include?(' ')
         prefix, suffix = input.split(' ', 2)
         "#{base}/#{prefix}/#{suffix}"
