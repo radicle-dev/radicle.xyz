@@ -24,6 +24,7 @@ exclude:
   - LICENSE
   - flake.*
   - README.md
+  - wrangler.toml
 include:
   - _redirects
   - .well-known
