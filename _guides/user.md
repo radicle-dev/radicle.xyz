@@ -240,7 +240,7 @@ If you run `rad auth` again you can verify that your key was added to
 
 If you forget your DID or NID, you can query your full identity by running `rad
 self` or alternatively you can grab your DID with `rad self --did` and your NID
-with `rad self --nid`.
+with `rad node status --only nid`.
 
 ```
 $ rad self
@@ -514,7 +514,7 @@ For the `Push URL`, you may be wondering, what is the element after the slash?
     z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
 
 Does it look familiar to you? Well, it's your Node ID. Remember you can always
-check your Node ID by running `rad self --nid`.
+check your Node ID by running `rad node status --only nid`.
 
 When using Git with traditional forges, you are pushing to a remote which is a
 centralized server that all other collaborators are also using. In Radicle, the
