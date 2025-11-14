@@ -1,0 +1,5 @@
+---
+layout: none
+permalink: /.well-known/funding-manifest-urls
+---
+https://betterinternet.foundation/funding.json
