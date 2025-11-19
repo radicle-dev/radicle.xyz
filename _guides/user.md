@@ -238,9 +238,9 @@ If you run `rad auth` again you can verify that your key was added to
 > We are in the process of designing and implementing this functionality.
 
 
-If you forget your DID or NID, you can query your full identity by running `rad
-self` or alternatively you can grab your DID with `rad self --did` and your NID
-with `rad node status --only nid`.
+If you forget your DID, you can query your full identity by running `rad
+self` or alternatively you can grab your DID with `rad self --did`.
+If you need your NID, you can query for it with `rad node status --only nid`.
 
 ```
 $ rad self
@@ -257,8 +257,22 @@ Home            /home/paxel/.radicle
 └╴Node          /home/paxel/.radicle/node
 ```
 
-This displays your alias, DID, Node ID, SSH agent status, SSH keys, and the
-locations of important files or directories.
+This displays your alias, DID, SSH agent status, SSH keys, and the locations of
+important files or directories.
+
+```
+$ rad self --did
+did:key:z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9
+```
+
+For focusing on your DID.
+
+```
+$ rad node status --only nid
+z6Mkhp7VUnuufpvuQ3PdysShAjL86VDRUpPpkesqiysDBGs9
+```
+
+For getting the NID of the current, running node.
 
 > 👾
 >
