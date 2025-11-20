@@ -111,7 +111,7 @@ used for source code and collaborative programming. </aside>
 The easiest way to install Radicle is by firing up your terminal and running
 the following command:
 
-    $ curl -sSf {{ site.url }}/install | sh
+    $ curl -sSLf {{ site.url }}/install | sh
 
 This command runs an installer script that automates the setup process, by:
 
