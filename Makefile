@@ -22,4 +22,7 @@ svgs:
 publish: default
 	wrangler deploy --name="website-$(TLD)"
 
-.PHONY: default publish
+clean:
+	@rm -rfv _site
+
+.PHONY: default publish clean
