@@ -3,8 +3,6 @@ title: "Radicle: the sovereign forge"
 layout: index
 ---
 
-> Radicle Desktop is now available. Read the [announcement]({% post_url 2025-06-13-radicle-desktop %}). ✨
-
 # Synopsis
 
 Radicle is an open source, peer-to-peer code collaboration stack built on Git.
