@@ -146,23 +146,6 @@ If you have feedback, join our [Zulip][zulip] or send us an email at
 address are automatically posted to our [#feedback](https://radicle.zulipchat.com/#narrow/channel/392584-feedback)
 channel on Zulip.
 
-                                                 .
-
-
-                                                       *
-                            .
-                  *                              --O--
-                                                  /|\
-                     ,                     .
-                                               .
-    ..-.--*--.__-__..._.--..-._.---....~__..._.--..~._.---.--..____.--_--'`_---..
-           -.--~--._  __..._.--..~._.--- - -.____.--_--'`_---..~.----_~
-
-                                        .--..~._
-                      -.-
-                                     .-.        .
-
-
 [install-script]: /install
 [twitter]: https://twitter.com/radicle
 [bsky]: https://bsky.app/profile/{{ site.atproto }}
