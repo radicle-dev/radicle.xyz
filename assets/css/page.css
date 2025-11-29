@@ -296,20 +296,12 @@ body > footer :first-child > * {
 body > footer :last-child > * {
   margin-left: auto;
 }
-body > footer .radworks {
-  height: 1rem;
-  line-height: 1.5rem;
-}
 body > footer a {
   border-bottom: none;
 }
 main > footer {
   position: initial;
   padding-bottom: 1em;
-}
-
-:root[data-theme="light"] .radworks {
-  opacity: 0.33;
 }
 
 nav {
