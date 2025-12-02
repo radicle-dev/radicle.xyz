@@ -1,7 +1,7 @@
 TLD ?= dev
 CONFIG = --config _config.yml,_config.$(TLD).yml
 
-default:
+default: _pages/code-of-conduct.patch
 	bundle exec jekyll build $(CONFIG)
 
 serve:
@@ -22,7 +22,11 @@ svgs:
 code_of_conduct.md:
 	curl -o $@ 'https://www.contributor-covenant.org/version/3/0/code_of_conduct/code_of_conduct.md'
 
+_pages/code-of-conduct.patch: code_of_conduct.md _includes/code-of-conduct.md
+	printf -- "---\nlayout: none\npermalink: /coc.patch\n---\n" > $@
+	-diff -U1024 --label "contributor-covenant.org/code_of_conduct.md" --label "radicle.$(TLD)/code-of-conduct.md" $^ >> $@
+
 publish: default
 	wrangler deploy --name="website-$(TLD)"
 
-.PHONY: default publish
+.PHONY: default publish _includes/code-of-conduct.md
