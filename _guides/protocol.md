@@ -817,7 +817,7 @@ collaboration.
 [Git]: https://git-scm.com/
 [gns]: https://git-scm.com/docs/gitnamespaces
 [grh]: https://git-scm.com/docs/gitremote-helpers
-[git-pack]: https://git-scm.com/docs/pack-protocol/en
+[git-pack]: https://git-scm.com/docs/pack-protocol
 [git-odb]: https://git-scm.com/book/en/v2/Git-Internals-Git-Objects
 [git-v2]: https://git-scm.com/docs/protocol-v2
 [Tor]: https://torproject.org/
