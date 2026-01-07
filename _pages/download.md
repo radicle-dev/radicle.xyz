@@ -174,6 +174,10 @@ reproduce the binaries on this page from source.
   <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFsaRqAJ1r6bBFwlcWzJKN7DdjItQDumCNc0wqw6Dvk</code></td></tr>
   <tr><td>Fingerprint</td><td><code>SHA256:vV38nW5eSWfTMITdAoMCBOFzEEr0bDMXjSWHpwrpsKY</code></td></tr>
   <tr><td>Owner</td><td>fintan@radicle.xyz</td></tr>
+  <tr><td>Key</td><td><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPueml1FxzjvwbD7vRZfwoaoyuxLy0L+WLBwSNiVoJe5</code></td></tr>
+  <tr><td>Fingerprint</td><td><code>SHA256:s/6EWLSAoeZWREZxj8vr6FtM6NaDjWhwsGB80eoaSzs</code></td></tr>
+  <tr><td>Owner</td><td>rudolfs@osins.org</td></tr>
+  <tr><td>Build host</td><td>Aarch64 Apple M1</td></tr>
 </table>
 
 ## Download
