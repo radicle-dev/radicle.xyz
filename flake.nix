@@ -21,6 +21,12 @@
         buildInputs = with pkgs; [
           ruby
           wrangler
+
+          # Ruby native extensions need these to build
+          libyaml.dev
+          openssl.dev
+          zlib.dev
+          libffi.dev
         ];
       };
     });
