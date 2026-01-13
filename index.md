@@ -113,6 +113,7 @@ updated, join our community on 💬 [Zulip][zulip], or <a href="{{ site.feed.pat
   Subscribe <img src="/assets/images/rss.svg" alt="RSS logo" style="width:15px;"/>
 </a>
 
+- 14.01.2026 [Radicle 1.5.0]({% post_url 2025-01-14-radicle-1.6.0 %}) released. ✨
 - 30.09.2025 [Radicle 1.5.0]({% post_url 2025-09-30-radicle-1.5.0 %}) released. ✨
 - 04.09.2025 [Radicle 1.4.0]({% post_url 2025-09-04-radicle-1.4.0 %}) released.
 - 12.08.2025 [Radicle 1.3.0]({% post_url 2025-08-12-radicle-1.3.0 %}) released.
