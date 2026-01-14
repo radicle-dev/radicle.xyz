@@ -592,7 +592,8 @@ replace `master` with your default branch, in case that's not it).
        ecb1bf0..74fb8d2  master -> master
 
 Whenever you execute a `git push rad` command, you are pushing the changes in
-your local working copy to your remote copy. You see that the remote of your
+your local working copy to your `rad` remote, the stored copy managed by your
+radicle node, so it's a local operation. You see that the remote of your
 repository is represented by the URL:
 
     rad://z31hE1wco9132nedN3mm5qJjyotna/z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C
