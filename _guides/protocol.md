@@ -487,12 +487,12 @@ simply Git repositories stored in a special location on disk. Peer data
 is stored within the same repository using Git [namespaces][gns], where Node
 IDs are used as the namespace. This allows storage to be managed through a
 partitioned approach where each user maintains their own *local fork* of a
-repository, as well as any other forks they have an interest in, all within the
-same Git repository. These forks are then shared among users across the
-network.
+repository, as well as forks of other users they have an interest in, all
+within the same Git repository. These copies are then shared among users
+across the network.
 
-Each repository fork has a *single owner and writer*, and users are only
-permitted to make changes to their respective forks.
+Each repository fork has a *sole owner and writer* identified by their
+Node ID and users are only permitted to make changes to their respective fork.
 
 ### Working vs. Stored Copy
 
