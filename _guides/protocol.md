@@ -723,8 +723,13 @@ state and see the same thing.
 
 To achieve this, Radicle makes use of Git's native synchronization primitives,
 and encodes COBs as a set of commits in a [directed acyclic graph][dag] (DAG).
-Each issue, patch or identity document is represented by one such commit graph
-that is disjoint from any other COB or source code branch.
+The identity document is represented by one such commit graph that is disjoint
+from any other COB or source code branch.
+Issues are represented as a graph that points to the identity document graph –
+allowing for inspection of the document at evaluation.
+Patches are a graph that combines pointing to both the identity document and
+source code commits. This combination allows for checking if the patch is
+merged, for example.
 
 This representation gives Radicle a few things for free:
 
