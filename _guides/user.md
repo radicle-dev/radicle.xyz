@@ -1465,14 +1465,17 @@ We can verify that it is merged via `rad patch show e5f0a5a`, or `rad patch
 
 ### From remote viewing to adding remotes
 
-Whenever you `init` or `clone` a repository, your node will follow all peers
-for that repository, which means that everyone's patches and issues will be
-synchronized to your device.
+Whenever you `init` or `clone` a repository, the `allow` policy of the
+repository will be used, meaning that the node will register its interest
+in changes for this repository. The node also uses a `scope` as part of the
+policy to change the behavior of what peer data is replicated. The default is
+`all`, which means that all Git references, patches, and issues are synchronized
+to your local Radicle storage.
 
 You can change this behavior by specifying a different scope when cloning or
 initializing a repository, with the `--scope` option. For example, `--scope
 followed` will only synchronize changes by peers you explicitly follow with the
-`rad follow` command. The default is `--scope all`.
+`rad follow` command.
 
 But if a peer becomes a regular collaborator, it would be useful to add them as
 a Git remote to track their changes and `checkout` their branches, even if
