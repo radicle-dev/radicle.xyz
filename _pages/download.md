@@ -129,7 +129,7 @@ reproduce the binaries on this page from source.
 <noscript>
   <p>
     Browse the latest release at
-    <a href="https://files.radicle.xyz/releases/radicle-httpd/latest">https://files.radicle.xyz/radicle-httpd/releases/latest</a>
+    <a href="https://files.radicle.xyz/releases/radicle-httpd/latest">https://files.radicle.xyz/releases/radicle-httpd/latest</a>
   </p>
 </noscript>
 
