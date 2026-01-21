@@ -1487,7 +1487,9 @@ Calyx decides to do this, and adds us (Paxel) as a remote:
     rad remote add z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C --name paxel
 
 This allows Calyx to keep up with our changes by creating a remote tracking
-branch in his working copy, that has our main branch as its upstream.
+branch in his working copy, that has our main branch as its upstream. In other
+words, it helps us create a `git remote` with the necessary configuration to
+interact with the Radicle storage copy of the repository.
 
 <pre class="wide"><code>$ git remote -v
 paxel   rad://z3cyotNHuasWowQ2h4yF9c3tFFdvc/z6MkvZwzK64f3GuDcAs6dEcje89ddfHkBjS1v9Dkh7aCGq3C (fetch)
