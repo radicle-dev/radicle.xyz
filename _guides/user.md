@@ -461,8 +461,6 @@ nodes. In the early stages of the Radicle network, all public repositories are
 automatically seeded by `iris.radicle.xyz` and `rosa.radicle.xyz` which
 are *public seed nodes* run by the core team.
 
-<!-- TODO: Talk about seeding policies and following -->
-
 <aside class="span-2"> <strong>Seed nodes</strong> are always-on machines that
 significantly enhance the network’s capacity to provide continuous access to
 repositories. They can vary in their seeding policies, from public seed nodes
@@ -477,6 +475,43 @@ reliable for code collaboration.
 > We are always looking to attract more people
 > that want to operate public seed nodes: if that's you, check out our
 > [Seeder's Guide][seeder] for more details.
+
+### Replication Policies
+
+In the section above, we mentioned a "seeding policy". In this section, we will
+talk about two kinds of policies: [seeding policies](#seeding-policy) and
+[follow policies](#follow-policy).
+
+#### Seeding Policy
+
+Seeding policy refers to a local configuration per Repository ID (RID) and
+affect how repositories are replicated.
+
+A seeding policy can be broken down into two components:
+
+1. *Policy*: whether the nodes allows or blocks the repository from being
+fetched and can either be set to `allow` and `block`. If a seeding policy is
+set to `block`, then the repository is ignored, rather than fetched.
+2. *Scope* can be one of two values: `all` or `followed`:
+   * `all`: references of *all* peer's namespaces within a repository are fetched.
+   * `followed`  means that only references from your [followed](#follow-policy)
+     peers are fetched.
+
+In both cases, the delegates of the repository are also fetched. These peers are
+privileged since the state of the repository's identity and the default branch
+are decided by these peers.
+
+#### Follow Policy
+
+A follow policy refers to a policy that affects a peer. Similarly to a seeding
+policy, it can either be `allow` or `block`, but it does not require a scope.
+
+As mentioned above, this affects the references that are being fetched within a
+repository. When a seeding policy's scope is `followed`, the set of followed
+peers, who are `allow` are retrieved.
+
+Conversely, in all cases above, if a peer's policy is set to `block` their
+references are never fetched.
 
 ### Publishing *ch-ch-ch-ch-changes*
 
