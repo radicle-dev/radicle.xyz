@@ -217,7 +217,7 @@ The workflow is similar to using Git with a platform like GitHub. You clone a
 repository, make changes locally, then push to the network. Collaboration
 happens via issues, patches (pull requests), and code review. The difference
 is that Radicle doesn't have a shared write access model like GitHub. Each
-user is required to push to their own fork.
+user is required to push to their own namespace.
 
 ## How do I use Radicle with multiple devices?
 

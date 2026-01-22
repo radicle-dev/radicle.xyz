@@ -486,13 +486,15 @@ over the network using an unmodified Git protocol. Radicle repositories are
 simply Git repositories stored in a special location on disk. Peer data
 is stored within the same repository using Git [namespaces][gns], where Node
 IDs are used as the namespace. This allows storage to be managed through a
-partitioned approach where each user maintains their own *local fork* of a
-repository, as well as forks of other users they have an interest in, all
+partitioned approach where each user maintains their own *namespace* of a
+repository, as well as namespaces of other users they have an interest in, all
 within the same Git repository. These copies are then shared among users
 across the network.
 
-Each repository fork has a *sole owner and writer* identified by their
-Node ID and users are only permitted to make changes to their respective fork.
+We can view a peer's namespace as their "soft-fork" of the repository. It is
+their own space for making changes to the repository without affecting other
+namespaces. The peer is the *sole owner and writer* of this namespace,
+identified, and verified, by their Node ID.
 
 ### Working vs. Stored Copy
 
@@ -537,7 +539,7 @@ the namespace. Thus, each peer has its own namespaced references (eg.
 `refs/heads`, and `refs/tags`), while sharing the underlying objects (i.e.
 commits and blobs) with other namespaces via a shared object database. This
 design ensures only one copy of each object is stored across all repository
-forks.
+namespaces.
 
 Since the underlying storage uses Git, the storage layout below is represented
 as a file tree on the file-system, with `<storage>` representing the storage
@@ -545,14 +547,14 @@ root, or top-level directory under which all repositories are stored on a
 user's device. For every repository, each peer associated with that repository
 must have a separate, logical Git source tree -- which contains all the usual
 reference categories. This *logical repository* is also known as the repository
-*fork* or *view*, and allows nodes to maintain local data for all peers in the
+*namespace* or *view*, and allows nodes to maintain local data for all peers in the
 same physical repository.
 
 ```
 <storage>                     # Storage root containing all repositories
 ├─ <rid>                      # Storage for first repository
 │  └─ refs                    # All Git references locally stored
-│     └─ namespaces           # All peer source trees or "forks"
+│     └─ namespaces           # All peer source trees or "namespaces"
 │        ├─ <nid>             # First node's source tree
 │        │  └─ refs           # First node's Git references
 │        │     ├─ heads       # First node's branches
@@ -580,7 +582,7 @@ they may not always appear as individual files.
 ### Git URL Scheme
 
 The Radicle protocol uses its own URL scheme to point to specific repository
-forks in the network. This allows the Git `fetch` and `push` commands to
+namespaces in the network. This allows the Git `fetch` and `push` commands to
 operate on the correct namespace when fetching or pushing code.
 
 <figure>
