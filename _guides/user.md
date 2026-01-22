@@ -548,7 +548,7 @@ work *way smoother*.
 
 > 🧠
 >
-> Radicle's storage layout accommodates multiple source trees *(forks)* per
+> Radicle's storage layout accommodates multiple source trees *(namespaces)* per
 > repository. Each repository is stored as a bare Git repository, residing under
 > a common base directory, uniquely identified by its Repository ID (RID). Rather
 > than storing peer data in separate Git repositories with individual object

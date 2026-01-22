@@ -165,9 +165,10 @@ There are a couple of things we need to set up a seed node.
 
 First, we must set the node's default *seeding policy*.
 
-The seeding policy tells the node which repositories and forks to fetch
-and offer to the network. For *public seed nodes*, a *permissive* seeding policy
-is often set, such that *all data* on the network is stored and replicated.
+The seeding policy tells the node which repositories and reference namespaces to
+fetch and offer to the network. For *public seed nodes*, a *permissive* seeding
+policy is often set, such that *all data* on the network is stored and
+replicated.
 
 Second, we must set an *External Address* for the node to be reached on the
 network. This address will be advertised to peers, allowing them to connect to
